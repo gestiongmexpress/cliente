@@ -1,0 +1,27 @@
+.container {
+    padding-top: 20px;
+  }
+  
+  .card {
+    background-color: #f8f9fa; /* Ligero color de fondo */
+  }
+  
+  .card-header {
+    background-color: #007bff; /* Color de fondo para el encabezado */
+    color: white; /* Texto blanco para el encabezado */
+  }
+  
+  .card-footer {
+    background-color: #f8f9fa; /* Ligero color de fondo para el pie de página */
+  }
+  
+  .btn-link {
+    color: #007bff; /* Color para los enlaces */
+  }
+  
+  .form-control-plaintext {
+    background-color: #e9ecef; /* Color de fondo para los campos de texto en modo solo lectura */
+    border-radius: 5px; /* Bordes redondeados para los campos de texto */
+    padding: .375rem .75rem; /* Padding para los campos de texto */
+  }
+  

@@ -1,0 +1,67 @@
+.registro-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff; /* Fondo blanco para el formulario */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidad */
+  border-radius: 8px;
+  position: relative; /* Posicionamiento relativo para contenedor del botón volver */
+}
+
+.titulo-registro {
+  text-align: center;
+  color: #004a99; /* Color de fuente azul que deberás ajustar según tu paleta de colores */
+  margin-bottom: 2rem;
+}
+
+.form-registro {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: .5rem;
+  color: #333; /* Color de fuente oscuro para los labels */
+}
+
+.form-control {
+  padding: .5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn-primary {
+  padding: .5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff; /* Color azul, ajusta según tu paleta */
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; /* Color azul más oscuro para el hover */
+}
+
+/* Añade esta clase al botón de volver */
+.btn-volver {
+  background-color: #6c757d; /* Un color gris para el botón secundario, ajusta según tu paleta */
+  color: white;
+  padding: .5rem 1rem; /* Tamaño estándar del padding para los botones */
+  border-radius: 4px; /* Bordes redondeados para el botón */
+  text-align: center; /* Centra el texto dentro del botón */
+  display: block; /* Hace que el botón sea un bloque para ocupar su propio espacio */
+  width: 100px;
+  margin: 1rem auto; /* Margen automático para centrar el botón horizontalmente */
+  cursor: pointer; /* Cambia el cursor a pointer */
+}
+
+.btn-volver:hover {
+  background-color: #5a6268; /* Un tono más oscuro para el hover */
+}

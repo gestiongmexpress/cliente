@@ -1,0 +1,26 @@
+<div class="auth-container">
+  <h2 class="auth-title">Bienvenido al sistema de gestión de GM Express, {{ nombreUsuario }}</h2>
+  <p class="rol-indicator">Usted tiene rol de {{ rol }}</p>
+  
+  <!-- Sección para registrar nuevo usuario -->
+  <div *ngIf="mostrarRegistro" class="list-group">
+    <a routerLink="/registrar" class="list-group-item list-group-item-action btn-verde-claro">Registrar nuevo usuario</a>
+  </div>
+
+  <!-- Sección para listar capacitaciones -->
+  <div *ngIf="mostrarListarCapacitaciones" class="list-group">
+    <a routerLink="/listar-capacitacion" class="list-group-item list-group-item-action">R-SGI-44 Programa anual de capacitaciones</a>
+  </div>
+
+  <!-- Sección para listar mantenciones -->
+  <div *ngIf="mostrarListarMantenciones" class="list-group">
+    <a routerLink="/listar-mantencion" class="list-group-item list-group-item-action">R-SGI-89 Programa anual de mantenciones</a>
+  </div>
+
+  <div *ngIf="mostrarListaPlagas" class="list-group">
+    <a routerLink="/listar-plagas" class="list-group-item list-group-item-action">R-SGI-88 Programa anual de control de plagas</a>
+  </div>
+  
+  <!-- Botón de cerrar sesión -->
+  <button (click)="cerrarSesion()" class="btn btn-logout">Cerrar Sesión</button>
+</div>

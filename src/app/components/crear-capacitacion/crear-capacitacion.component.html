@@ -1,0 +1,111 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="text-center">{{ titulo | uppercase }}</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="capacitacionForm" (ngSubmit)="agregarCapacitacion()" enctype="multipart/form-data">
+            
+            <!-- Sucursal -->
+            <div class="form-group mb-3">
+              <label for="sucursal">Sucursal</label>
+              <select formControlName="sucursal" id="sucursal" class="form-control">
+                <option value="">Seleccionar Sucursal</option>
+                <option value="Central Corporativa">Central Corporativa</option>
+                <option value="Megacentro">Megacentro</option>
+                <option value="Peñon">Peñon</option>
+                <option value="Ovalle">Ovalle</option>
+              </select>
+              <div *ngIf="capacitacionForm.get('sucursal')?.touched && capacitacionForm.get('sucursal')?.invalid" class="text-danger">
+                La selección de una sucursal es obligatoria.
+              </div>
+            </div>
+
+            <!-- Nombre de la Capacitación -->
+            <div class="form-group mb-3">
+              <label for="nombreCapacitacion">Nombre de la Capacitación</label>
+              <input type="text" formControlName="nombreCapacitacion" id="nombreCapacitacion" class="form-control" placeholder="Nombre">
+              <div *ngIf="capacitacionForm.get('nombreCapacitacion')?.touched && capacitacionForm.get('nombreCapacitacion')?.invalid" class="text-danger">
+                El nombre de la capacitación es obligatorio.
+              </div>
+            </div>
+
+            <!-- Encargado -->
+            <div class="form-group mb-3">
+              <label for="encargado">Encargado</label>
+              <select formControlName="encargado" id="encargado" class="form-control">
+                <option value="">Seleccionar Cargo</option>
+                <option value="Nutricionista">Nutricionista</option>
+                <option value="APR">APR</option>
+                <option value="Enc. Logistica">Enc. Logistica</option>
+                <option value="Administrador">Administrador</option>
+              </select>
+              <div *ngIf="capacitacionForm.get('encargado')?.touched && capacitacionForm.get('encargado')?.invalid" class="text-danger">
+                La selección de un encargado es obligatoria.
+              </div>
+            </div>
+
+            <!-- Mes -->
+            <div class="form-group mb-3">
+              <label for="mes">Mes</label>
+              <select formControlName="mes" id="mes" class="form-control">
+                <option value="">Seleccionar Mes</option>
+                <option value="Enero">Enero</option>
+                <option value="Febrero">Febrero</option>
+                <option value="Marzo">Marzo</option>
+                <option value="Abril">Abril</option>
+                <option value="Mayo">Mayo</option>
+                <option value="Junio">Junio</option>
+                <option value="Julio">Julio</option>
+                <option value="Agosto">Agosto</option>
+                <option value="Septiembre">Septiembre</option>
+                <option value="Octubre">Octubre</option>
+                <option value="Noviembre">Noviembre</option>
+                <option value="Diciembre">Diciembre</option>
+              </select>
+              <div *ngIf="capacitacionForm.get('mes')?.touched && capacitacionForm.get('mes')?.invalid" class="text-danger">
+                La selección de un mes es obligatoria.
+              </div>
+            </div>
+
+            <!-- Año -->
+            <div class="form-group mb-3">
+              <label for="ano">Año</label>
+              <input type="number" formControlName="ano" id="ano" class="form-control" placeholder="Año">
+              <div *ngIf="capacitacionForm.get('ano')?.touched && capacitacionForm.get('ano')?.invalid" class="text-danger">
+                El año es obligatorio y debe ser mayor o igual a 2023.
+              </div>
+            </div>
+
+                                  <!-- Campos para los enlaces -->
+                      <div class="mb-3" *ngIf="esModoEdicion">
+                        <label for="asistentesLink" class="form-label">Registro de asistencia</label>
+                        <input type="text" formControlName="asistentes" id="asistentesLink" class="form-control" placeholder="Ingresa el enlace del archivo de asistentes">
+                      </div>
+                      <div class="mb-3" *ngIf="esModoEdicion">
+                        <label for="notaLink" class="form-label">Documento de capacitacion</label>
+                        <input type="text" formControlName="nota" id="notaLink" class="form-control" placeholder="Ingresa el enlace del archivo de nota">
+                      </div>
+                      <div class="mb-3" *ngIf="esModoEdicion">
+                        <label for="diaRealizado" class="form-label">Fecha de Realización</label>
+                        <input type="date" formControlName="diaRealizado" id="diaRealizado" class="form-control">
+                      </div>
+                      <div class="mb-3" *ngIf="esModoEdicion">
+                        <label for="proveedor" class="form-label">Proveedor</label>
+                        <input type="text" formControlName="proveedor" id="proveedor" class="form-control">
+                      </div>
+
+            <!-- Botones de acción -->
+            <div class="form-group mb-3">
+              <button type="submit" class="btn btn-success btn-lg float-end" [disabled]="!capacitacionForm.valid">ACEPTAR</button>
+              <button routerLink="/listar-capacitacion" class="btn btn-secondary btn-lg float-start">VOLVER</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

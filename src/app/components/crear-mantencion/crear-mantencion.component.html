@@ -1,0 +1,127 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="text-center">{{ titulo }}</h4>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="mantencionForm" (ngSubmit)="agregarMantencion()">
+              
+              <!-- Nombre -->
+              <div class="form-group mb-3">
+                <label for="nombre">Descripción</label>
+                <input type="text" id="nombre" class="form-control" formControlName="nombre" placeholder="Descripción">
+                <div *ngIf="mantencionForm.get('nombre')?.touched && mantencionForm.get('nombre')?.errors?.['required']" class="text-danger">
+                    La Descripción es obligatoria.
+                  </div>                  
+              </div>
+  
+              <!-- Observación -->
+              <div class="form-group mb-3">
+                <label for="observacion">Observación</label>
+                <textarea id="observacion" class="form-control" formControlName="observacion" placeholder="Observaciones"></textarea>
+              </div>
+  
+              <!-- Código -->
+              <div class="form-group mb-3">
+                <label for="codigo">Código (Opcional)</label>
+                <input type="text" id="codigo" class="form-control" formControlName="codigo" placeholder="Código de la mantención">
+              </div>
+  
+              <!-- Sucursal -->
+              <div class="form-group mb-3">
+                <label for="sucursal">Sucursal</label>
+                <select id="sucursal" class="form-control" formControlName="sucursal">
+                  <option value="">Seleccionar Sucursal</option>
+                  <option value="Central Corporativa">Central Corporativa</option>
+                  <option value="Megacentro">Megacentro</option>
+                  <option value="Peñon">Peñon</option>
+                  <option value="Ovalle">Ovalle</option>
+                </select>
+                <div *ngIf="mantencionForm.get('sucursal')?.touched && mantencionForm.get('sucursal')?.errors?.['required']" class="text-danger">
+                  La sucursal es obligatoria.
+                </div>
+              </div>
+  
+              <!-- Área -->
+              <div class="form-group mb-3">
+                <label for="area">Área</label>
+                <select id="area" class="form-control" formControlName="area">
+                  <option value="">Seleccionar Área</option>
+                  <option value="Infraestructura/Producción">Infraestructura/Producción</option>
+                  <option value="Delivery">Delivery</option>
+                </select>
+                <div *ngIf="mantencionForm.get('area')?.touched && mantencionForm.get('area')?.errors?.['required']" class="text-danger">
+                  El área es obligatoria.
+                </div>
+              </div>
+  
+              <!-- Mes -->
+              <div class="form-group mb-3">
+                <label for="mes">Mes</label>
+                <select id="mes" class="form-control" formControlName="mes">
+                  <option value="">Seleccionar Mes</option>
+                  <option value="Enero">Enero</option>
+                  <option value="Febrero">Febrero</option>
+                  <option value="Marzo">Marzo</option>
+                  <option value="Abril">Abril</option>
+                  <option value="Mayo">Mayo</option>
+                  <option value="Junio">Junio</option>
+                  <option value="Julio">Julio</option>
+                  <option value="Agosto">Agosto</option>
+                  <option value="Septiembre">Septiembre</option>
+                  <option value="Octubre">Octubre</option>
+                  <option value="Noviembre">Noviembre</option>
+                  <option value="Diciembre">Diciembre</option>
+                </select>
+                <div *ngIf="mantencionForm.get('mes')?.touched && mantencionForm.get('mes')?.errors?.['required']" class="text-danger">
+                  El mes es obligatorio.
+                </div>
+              </div>
+  
+              <!-- Año -->
+              <div class="form-group mb-3">
+                <label for="ano">Año</label>
+                <input type="number" id="ano" class="form-control" formControlName="ano" placeholder="Año">
+                <div *ngIf="mantencionForm.get('ano')?.touched && mantencionForm.get('ano')?.errors?.['required']" class="text-danger">
+                  El año es obligatorio y debe ser mayor o igual a 2023.
+                </div>
+              </div>
+  
+            <!-- Encargado (fijo a "Enc. Logística") -->
+            <div class="form-group mb-3">
+              <label for="Encargado">Encargado</label>
+              <select id="encargado" class="form-control" formControlName="encargado">
+                  <option value="">Seleccionar Cargo</option>
+                  <option value="Enc. Logistica">Enc. Logistica</option>
+              </select>
+              <div *ngIf="mantencionForm.get('encargado')?.touched && mantencionForm.get('encargado')?.invalid" class="alert alert-danger">
+                La selección de un encargado es obligatoria.
+            </div>
+          </div>
+  
+              <!-- Campo para la Fecha de Realización, visible solo en modo edición -->
+              <div class="mb-3" *ngIf="esModoEdicion">
+                <label for="fechaRealizacion" class="form-label">Fecha de Realización</label>
+                <input type="date" formControlName="fechaRealizacion" id="fechaRealizacion" class="form-control">
+              </div>
+
+              <!-- Campo para el Proveedor, visible solo en modo edición -->
+              <div class="mb-3" *ngIf="esModoEdicion">
+                <label for="proveedor" class="form-label">Proveedor</label>
+                <input type="text" formControlName="proveedor" id="proveedor" class="form-control" placeholder="Nombre del proveedor">
+              </div>
+
+              <!-- Botones de acción -->
+              <div class="form-group mb-3">
+                <button type="submit" class="btn btn-success btn-lg float-end" [disabled]="!mantencionForm.valid">GUARDAR</button>
+                <button routerLink="/listar-mantencion" class="btn btn-secondary btn-lg float-start">VOLVER</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

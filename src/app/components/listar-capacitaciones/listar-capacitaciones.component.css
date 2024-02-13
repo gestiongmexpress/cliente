@@ -1,0 +1,176 @@
+.fas {
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.icono-accion {
+  color: black; 
+}
+
+.bg-success, .bg-danger, .bg-gray {
+  border: 1px solid #dee2e6; 
+  padding: .75rem;
+  text-align: center; 
+}
+
+.icono-accion {
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+}
+
+.estadisticas-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #def0f6; 
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+}
+
+.estadistica {
+  margin: 0 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.estadisticas span {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.navbar, .footer {
+  background-color: #009688; 
+}
+
+.btn-primary {
+  background-color: #009688; 
+  border-color: #00695c; 
+}
+
+.btn-primary:hover {
+  background-color: #00695c; 
+}
+
+.table th {
+  background-color: #009688; 
+  color: #dfffff; 
+}
+
+/* Estilos para la tabla */
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: #e0f7fa;
+}
+
+/* Estilos para las celdas de la tabla */
+.table td, .table th {
+  color: #333; 
+  font-weight: bold; 
+  font-size: 1rem; 
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5); 
+  background-color: #e0f7fa; 
+}
+
+/* Estilos para redondear los bordes de la tabla y las celdas */
+.table-rounded {
+  border-radius: 0.5rem; 
+  overflow: hidden; 
+}
+
+.table th:first-child {
+  border-top-left-radius: 0.5rem; 
+}
+
+.table th:last-child {
+  border-top-right-radius: 0.5rem; 
+}
+
+.table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 0.5rem; 
+}
+
+.table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 0.5rem; 
+}
+
+#btn-top, #btn-bottom {
+  background-color: #009688; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: none; /* Sin bordes */
+  cursor: pointer; /* Cursor en forma de mano al pasar el mouse */
+  border-radius: 5px; /* Bordes redondeados */
+}
+
+#btn-top:hover, #btn-bottom:hover {
+  background-color: #00796b; /* Color de fondo al pasar el mouse */
+}
+
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 150px;
+  right: 20px;
+  border: none;
+  background-color: #009688;
+  color: white;
+  border-radius: 50%;
+  padding: 10px 15px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.scroll-to-bottom-btn {
+  position: fixed;
+  bottom: 90px; 
+  right: 20px;
+  border: none;
+  background-color: #009688;
+  color: white;
+  border-radius: 50%;
+  padding: 10px 15px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.btn-volver {
+  position: fixed; 
+  bottom: 20px;   
+  right: 20px;   
+  margin-bottom: 20px; 
+}
+
+.filter-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.filter-item {
+  margin-right: 20px; 
+}
+
+label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+select {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}

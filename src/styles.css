@@ -1,0 +1,77 @@
+body {
+  background: #2193b0;  
+  background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Gradient para Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #6dd5ed, #2193b0); /* Gradient estándar W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background-attachment: fixed; 
+  background-repeat: no-repeat; 
+  background-size: cover; 
+}
+
+.navbar, .footer {
+    background-color: #009688; 
+}
+
+.btn-primary {
+    background-color: #009688; 
+    border-color: #00695c; 
+}
+
+.btn-primary:hover {
+    background-color: #00695c; 
+}
+
+.table th {
+    background-color: #009688; 
+    color: #ffffff; 
+}
+
+
+.titulo{
+    font-size: 1.8rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.icon-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Estilos para la tabla */
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+  }
+  
+  /* Estilos para las celdas de la tabla */
+  .table th, .table td {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+  }
+  
+  /* Estilos para redondear los bordes de la tabla y las celdas */
+  .table-rounded {
+    border-radius: 0.5rem; 
+    overflow: hidden; 
+  }
+  
+  .table th:first-child {
+    border-top-left-radius: 0.5rem; 
+  }
+  
+  .table th:last-child {
+    border-top-right-radius: 0.5rem; 
+  }
+  
+  .table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 0.5rem;
+  }
+  
+  .table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 0.5rem; 
+  }
+  

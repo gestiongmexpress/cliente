@@ -1,0 +1,106 @@
+<div class="container mt-5">
+    <!-- Filtros -->
+    <div class="row mb-3">
+      <div class="col">
+        <label for="sucursalSelect">Seleccionar sucursal:</label>
+        <select class="form-control" [(ngModel)]="filtroSucursal" (change)="aplicarFiltro()">
+          <option value="Central Corporativa">Central Corporativa</option>
+          <option value="Megacentro">Megacentro</option>
+          <option value="Peñon">Peñon</option>
+          <option value="Ovalle">Ovalle</option>
+        </select>
+      </div>
+      <div class="col">
+        <label for="anoSelect">Seleccionar año:</label>
+        <select class="form-control" [(ngModel)]="filtroAno" (change)="aplicarFiltro()">
+          <option value="2023">2023</option>
+          <option value="2024">2024</option>
+          <option value="2025">2025</option>
+          <option value="2026">2026</option>
+          <option value="2027">2027</option>
+          <option value="2028">2028</option>
+          <option value="2029">2029</option>
+          <option value="2030">2030</option>
+          <option value="2031">2031</option>
+          <option value="2032">2032</option>
+          <option value="2033">2033</option>
+          <option value="2034">2034</option>
+          <option value="2035">2035</option>
+        </select>
+      </div>
+    </div>
+  
+    <!-- Estadísticas -->
+    <div class="row mb-3">
+      <div class="col-md-8">
+        <div class="estadisticas-container">
+          <span>Plagas controladas: {{ totalRealizadas }}</span>
+          <span>Plagas pendientes: {{ totalFaltantes }}</span>
+        </div>
+      </div>
+      <div class="col-md-4 text-end">
+        <button class="btn btn-primary" routerLink="/crear-plaga">AÑADIR CONTROL DE PLAGA</button>
+      </div>
+    </div>
+  
+    <!-- Tabla de Plagas -->
+    <table class="table table-rounded">
+      <thead>
+        <tr>
+          <th>Descripción</th>
+          <th>Observación</th>
+          <th *ngFor="let mes of meses">{{ mes }}</th>
+          <th>Año</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let clave of objectKeys(agrupaciones)">
+          <td>{{ agrupaciones[clave].detalle.nombre }}</td>
+          <td>{{ agrupaciones[clave].detalle.observacion }}</td>
+          <ng-container *ngFor="let mes of meses">
+            <td [ngClass]="agrupaciones[clave].porMes[mesesMap[mes]].estado">
+              <div *ngIf="existePlagaMes(agrupaciones[clave].porMes, mesesMap[mes])">
+                <a *ngIf="!esMantencionRealizada(agrupaciones[clave].porMes, mesesMap[mes]) || rolUsuario === 'Administrador' || rolUsuario === 'Gerente'" 
+                   [routerLink]="['/editar-plaga', obtenerIdPlagaMes(agrupaciones[clave].porMes, mesesMap[mes])]" 
+                   class="icono-accion">
+                  <i class="fas fa-edit"></i>
+                </a>
+                <a *ngIf="esMantencionRealizada(agrupaciones[clave].porMes, mesesMap[mes])" 
+                   [routerLink]="['/detalle-plaga', obtenerIdPlagaMes(agrupaciones[clave].porMes, mesesMap[mes])]" 
+                   class="icono-accion">
+                  <i class="fas fa-eye"></i>
+                </a>
+              </div>
+            </td>
+          </ng-container>
+          <td>{{ agrupaciones[clave].detalle.ano }}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="2" class="small-text">Plagas controladas</th>
+          <ng-container *ngFor="let mes of meses">
+            <th class="small-text">
+              {{ estadisticasPorMes[mesesMap[mes] || mes].realizadas }} / {{ estadisticasPorMes[mesesMap[mes] || mes].realizadas + estadisticasPorMes[mesesMap[mes] || mes].faltantes }}
+            </th>
+          </ng-container>
+          <th class="small-text"></th>
+        </tr>
+      </tfoot>
+    </table>
+  
+    <div class="col-md-4 text-end">
+      <button class="btn btn-primary btn-volver" routerLink="/inicio">Volver</button>
+    </div>
+  
+    <!-- Botón para ir hacia abajo -->
+    <button *ngIf="showScrollToBottomButton" (click)="scrollToBottom()" class="scroll-to-bottom-btn" title="Ir abajo">
+      ▼
+    </button>
+  
+    <!-- Botón para ir hacia arriba -->
+    <button *ngIf="showScrollToTopButton" (click)="scrollToTop()" class="scroll-to-top-btn" title="Ir arriba">
+      ▲
+    </button>
+  </div>
+  

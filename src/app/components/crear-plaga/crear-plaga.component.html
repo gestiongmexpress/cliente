@@ -1,0 +1,107 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="text-center">{{ titulo }}</h4>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="plagaForm" (ngSubmit)="agregarPlaga()">
+              
+              <!-- Nombre -->
+              <div class="form-group mb-3">
+                <label for="nombre">Descripción</label>
+                <input type="text" id="nombre" class="form-control" formControlName="nombre" placeholder="Descripción">
+                <div *ngIf="plagaForm.get('nombre')?.touched && plagaForm.get('nombre')?.errors?.['required']" class="text-danger">
+                    El nombre es obligatorio.
+                </div>                  
+              </div>
+  
+              <!-- Observación -->
+              <div class="form-group mb-3">
+                <label for="observacion">Observación</label>
+                <textarea id="observacion" class="form-control" formControlName="observacion" placeholder="Observaciones"></textarea>
+              </div>
+  
+              <!-- Sucursal -->
+              <div class="form-group mb-3">
+                <label for="sucursal">Sucursal</label>
+                <select id="sucursal" class="form-control" formControlName="sucursal">
+                  <option value="">Seleccionar Sucursal</option>
+                  <option value="Central Corporativa">Central Corporativa</option>
+                  <option value="Megacentro">Megacentro</option>
+                  <option value="Peñon">Peñon</option>
+                  <option value="Ovalle">Ovalle</option>
+                </select>
+                <div *ngIf="plagaForm.get('sucursal')?.touched && plagaForm.get('sucursal')?.errors?.['required']" class="text-danger">
+                  La sucursal es obligatoria.
+                </div>
+              </div>
+  
+              <!-- Mes -->
+              <div class="form-group mb-3">
+                <label for="mes">Mes</label>
+                <select id="mes" class="form-control" formControlName="mes">
+                  <option value="">Seleccionar Mes</option>
+                  <option value="Enero">Enero</option>
+                  <option value="Febrero">Febrero</option>
+                  <option value="Marzo">Marzo</option>
+                  <option value="Abril">Abril</option>
+                  <option value="Mayo">Mayo</option>
+                  <option value="Junio">Junio</option>
+                  <option value="Julio">Julio</option>
+                  <option value="Agosto">Agosto</option>
+                  <option value="Septiembre">Septiembre</option>
+                  <option value="Octubre">Octubre</option>
+                  <option value="Noviembre">Noviembre</option>
+                  <option value="Diciembre">Diciembre</option>
+                </select>
+                <div *ngIf="plagaForm.get('mes')?.touched && plagaForm.get('mes')?.errors?.['required']" class="text-danger">
+                  El mes es obligatorio.
+                </div>
+              </div>
+  
+              <!-- Año -->
+              <div class="form-group mb-3">
+                <label for="ano">Año</label>
+                <input type="number" id="ano" class="form-control" formControlName="ano" placeholder="Año">
+                <div *ngIf="plagaForm.get('ano')?.touched && plagaForm.get('ano')?.errors?.['required']" class="text-danger">
+                  El año es obligatorio y debe ser mayor o igual a 2023.
+                </div>
+              </div>
+  
+              <!-- Encargado -->
+              <div class="form-group mb-3">
+                <label for="Encargado">Encargado</label>
+                <select id="encargado" class="form-control" formControlName="encargado">
+                    <option value="">Seleccionar Cargo</option>
+                    <option value="Nutricionista">Nutricionista</option>
+                </select>
+                <div *ngIf="plagaForm.get('encargado')?.touched && plagaForm.get('encargado')?.invalid" class="alert alert-danger">
+                  La selección de un encargado es obligatoria.
+              </div>
+            </div>
+  
+              <!-- Campo para la Fecha de Realización, visible solo en modo edición -->
+              <div class="mb-3" *ngIf="esModoEdicion">
+                <label for="fechaRealizacion" class="form-label">Fecha de Realización</label>
+                <input type="date" formControlName="fechaRealizacion" id="fechaRealizacion" class="form-control">
+              </div>
+  
+              <!-- Campo para la Prueba, visible solo en modo edición -->
+              <div class="mb-3" *ngIf="esModoEdicion">
+                <label for="prueba" class="form-label">Prueba</label>
+                <input type="text" formControlName="prueba" id="prueba" class="form-control" placeholder="Resultado de la prueba">
+              </div>
+  
+              <!-- Botones de acción -->
+              <div class="form-group mb-3">
+                <button type="submit" class="btn btn-success btn-lg float-end" [disabled]="!plagaForm.valid">GUARDAR</button>
+                <button routerLink="/listar-plagas" class="btn btn-secondary btn-lg float-start">VOLVER</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
