@@ -20,9 +20,9 @@
         <td>{{ usuario.username }}</td>
         <td>{{ usuario.rol }}</td>
         <td>
-          <!-- Botón de editar con margen a la derecha -->
-          <button class="btn btn-primary mr-2" (click)="editarUsuario(usuario._id!)">Editar</button>
-          <!-- Botón de eliminar con margen a la izquierda si se necesita -->
+          <!-- Botón de editar-->
+          <button class="btn btn-primary" (click)="editarUsuario(usuario._id!)">Editar</button>
+          <!-- Botón de eliminar-->
           <button class="btn btn-danger" (click)="eliminarUsuario(usuario._id!)">Eliminar</button>
         </td>
       </tr>

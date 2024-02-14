@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Usuario } from '../../models/usuario';
 
 @Component({
   selector: 'app-registro',
@@ -10,6 +11,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
+  usuarios: Usuario[] = [];
+  roles: string[] = ['Gerente', 'Administrador', 'Nutricionista', 'APR', 'Enc. Logistica', 'Trabajador', 'Practicante'];
   usuarioForm: FormGroup;
   titulo = 'Registrar Usuario';
   id: string | null;
@@ -67,7 +70,7 @@ export class RegistroComponent implements OnInit {
   
     const usuarioData = { ...this.usuarioForm.value };
     if (!usuarioData.password) {
-      delete usuarioData.password; // Elimina la propiedad de contraseña si está vacía
+      delete usuarioData.password; 
     }
   
     if (this.id) {
@@ -95,6 +98,5 @@ export class RegistroComponent implements OnInit {
         }
       );
     }
-  }
-  
+  } 
 }
