@@ -21,6 +21,7 @@ import { DetalleMantencionComponent } from './components/detalle-mantencion/deta
 import { DetallePlagaComponent } from './components/detalle-plaga/detalle-plaga.component';
 import { CrearPlagaComponent } from './components/crear-plaga/crear-plaga.component';
 import { ListarPlagasComponent } from './components/listar-plagas/listar-plagas.component';
+import { ListarUsuariosComponent } from './components/listar-usuarios/listar-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ListarPlagasComponent } from './components/listar-plagas/listar-plagas.
     DetalleMantencionComponent,
     DetallePlagaComponent,
     CrearPlagaComponent,
-    ListarPlagasComponent
+    ListarPlagasComponent,
+    ListarUsuariosComponent
   ],
   imports: [
     BrowserModule,

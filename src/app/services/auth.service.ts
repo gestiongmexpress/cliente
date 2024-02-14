@@ -35,5 +35,21 @@ export class AuthService {
     }
     return null;
   }
+  
+  obtenerUsuarios(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(this.apiUrl);
+  }
+
+  obtenerUsuario(id: string): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.apiUrl}/${id}`);
+  }
+
+  actualizarUsuario(id: string, usuario: Usuario): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.apiUrl}/${id}`, usuario);
+  }
+
+  eliminarUsuario(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
 
 }

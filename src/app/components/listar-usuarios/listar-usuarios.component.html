@@ -1,0 +1,39 @@
+<div class="container mt-4">
+  <div class="row mb-3">
+    <div class="col-md-8">
+      <h2>Listado de Usuarios</h2>
+    </div>
+    <div class="col-md-4 text-end">
+      <button class="btn btn-primary" routerLink="/registrar">AÑADIR USUARIO</button>
+    </div>
+  </div>
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>Username</th>
+        <th>Rol</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios">
+        <td>{{ usuario.username }}</td>
+        <td>{{ usuario.rol }}</td>
+        <td>
+          <!-- Botón de editar con margen a la derecha -->
+          <button class="btn btn-primary mr-2" (click)="editarUsuario(usuario._id!)">Editar</button>
+          <!-- Botón de eliminar con margen a la izquierda si se necesita -->
+          <button class="btn btn-danger" (click)="eliminarUsuario(usuario._id!)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="usuarios.length === 0" class="alert alert-info" role="alert">
+    No hay usuarios registrados.
+  </div>
+  <div class="row">
+    <div class="col text-end mt-3">
+      <button class="btn btn-primary" routerLink="/inicio">Volver</button>
+    </div>
+  </div>
+</div>
