@@ -30,9 +30,16 @@ export class RegistroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.esEditar();
+    this.id = this.aRouter.snapshot.paramMap.get('id');
+    if (this.id) {
+      this.titulo = 'Editar Usuario';
+      this.usuarioForm.get('password')!.clearValidators();
+      this.usuarioForm.get('password')!.updateValueAndValidity();
+      this.esEditar();
+    }
   }
-
+  
+  
   esEditar(): void {
     if (this.id) {
       this.titulo = 'Editar Usuario';
@@ -57,10 +64,15 @@ export class RegistroComponent implements OnInit {
       this.toastr.error('Todos los campos son obligatorios', 'Error');
       return;
     }
-
+  
+    const usuarioData = { ...this.usuarioForm.value };
+    if (!usuarioData.password) {
+      delete usuarioData.password; // Elimina la propiedad de contraseña si está vacía
+    }
+  
     if (this.id) {
       // Modo edición
-      this.authService.actualizarUsuario(this.id, this.usuarioForm.value).subscribe(
+      this.authService.actualizarUsuario(this.id, usuarioData).subscribe(
         res => {
           this.toastr.success('Usuario actualizado con éxito', 'Actualización exitosa');
           this.router.navigate(['/listar-usuarios']);
@@ -72,7 +84,7 @@ export class RegistroComponent implements OnInit {
       );
     } else {
       // Modo registro
-      this.authService.registrarUsuario(this.usuarioForm.value).subscribe(
+      this.authService.registrarUsuario(usuarioData).subscribe(
         res => {
           this.toastr.success('Usuario registrado con éxito', 'Registro exitoso');
           this.router.navigate(['/listar-usuarios']);
@@ -84,4 +96,5 @@ export class RegistroComponent implements OnInit {
       );
     }
   }
+  
 }
