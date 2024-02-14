@@ -99,4 +99,18 @@ export class RegistroComponent implements OnInit {
       );
     }
   } 
+
+  cambiarRol(userId: string, nuevoRol: string): void {
+    this.authService.actualizarRolUsuario(userId, nuevoRol).subscribe({
+      next: (response) => {
+        // Actualiza la lista de usuarios o maneja la respuesta como prefieras
+        this.toastr.success('Rol del usuario actualizado correctamente');
+      },
+      error: (error) => {
+        console.error(error);
+        this.toastr.error('Hubo un error al actualizar el rol del usuario');
+      }
+    });
+  }
+
 }

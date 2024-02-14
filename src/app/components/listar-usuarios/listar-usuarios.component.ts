@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { Usuario } from '../../models/usuario';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-listar-usuarios',
@@ -11,7 +12,7 @@ import { Usuario } from '../../models/usuario';
 export class ListarUsuariosComponent implements OnInit {
   usuarios: Usuario[] = [];
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.cargarUsuarios();
@@ -43,4 +44,18 @@ export class ListarUsuariosComponent implements OnInit {
       });
     }
   }
+
+  cambiarRol(userId: string, nuevoRol: string): void {
+    this.authService.actualizarRolUsuario(userId, nuevoRol).subscribe({
+      next: (response) => {
+        // Actualiza la lista de usuarios o maneja la respuesta como prefieras
+        this.toastr.success('Rol del usuario actualizado correctamente');
+      },
+      error: (error) => {
+        console.error(error);
+        this.toastr.error('Hubo un error al actualizar el rol del usuario');
+      }
+    });
+  }
+  
 }

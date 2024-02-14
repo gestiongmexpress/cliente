@@ -52,4 +52,8 @@ export class AuthService {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
 
+  actualizarRolUsuario(id: string, nuevoRol: string): Observable<any> {
+    return this.http.patch<any>(`${this.apiUrl}/${id}/rol`, { rol: nuevoRol });
+  }
+
 }

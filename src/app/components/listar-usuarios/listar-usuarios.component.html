@@ -11,7 +11,8 @@
     <thead class="thead-dark">
       <tr>
         <th>Username</th>
-        <th>Rol</th>
+        <th>Rol Actual</th>
+        <th>Cambiar Rol</th>
         <th>Acciones</th>
       </tr>
     </thead>
@@ -20,10 +21,22 @@
         <td>{{ usuario.username }}</td>
         <td>{{ usuario.rol }}</td>
         <td>
-          <!-- Botón de editar-->
-          <button class="btn btn-primary" (click)="editarUsuario(usuario._id!)">Editar</button>
-          <!-- Botón de eliminar-->
-          <button class="btn btn-danger" (click)="eliminarUsuario(usuario._id!)">Eliminar</button>
+          <select class="form-control" (change)="cambiarRol(usuario._id!, $any($event.target).value)">
+            <option value="" disabled selected>Cambiar Rol</option>
+            <option value="Gerente">Gerente</option>
+            <option value="Administrador">Administrador</option>
+            <option value="Nutricionista">Nutricionista</option>
+            <option value="APR">APR</option>
+            <option value="Enc. Logistica">Enc. Logistica</option>
+            <option value="Trabajador">Trabajador</option>
+            <option value="Practicante">Practicante</option>
+          </select>
+        </td>
+        <td>
+          <!-- Botón de editar con margen a la derecha -->
+          <button class="btn btn-primary me-2" (click)="editarUsuario(usuario._id!)">Editar</button>
+          <!-- Botón de eliminar con margen a la izquierda -->
+          <button class="btn btn-danger ms-2" (click)="eliminarUsuario(usuario._id!)">Eliminar</button>
         </td>
       </tr>
     </tbody>
