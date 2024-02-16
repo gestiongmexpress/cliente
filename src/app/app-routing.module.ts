@@ -14,18 +14,22 @@ import { DetalleMantencionComponent } from './components/detalle-mantencion/deta
 import { CrearPlagaComponent } from './components/crear-plaga/crear-plaga.component';
 import { ListarPlagasComponent } from './components/listar-plagas/listar-plagas.component';
 import { DetallePlagaComponent } from './components/detalle-plaga/detalle-plaga.component';
+import { CrearTrabajadorComponent } from './components/crear-trabajador/crear-trabajador.component';
+import { ListarTrabajadoresComponent } from './components/listar-trabajadores/listar-trabajadores.component';
 
 
 const routes: Routes = [
   { path: '', component: LoginComponent }, 
   { path: 'inicio', component: InicioComponent}, 
   { path: 'listar-usuarios', component: ListarUsuariosComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
+  { path: 'listar-trabajadores', component: ListarTrabajadoresComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
   { path: 'listar-capacitacion', component: ListarCapacitacionesComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista', 'APR', 'Enc. Logistica'] }},
   { path: 'listar-mantencion', component: ListarMantencionesComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Enc. Logistica'] }},
   { path: 'listar-plagas', component: ListarPlagasComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista'] }},
   { path: 'crear-capacitacion', component : CrearCapacitacionComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista', 'APR', 'Enc. Logistica'] }},
   { path: 'crear-mantencion', component : CrearMantencionComponent, canActivate: [AuthGuard]},
   { path: 'crear-plaga', component : CrearPlagaComponent, canActivate: [AuthGuard]},
+  { path: 'crear-trabajador', component : CrearTrabajadorComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
   { path: 'editar-usuario/:id', component : RegistroComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
   { path: 'editar-capacitacion/:id', component : CrearCapacitacionComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista', 'APR', 'Enc. Logistica']}},
   { path: 'editar-mantencion/:id', component : CrearMantencionComponent, canActivate: [AuthGuard]},
