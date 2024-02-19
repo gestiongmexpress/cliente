@@ -135,7 +135,7 @@
                 <label for="area">Área</label>
                 <select id="area" class="form-control" formControlName="area">
                   <option value="">Seleccionar Área</option>
-                  <option value="Área">Área</option>
+                  <option value="Administración">Administración</option>
                   <option value="Caliente">Caliente</option>
                   <option value="Cocina">Cocina</option>
                   <option value="Coffee Break">Coffee Break</option>
@@ -182,8 +182,7 @@
                 </select>
               </div>
 
-              <!-- Tipo de Licencia (Visible solo si se selecciona "Sí" en Licencia de Conducir) -->
-              <div *ngIf="mostrarTipoLicencia" class="form-group mb-3">
+              <div class="form-group mb-3">
                 <label for="claseLicencia">Tipo de Licencia</label>
                 <input type="text" id="claseLicencia" class="form-control" formControlName="claseLicencia" placeholder="Tipo de Licencia">
               </div>
@@ -275,11 +274,18 @@
                   <input type="text" id="parentescoEmergencia" class="form-control" formControlName="parentesco" placeholder="Parentesco con el contacto">
                 </div>
 
+                <!-- Teléfono de Emergencia -->
                 <div class="form-group mb-3">
                   <label for="telefono">Teléfono de Emergencia</label>
-                  <input type="tel" id="telefono" class="form-control" formControlName="telefono" placeholder="Teléfono del contacto de emergencia" pattern="[0-9]*" inputmode="numeric">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">+569</span>
+                    </div>
+                    <input type="tel" id="telefono" class="form-control" formControlName="telefono" placeholder="12345678" pattern="[0-9]*" inputmode="numeric">
+                  </div>
                 </div>
               </div>
+
 
               <!-- Fecha Finiquito -->
               <div class="form-group mb-3">

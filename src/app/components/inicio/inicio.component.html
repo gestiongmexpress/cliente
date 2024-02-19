@@ -7,6 +7,11 @@
     <a routerLink="/listar-usuarios" class="list-group-item list-group-item-action btn-verde-claro">Gestión de usuarios</a>
   </div>
 
+  <!-- Sección para registrar nuevo usuario -->
+  <div *ngIf="mostrarListaTrabajadores" class="list-group">
+    <a routerLink="/listar-trabajadores" class="list-group-item list-group-item-action">R-SGI-03 Gestión de trabajadores</a>
+  </div>
+
   <!-- Sección para listar capacitaciones -->
   <div *ngIf="mostrarListarCapacitaciones" class="list-group">
     <a routerLink="/listar-capacitacion" class="list-group-item list-group-item-action">R-SGI-44 Programa anual de capacitaciones</a>

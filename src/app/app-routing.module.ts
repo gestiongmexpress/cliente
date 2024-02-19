@@ -16,6 +16,7 @@ import { ListarPlagasComponent } from './components/listar-plagas/listar-plagas.
 import { DetallePlagaComponent } from './components/detalle-plaga/detalle-plaga.component';
 import { CrearTrabajadorComponent } from './components/crear-trabajador/crear-trabajador.component';
 import { ListarTrabajadoresComponent } from './components/listar-trabajadores/listar-trabajadores.component';
+import { DetalleTrabajadorComponent } from './components/detalle-trabajador/detalle-trabajador.component';
 
 
 const routes: Routes = [
@@ -31,11 +32,13 @@ const routes: Routes = [
   { path: 'crear-plaga', component : CrearPlagaComponent, canActivate: [AuthGuard]},
   { path: 'crear-trabajador', component : CrearTrabajadorComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
   { path: 'editar-usuario/:id', component : RegistroComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
+  { path: 'editar-trabajador/:id', component : CrearTrabajadorComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
   { path: 'editar-capacitacion/:id', component : CrearCapacitacionComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista', 'APR', 'Enc. Logistica']}},
   { path: 'editar-mantencion/:id', component : CrearMantencionComponent, canActivate: [AuthGuard]},
   { path: 'editar-plaga/:id', component : CrearPlagaComponent, canActivate: [AuthGuard]},
   { path: 'detalle-capacitacion/:id', component: DetalleCapacitacionComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista', 'APR', 'Enc. Logistica']}},
   { path: 'detalle-mantencion/:id', component: DetalleMantencionComponent, canActivate: [AuthGuard]},
+  { path: 'detalle-trabajador/:id', component: DetalleTrabajadorComponent, canActivate: [AuthGuard]},
   { path: 'detalle-plaga/:id', component: DetallePlagaComponent, canActivate: [AuthGuard]},
   { path: 'registrar', component: RegistroComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente'] } },
   { path: '**', redirectTo: '', pathMatch: 'full'} 

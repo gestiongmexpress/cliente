@@ -113,12 +113,19 @@ export class CrearTrabajadorComponent implements OnInit {
     if (this.id) {
       this.titulo = 'Editar Trabajador';
       this._trabajadorService.obtenerTrabajador(this.id).subscribe(data => {
-        this.trabajadorForm.patchValue(data);
+        const fechaNacimientoFormatted = data.fechaNacimiento ? new Date(data.fechaNacimiento).toISOString().split('T')[0] : '';
+  
+        this.trabajadorForm.patchValue({
+          ...data,
+          fechaNacimiento: fechaNacimientoFormatted, 
+        });
       });
     }
-  }
+  }  
+
+  
 
   onChangeLicencia(event: any) {
     this.mostrarTipoLicencia = event.target.value === 'Sí';
-  }
+  }  
 }

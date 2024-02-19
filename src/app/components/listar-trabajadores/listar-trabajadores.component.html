@@ -1,1 +1,102 @@
-<p>listar-trabajadores works!</p>
+<div class="container mt-5">
+  <!-- Filtros y Tabla en la misma fila -->
+  <div class="row">
+    <div class="col">
+      <!-- Filtros -->
+      <form [formGroup]="filtroForm" class="mb-3">
+        <div class="d-flex justify-content-start">
+          <!-- Filtro por Sucursal -->
+          <div class="me-2">
+            <label for="sucursal">Sucursal:</label>
+            <select class="form-select" formControlName="sucursal">
+              <option value="">Todas</option>
+              <option value="Central">Central</option>
+              <option value="Faremin">Faremin</option>
+              <option value="Megacentro">Megacentro</option>
+              <option value="Ovalle">Ovalle</option>
+            </select>
+          </div>
+  
+          <!-- Filtro por Área -->
+          <div class="me-2">
+            <label for="area">Área:</label>
+            <select class="form-select" formControlName="area">
+              <option value="">Todas</option>
+              <option value="Administración">Administración</option>
+              <option value="Cocina">Cocina</option>
+              <option value="Caliente">Caliente</option>
+              <option value="Frio">Frio</option>
+              <option value="Coffee Break">Coffee Break</option>
+              <option value="Gestion RRSS">Gestion RRSS</option>
+              <option value="Linier">Linier</option>
+              <option value="Logistica">Logistica</option>
+              <option value="Servicios">Servicios</option>
+              <option value="Transporte">Transporte</option>
+            </select>
+          </div>
+
+          <!-- Filtro por Estado -->
+          <div class="me-2">
+            <label for="estadoEmpresa">Estado:</label>
+            <select class="form-select" formControlName="estadoEmpresa">
+              <option value="">Todas</option>
+              <option value="Vigente">Vigente</option>
+              <option value="No Vigente">No Vigente</option>
+            </select>
+          </div>
+
+          <!-- Filtro por Plazo Contrato -->
+          <div class="me-2">
+            <label for="plazoContrato">Plazo Contrato:</label>
+            <select class="form-select" formControlName="plazoContrato">
+              <option value="">Todas</option>
+              <option value="Indefinido">Indefinido</option>
+              <option value="Plazo Fijo">Plazo Fijo</option>
+              <option value="Honorario">Honorario</option>
+              <option value="Coffee Break">Coffee Break</option>
+              <option value="Practica">Practica</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="col-auto">
+    <button class="btn btn-primary" routerLink="/crear-trabajador">AÑADIR TRABAJADOR</button>
+  </div>
+</div>
+  
+    <!-- Tabla de Trabajadores -->
+    <div class="container mt-4">
+      <!-- Tabla de Trabajadores -->
+      <table class="table table-rounded">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>RUT</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let trabajador of trabajadoresFiltrados">
+            <td>{{ trabajador.nombre }}</td>
+            <td>{{ trabajador.rut }}</td>
+            <td>{{ dateFormatService.formatDate(trabajador.fechaNacimiento) }}</td>
+            <td>{{ trabajador.estadoEmpresa }}</td>
+            <td>
+              <!-- Botón Ver Detalles -->
+              <button class="btn btn-info me-2" (click)="verDetalles(trabajador._id!)">Ver Detalles</button>
+              <!-- Botón Editar Trabajador -->
+              <button class="btn btn-primary ms-2" (click)="editarTrabajador(trabajador._id!)">Editar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-md-4 text-end">
+      <button class="btn btn-primary btn-volver" routerLink="/inicio">Volver</button>
+    </div>

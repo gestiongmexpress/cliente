@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { UtcDatePipe } from './pipes/utc-date.pipe';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,10 +25,13 @@ import { ListarPlagasComponent } from './components/listar-plagas/listar-plagas.
 import { ListarUsuariosComponent } from './components/listar-usuarios/listar-usuarios.component';
 import { CrearTrabajadorComponent } from './components/crear-trabajador/crear-trabajador.component';
 import { ListarTrabajadoresComponent } from './components/listar-trabajadores/listar-trabajadores.component';
+import { DetalleTrabajadorComponent } from './components/detalle-trabajador/detalle-trabajador.component';
+import { CumplesComponent } from './components/cumples/cumples.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    UtcDatePipe,
     CrearCapacitacionComponent,
     ListarCapacitacionesComponent,
     InicioComponent,
@@ -42,7 +46,9 @@ import { ListarTrabajadoresComponent } from './components/listar-trabajadores/li
     ListarPlagasComponent,
     ListarUsuariosComponent,
     CrearTrabajadorComponent,
-    ListarTrabajadoresComponent
+    ListarTrabajadoresComponent,
+    DetalleTrabajadorComponent,
+    CumplesComponent
   ],
   imports: [
     BrowserModule,

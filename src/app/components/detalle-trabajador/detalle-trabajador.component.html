@@ -1,0 +1,350 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow">
+          <div class="card-header">
+            <h4 class="text-center">Detalles del Trabajador</h4>
+          </div>
+          <div class="card-body">
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Nombre:</label>
+              <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticNombre" value="{{ trabajador?.nombre }}">
+              </div>
+            </div>
+  
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">RUT:</label>
+              <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticRUT" value="{{ trabajador?.rut }}">
+              </div>
+            </div>
+  
+            <!-- Fecha de Nacimiento -->
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Fecha de Nacimiento:</label>
+              <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticFechaNacimiento" value="{{ fechaNacimientoFormateada }}">
+              </div>
+            </div>
+  
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Estado:</label>
+              <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticEstado" value="{{ trabajador?.estadoEmpresa }}">
+              </div>
+            </div>
+
+            <!-- Celular -->
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Celular:</label>
+              <div class="col-sm-8">
+                  <input type="text" readonly class="form-control-plaintext" id="staticCelular" value="{{ trabajador?.celular }}">
+              </div>
+            </div>
+            
+            <!-- Estado Civil -->
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Estado Civil:</label>
+                <div class="col-sm-8">
+                    <input type="text" readonly class="form-control-plaintext" id="staticEstadoCivil" value="{{ trabajador?.estadoCivil }}">
+                </div>
+            </div>
+            
+            <!-- Domicilio -->
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Domicilio:</label>
+                <div class="col-sm-8">
+                    <input type="text" readonly class="form-control-plaintext" id="staticDomicilio" value="{{ trabajador?.domicilio }}">
+                </div>
+            </div>
+
+            <!-- Sector -->
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Sector:</label>
+              <div class="col-sm-8">
+                  <input type="text" readonly class="form-control-plaintext" id="staticSector" value="{{ trabajador?.sector }}">
+              </div>
+            </div>
+
+            <!-- Ciudad -->
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Ciudad:</label>
+              <div class="col-sm-8">
+                  <input type="text" readonly class="form-control-plaintext" id="staticCiudad" value="{{ trabajador?.ciudad }}">
+              </div>
+            </div>
+
+            <!-- Empresa que contrara -->
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Empresa que contrata:</label>
+              <div class="col-sm-8">
+                  <input type="text" readonly class="form-control-plaintext" id="staticEmpresa" value="{{ trabajador?.empresaContrata }}">
+              </div>
+            </div>
+
+            <!-- Contrato -->
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Tipo de contrato:</label>
+              <div class="col-sm-8">
+                  <input type="text" readonly class="form-control-plaintext" id="staticContrato" value="{{ trabajador?.tipoContrato }}">
+              </div>
+            </div>
+
+            <!-- Plazo del Contrato -->
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Plazo del contrato:</label>
+              <div class="col-sm-8">
+                  <input type="text" readonly class="form-control-plaintext" id="staticPlazoContrato" value="{{ trabajador?.plazoContrato }}">
+              </div>
+            </div>
+
+            <!-- Fecha de Inicio de Contrato -->
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Fecha Inicio Contrato:</label>
+              <div class="col-sm-8">
+                  <input type="text" readonly class="form-control-plaintext" id="staticFechaInicioContrato" value="{{ fechaInicioContratoFormateada }}">
+              </div>
+          </div>
+
+          <!-- Fecha de Término de Contrato -->
+          <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Fecha Término Contrato:</label>
+              <div class="col-sm-8">
+                  <input type="text" readonly class="form-control-plaintext" id="staticFechaTerminoContrato" value="{{ fechaTerminoContratoFormateada }}">
+              </div>
+          </div>
+
+          <!-- Cargo -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Cargo:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticCargo" value="{{ trabajador?.cargo }}">
+            </div>
+          </div>
+
+          <!-- Contrato -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Tipo de contrato:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticContrato" value="{{ trabajador?.tipoContrato }}">
+            </div>
+          </div>
+
+          <!-- Área -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Área:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticArea" value="{{ trabajador?.area }}">
+            </div>
+          </div>
+
+          <!-- Dirección del proyecto -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Dirección del proyecto:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticDireccionProyecto" value="{{ trabajador?.direccionProyecto }}">
+            </div>
+          </div>
+
+          <!-- Número de contrato -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Número de contrato:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticNumeroContrato" value="{{ trabajador?.numeroContrato }}">
+            </div>
+          </div>
+
+          <!-- Licencia de conducir -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Licencia de conducir:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticLicencia" value="{{ trabajador?.licenciaConducir }}">
+            </div>
+          </div>
+
+          <!-- Tipo de licencia -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Tipo de licencia:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticTipoLicencia" value="{{ trabajador?.claseLicencia }}">
+            </div>
+          </div>
+
+          <!-- Nacionalidad -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Nacionalidad:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticNacionalidad" value="{{ trabajador?.nacionalidad }}">
+            </div>
+          </div>
+
+          <!-- Banco -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Banco:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticBanco" value="{{ trabajador?.banco }}">
+            </div>
+          </div>
+
+          <!-- Tipo de cuenta -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Tipo de cuenta:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticTipoCuenta" value="{{ trabajador?.tipoCuenta }}">
+            </div>
+          </div>
+
+          <!-- Número de cuenta -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Número de cuenta:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticNumeroCuenta" value="{{ trabajador?.numeroCuenta }}">
+            </div>
+          </div>
+
+          <!-- Calzado -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Calzado:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticCalzado" value="{{ trabajador?.calzado }}">
+            </div>
+          </div>
+
+          <!-- Talla de camisa -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Talla de camisa:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticCamisa" value="{{ trabajador?.tallaCamisa }}">
+            </div>
+          </div>
+
+          <!-- Talla de pantalon -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Talla de pantalon:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticPantalon" value="{{ trabajador?.tallaPantalon }}">
+            </div>
+          </div>
+
+          <!-- Ropa de trabajo -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Ropa de trabajo:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticAFP" value="{{ trabajador?.entregaRopaTrabajo }}">
+            </div>
+          </div>
+
+          <!-- AFP -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">AFP:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticAFP" value="{{ trabajador?.afp }}">
+            </div>
+          </div>
+
+          <!-- Fecha de Incorporación a AFP -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Fecha de Incorporación a AFP:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticFechaAFP" value="{{ fechaIncorporacionAFPFormateada }}">
+            </div>
+          </div>
+
+          <!-- Institucion salud -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Institución de salud:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticInstitucion" value="{{ trabajador?.institucionSalud }}">
+            </div>
+          </div>
+
+          <!-- Nombre de contacto de emergencia -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Nombre de contacto de emergencia:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmergencia" value="{{ trabajador?.contactoEmergencia?.nombre }}">
+            </div>
+          </div>
+
+          <!-- Parentesco de contacto de emergencia -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Parentesco de contacto de emergencia:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmergenciaParentesco" value="{{ trabajador?.contactoEmergencia?.parentesco }}">
+            </div>
+          </div>
+
+          <!-- Telefono de contacto de emergencia -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Telefono de contacto de emergencia:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmergenciaTelefono" value="{{ trabajador?.contactoEmergencia?.telefono }}">
+            </div>
+          </div>
+  
+          <!-- Fecha de Finiquito -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Fecha de Finiquito:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticFechaFiniquito" value="{{ fechaFiniquitoFormateada }}">
+            </div>
+          </div>
+
+          <!-- Causa de finiquito -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Causa de finiquito:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticCausaFiniquito" value="{{ trabajador?.causaFiniquito }}">
+            </div>
+          </div>
+
+          <!-- Escala de recomendación -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Escala de recomendación (1-10):</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticRecomendacion" value="{{ trabajador?.escalaRecomendacion }}">
+            </div>
+          </div>
+
+          <!-- Sueldo base -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Sueldo base:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticSueldo" value="{{ trabajador?.sueldoBase }}">
+            </div>
+          </div>
+
+          <!-- Fecha de actualización de la oferta -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Fecha de actualización de la oferta:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticOferta" value="{{ fechaActOfertaFormateada }}">
+            </div>
+          </div>
+
+          <!-- Días de vacaciones -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Días de vacaciones:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticVacaciones" value="{{ trabajador?.diasVacaciones }}">
+            </div>
+          </div>
+
+          <!-- Estado -->
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Estado:</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticEstado" value="{{ trabajador?.estadoEmpresa }}">
+            </div>
+          </div>
+
+          </div>
+          <div class="card-footer text-center">
+            <a routerLink="/listar-trabajadores" class="btn btn-secondary">Volver</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

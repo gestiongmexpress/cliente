@@ -10,6 +10,7 @@ export class InicioComponent implements OnInit {
   nombreUsuario: string = '';
   rol: string = '';
   mostrarRegistro: boolean = false;
+  mostrarListaTrabajadores = false;
   mostrarListarCapacitaciones: boolean = false; 
   mostrarListarMantenciones = false;
   mostrarListaPlagas = false;
@@ -29,6 +30,7 @@ export class InicioComponent implements OnInit {
       const rolesListarMantenciones = ['Administrador', 'Gerente', 'Enc. Logistica'];
       const rolesListarPlagas = ['Administrador', 'Gerente', 'Nutricionista'];
       this.mostrarRegistro = rolesRegistro.includes(this.rol);
+      this.mostrarListaTrabajadores = rolesRegistro.includes(this.rol);
       this.mostrarListaPlagas = rolesListarPlagas.includes(this.rol);
       this.mostrarListarCapacitaciones = rolesListarCapacitaciones.includes(this.rol);
       this.mostrarListarMantenciones = rolesListarMantenciones.includes(this.rol);
