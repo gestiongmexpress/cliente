@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { UtcDatePipe } from './pipes/utc-date.pipe';
+import { NombreMesPipe } from './pipes/nombre-mes.pipe';
+import { NombreMesAnoPipe } from './pipes/nombreMesAno';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,11 +29,14 @@ import { CrearTrabajadorComponent } from './components/crear-trabajador/crear-tr
 import { ListarTrabajadoresComponent } from './components/listar-trabajadores/listar-trabajadores.component';
 import { DetalleTrabajadorComponent } from './components/detalle-trabajador/detalle-trabajador.component';
 import { CumplesComponent } from './components/cumples/cumples.component';
+import { TerminosContratoComponent } from './components/terminos-contrato/terminos-contrato.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UtcDatePipe,
+    NombreMesPipe,
+    NombreMesAnoPipe,
     CrearCapacitacionComponent,
     ListarCapacitacionesComponent,
     InicioComponent,
@@ -48,7 +53,8 @@ import { CumplesComponent } from './components/cumples/cumples.component';
     CrearTrabajadorComponent,
     ListarTrabajadoresComponent,
     DetalleTrabajadorComponent,
-    CumplesComponent
+    CumplesComponent,
+    TerminosContratoComponent
   ],
   imports: [
     BrowserModule,

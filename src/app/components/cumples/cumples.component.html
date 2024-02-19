@@ -1,1 +1,36 @@
-<p>cumples works!</p>
+<div class="container mt-5">
+  <!-- Cumpleaños Próximo -->
+  <div class="card mb-5">
+    <div class="card-body">
+      <h2 class="card-title">Cumpleaños Próximo</h2>
+      <p class="card-text" *ngIf="cumpleaniosProximo">
+        <strong>{{ cumpleaniosProximo.nombre }}</strong> - {{ cumpleaniosProximo.fechaNacimiento | date: 'dd/MM/yyyy' }}
+      </p>
+      <p class="card-text" *ngIf="!cumpleaniosProximo">
+        No hay cumpleaños próximos.
+      </p>
+    </div>
+  </div>
+
+  <!-- Cumpleaños por Mes -->
+  <div *ngFor="let mes of objectKeys(cumpleaniosPorMes)">
+    <h2>{{ +mes | nombreMes }}</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Fecha de Cumpleaños</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trabajador of cumpleaniosPorMes[mes]">
+          <td>{{ trabajador.nombre }}</td>
+          <td>{{ trabajador.fechaNacimiento | utcDate | date: 'dd/MM' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="text-end">
+    <button class="btn btn-primary btn-volver" routerLink="/listar-trabajadores">Volver</button>
+  </div>
+</div>

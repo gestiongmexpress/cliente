@@ -1,0 +1,75 @@
+<div class="container mt-5">
+    <!-- Términos de Contrato Próximos -->
+    <div class="card mb-5">
+      <div class="card-body">
+        <h2 class="card-title">Términos de Contrato Próximos</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>RUT</th>
+              <th>Fecha de Término de Contrato</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let trabajador of terminosProximos">
+              <td>{{ trabajador.nombre }}</td>
+              <td>{{ trabajador.rut }}</td>
+              <td>{{ trabajador.fechaTerminoContrato | date: 'dd/MM/yyyy' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <!-- Términos de Contrato por Mes y Año -->
+    <div *ngFor="let key of objectKeys(terminosPorMes)">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h3 class="card-title">{{ key | nombreMesAno }}</h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>RUT</th>
+                <th>Fecha de Término de Contrato</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let trabajador of terminosPorMes[key]">
+                <td>{{ trabajador.nombre }}</td>
+                <td>{{ trabajador.rut }}</td>
+                <td>{{ trabajador.fechaTerminoContrato | date: 'dd/MM/yyyy' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="trabajadoresSinTermino.length > 0" class="container mt-5">
+        <h2>Personas sin fecha de término</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>RUT</th>
+              <!-- Añade aquí más cabeceras si es necesario -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let trabajador of trabajadoresSinTermino">
+              <td>{{ trabajador.nombre }}</td>
+              <td>{{ trabajador.rut }}</td>
+              <!-- Añade aquí más celdas si es necesario -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+  
+    <div class="text-end mt-4">
+      <button class="btn btn-secondary" routerLink="/listar-trabajadores">Volver</button>
+    </div>
+  </div>
+  

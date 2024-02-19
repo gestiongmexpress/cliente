@@ -17,6 +17,8 @@ import { DetallePlagaComponent } from './components/detalle-plaga/detalle-plaga.
 import { CrearTrabajadorComponent } from './components/crear-trabajador/crear-trabajador.component';
 import { ListarTrabajadoresComponent } from './components/listar-trabajadores/listar-trabajadores.component';
 import { DetalleTrabajadorComponent } from './components/detalle-trabajador/detalle-trabajador.component';
+import { CumplesComponent } from './components/cumples/cumples.component';
+import { TerminosContratoComponent } from './components/terminos-contrato/terminos-contrato.component';
 
 
 const routes: Routes = [
@@ -27,6 +29,7 @@ const routes: Routes = [
   { path: 'listar-capacitacion', component: ListarCapacitacionesComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista', 'APR', 'Enc. Logistica'] }},
   { path: 'listar-mantencion', component: ListarMantencionesComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Enc. Logistica'] }},
   { path: 'listar-plagas', component: ListarPlagasComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista'] }},
+  { path: 'listar-cumples', component: CumplesComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
   { path: 'crear-capacitacion', component : CrearCapacitacionComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista', 'APR', 'Enc. Logistica'] }},
   { path: 'crear-mantencion', component : CrearMantencionComponent, canActivate: [AuthGuard]},
   { path: 'crear-plaga', component : CrearPlagaComponent, canActivate: [AuthGuard]},
@@ -40,7 +43,8 @@ const routes: Routes = [
   { path: 'detalle-mantencion/:id', component: DetalleMantencionComponent, canActivate: [AuthGuard]},
   { path: 'detalle-trabajador/:id', component: DetalleTrabajadorComponent, canActivate: [AuthGuard]},
   { path: 'detalle-plaga/:id', component: DetallePlagaComponent, canActivate: [AuthGuard]},
-  { path: 'registrar', component: RegistroComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente'] } },
+  { path: 'registrar', component: RegistroComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
+  { path: 'termino-contrato', component: TerminosContratoComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: '**', redirectTo: '', pathMatch: 'full'} 
 ];
 
