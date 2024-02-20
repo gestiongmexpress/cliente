@@ -30,6 +30,7 @@ import { ListarTrabajadoresComponent } from './components/listar-trabajadores/li
 import { DetalleTrabajadorComponent } from './components/detalle-trabajador/detalle-trabajador.component';
 import { CumplesComponent } from './components/cumples/cumples.component';
 import { TerminosContratoComponent } from './components/terminos-contrato/terminos-contrato.component';
+import { HorariosComponent } from './components/horarios/horarios.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { TerminosContratoComponent } from './components/terminos-contrato/termin
     ListarTrabajadoresComponent,
     DetalleTrabajadorComponent,
     CumplesComponent,
-    TerminosContratoComponent
+    TerminosContratoComponent,
+    HorariosComponent
   ],
   imports: [
     BrowserModule,

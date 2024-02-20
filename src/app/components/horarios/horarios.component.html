@@ -1,0 +1,167 @@
+<div class="container mt-4">
+  <h2>Horarios de Trabajadores</h2>
+
+  <!-- Filtros -->
+  <div class="row">
+    <div class="col">
+      <form [formGroup]="filtroForm" class="mb-3">
+        <div class="d-flex justify-content-start">
+          <!-- Filtro por Sucursal -->
+          <div class="me-2">
+            <label for="sucursal">Sucursal:</label>
+            <select class="form-select" formControlName="sucursal">
+              <option value="">Todas</option>
+              <option value="Central">Central</option>
+              <option value="Faremin">Faremin</option>
+              <option value="Megacentro">Megacentro</option>
+              <option value="Ovalle">Ovalle</option>
+            </select>
+          </div>
+  
+          <!-- Filtro por Área -->
+          <div class="me-2">
+            <label for="area">Área:</label>
+            <select class="form-select" formControlName="area">
+              <option value="">Todas</option>
+              <option value="Administración">Administración</option>
+              <option value="Cocina">Cocina</option>
+              <option value="Caliente">Caliente</option>
+              <option value="Frio">Frio</option>
+              <option value="Coffee Break">Coffee Break</option>
+              <option value="Gestion RRSS">Gestion RRSS</option>
+              <option value="Linier">Linier</option>
+              <option value="Logistica">Logistica</option>
+              <option value="Servicios">Servicios</option>
+              <option value="Transporte">Transporte</option>
+            </select>
+          </div>
+
+          <!-- Filtro por Estado -->
+          <div class="me-2">
+            <label for="estadoEmpresa">Estado:</label>
+            <select class="form-select" formControlName="estadoEmpresa">
+              <option value="">Todas</option>
+              <option value="Vigente">Vigente</option>
+              <option value="No Vigente">No Vigente</option>
+            </select>
+          </div>
+
+          <!-- Filtro por Plazo Contrato -->
+          <div class="me-2">
+            <label for="plazoContrato">Plazo Contrato:</label>
+            <select class="form-select" formControlName="plazoContrato">
+              <option value="">Todas</option>
+              <option value="Indefinido">Indefinido</option>
+              <option value="Plazo Fijo">Plazo Fijo</option>
+              <option value="Honorario">Honorario</option>
+              <option value="Practica">Practica</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Tabla de Horarios de Trabajadores -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Área</th>
+        <th>Horario de Entrada</th>
+        <th>Horario de Salida</th>
+        <th>Estado en la Empresa</th>
+        <th>Tipo de Contrato</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let trabajador of trabajadoresFiltrados">
+        <td>{{ trabajador.nombre }}</td>
+        <td>{{ trabajador.area }}</td>
+        <!-- Horario de Entrada -->
+        <td>
+          <select class="form-control" [(ngModel)]="trabajador.horarioEntrada" (change)="cambiarHorarioEntrada(trabajador._id!, trabajador.horarioEntrada!)">
+            <option value="" disabled selected>Cambiar Horario de Entrada</option>
+            <option value="05:30">5:30</option>
+            <option value="06:00">6:00</option>
+            <option value="06:30">6:30</option>
+            <option value="07:00">7:00</option>
+            <option value="07:30">7:30</option>
+            <option value="08:00">8:00</option>
+            <option value="08:30">8:30</option>
+            <option value="09:00">9:00</option>
+            <option value="09:30">9:30</option>
+            <option value="10:00">10:00</option>
+            <option value="10:30">10:30</option>
+            <option value="11:00">11:00</option>
+            <option value="11:30">11:30</option>
+            <option value="12:00">12:00</option>
+            <option value="12:30">12:30</option>
+            <option value="13:00">13:00</option>
+            <option value="13:30">13:30</option>
+            <option value="14:00">14:00</option>
+            <option value="14:30">14:30</option>
+            <option value="15:00">15:00</option>
+            <option value="15:30">15:30</option>
+            <option value="16:00">16:00</option>
+            <option value="16:30">16:30</option>
+            <option value="17:00">17:00</option>
+            <option value="17:30">17:30</option>
+            <option value="18:00">18:00</option>
+            <option value="18:30">18:30</option>
+            <option value="19:00">19:00</option>
+            <option value="19:30">19:30</option>
+            <option value="20:00">20:00</option>
+            <option value="20:30">20:30</option>
+          </select>
+        </td>
+
+        <!-- Horario de Salida -->
+        <td>
+          <select class="form-control" [(ngModel)]="trabajador.horarioSalida" (change)="cambiarHorarioSalida(trabajador._id!, trabajador.horarioSalida!)">
+            <option value="" disabled selected>Cambiar Horario de Salida</option>
+            <option value="05:30">5:30</option>
+            <option value="06:00">6:00</option>
+            <option value="06:30">6:30</option>
+            <option value="07:00">7:00</option>
+            <option value="07:30">7:30</option>
+            <option value="08:00">8:00</option>
+            <option value="08:30">8:30</option>
+            <option value="09:00">9:00</option>
+            <option value="09:30">9:30</option>
+            <option value="10:00">10:00</option>
+            <option value="10:30">10:30</option>
+            <option value="11:00">11:00</option>
+            <option value="11:30">11:30</option>
+            <option value="12:00">12:00</option>
+            <option value="12:30">12:30</option>
+            <option value="13:00">13:00</option>
+            <option value="13:30">13:30</option>
+            <option value="14:00">14:00</option>
+            <option value="14:30">14:30</option>
+            <option value="15:00">15:00</option>
+            <option value="15:30">15:30</option>
+            <option value="16:00">16:00</option>
+            <option value="16:30">16:30</option>
+            <option value="17:00">17:00</option>
+            <option value="17:30">17:30</option>
+            <option value="18:00">18:00</option>
+            <option value="18:30">18:30</option>
+            <option value="19:00">19:00</option>
+            <option value="19:30">19:30</option>
+            <option value="20:00">20:00</option>
+            <option value="20:30">20:30</option>
+          </select>
+        </td>
+        <td>{{ trabajador.estadoEmpresa }}</td>
+        <td>{{ trabajador.tipoContrato }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Botón Volver -->
+  <div class="col-md-4 text-end">
+    <button class="btn btn-primary btn-volver" routerLink="/listar-trabajadores">Volver</button>
+  </div>
+
+</div>

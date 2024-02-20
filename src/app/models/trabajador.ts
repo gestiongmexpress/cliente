@@ -44,6 +44,8 @@ export class Trabajador {
     sueldoBase?: number;
     fechaActualizacionOferta?: Date;
     diasVacaciones?: number;
+    horarioEntrada?: string;
+    horarioSalida?: string
 
     constructor(
         nombre: string,
@@ -89,7 +91,9 @@ export class Trabajador {
         escalaRecomendacion?: number,
         sueldoBase?: number,
         fechaActualizacionOferta?: Date,
-        diasVacaciones?: number
+        diasVacaciones?: number,
+        horarioEntrada?: string,
+        horarioSalida?: string
     ) {
         this.nombre = nombre;
         this.rut = rut;
@@ -131,5 +135,7 @@ export class Trabajador {
         this.sueldoBase = sueldoBase;
         this.fechaActualizacionOferta = fechaActualizacionOferta;
         this.diasVacaciones = diasVacaciones;
+        this.horarioEntrada = horarioEntrada;
+        this.horarioSalida = horarioSalida;
     }
 }

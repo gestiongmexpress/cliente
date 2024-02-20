@@ -4,7 +4,7 @@
     <div class="card-body">
       <h2 class="card-title">Cumpleaños Próximo</h2>
       <p class="card-text" *ngIf="cumpleaniosProximo">
-        <strong>{{ cumpleaniosProximo.nombre }}</strong> - {{ cumpleaniosProximo.fechaNacimiento | date: 'dd/MM/yyyy' }}
+        <strong>{{ cumpleaniosProximo.nombre }}</strong> - {{ dateFormatService.formatDate(cumpleaniosProximo.fechaNacimiento) }}
       </p>
       <p class="card-text" *ngIf="!cumpleaniosProximo">
         No hay cumpleaños próximos.
@@ -19,13 +19,13 @@
       <thead>
         <tr>
           <th>Nombre</th>
-          <th>Fecha de Cumpleaños</th>
+          <th>Fecha de Nacimiento</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let trabajador of cumpleaniosPorMes[mes]">
           <td>{{ trabajador.nombre }}</td>
-          <td>{{ trabajador.fechaNacimiento | utcDate | date: 'dd/MM' }}</td>
+          <td>{{ dateFormatService.formatDate(trabajador.fechaNacimiento) }}</td>
         </tr>
       </tbody>
     </table>

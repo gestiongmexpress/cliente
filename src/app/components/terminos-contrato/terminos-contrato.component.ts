@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TrabajadorService } from '../../services/trabajador.service';
+import { DateFormatService } from '../../services/date-format.service';
 import { Trabajador } from '../../models/trabajador';
 
 @Component({
@@ -13,7 +14,7 @@ export class TerminosContratoComponent implements OnInit {
   terminosPorMes: { [key: string]: Trabajador[] } = {};
   trabajadoresSinTermino: Trabajador[] = [];
 
-  constructor(private trabajadorService: TrabajadorService) {}
+  constructor(private trabajadorService: TrabajadorService, private dateFormatService: DateFormatService) {}
 
   ngOnInit(): void {
     this.trabajadorService.getTrabajadores().subscribe(data => {
@@ -55,5 +56,9 @@ export class TerminosContratoComponent implements OnInit {
 
   objectKeys(obj: any): string[] {
     return Object.keys(obj);
+  }
+
+  getFormattedDate(date: Date | string): string {
+    return this.dateFormatService.formatDate(date);
   }
 }

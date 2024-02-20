@@ -56,10 +56,6 @@ export class ListarTrabajadoresComponent implements OnInit {
     this.trabajadoresFiltrados = trabajadoresTemp;
   }
 
-  toggleDetallesExpandidos(): void {
-    this.detallesExpandidos = !this.detallesExpandidos;
-  }
-
   verDetalles(id: string): void {
     this.router.navigate(['/detalle-trabajador', id]); 
   }

@@ -15,7 +15,7 @@
             <tr *ngFor="let trabajador of terminosProximos">
               <td>{{ trabajador.nombre }}</td>
               <td>{{ trabajador.rut }}</td>
-              <td>{{ trabajador.fechaTerminoContrato | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ trabajador.fechaTerminoContrato ? getFormattedDate(trabajador.fechaTerminoContrato) : 'No definido' }}</td>
             </tr>
           </tbody>
         </table>
@@ -39,7 +39,7 @@
               <tr *ngFor="let trabajador of terminosPorMes[key]">
                 <td>{{ trabajador.nombre }}</td>
                 <td>{{ trabajador.rut }}</td>
-                <td>{{ trabajador.fechaTerminoContrato | date: 'dd/MM/yyyy' }}</td>
+                <td>{{ trabajador.fechaTerminoContrato ? getFormattedDate(trabajador.fechaTerminoContrato) : 'No definido' }}</td>
               </tr>
             </tbody>
           </table>
@@ -54,22 +54,17 @@
             <tr>
               <th>Nombre</th>
               <th>RUT</th>
-              <!-- Añade aquí más cabeceras si es necesario -->
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let trabajador of trabajadoresSinTermino">
               <td>{{ trabajador.nombre }}</td>
               <td>{{ trabajador.rut }}</td>
-              <!-- Añade aquí más celdas si es necesario -->
             </tr>
           </tbody>
         </table>
       </div>
-      
-  
-    <div class="text-end mt-4">
-      <button class="btn btn-secondary" routerLink="/listar-trabajadores">Volver</button>
-    </div>
   </div>
-  
+  <div class="col-md-4 text-end">
+    <button class="btn btn-primary btn-volver" routerLink="/listar-trabajadores">Volver</button>
+  </div>

@@ -4,23 +4,18 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'utcDate'
 })
 export class UtcDatePipe implements PipeTransform {
-  transform(value: Date | string): string {
-    if (!value) return '';
-    
+  transform(value: string | Date | undefined): string {
+    if (!value) return ''; // Retorna una cadena vacía si el valor es undefined o nulo
+
     let date: Date;
-    
-    // Si 'value' es una cadena, conviértela a fecha
     if (typeof value === 'string') {
-      date = new Date(value);
+      // Asume que la fecha en string está en UTC y la convierte a un objeto Date
+      date = new Date(value + 'Z'); // Añade 'Z' para indicar que es UTC
     } else {
-      date = value;
+      date = new Date(Date.UTC(value.getFullYear(), value.getMonth(), value.getDate()));
     }
 
-    // Convierte la fecha a UTC aplicando el desfase horario
-    const userTimezoneOffset = date.getTimezoneOffset() * 60000;
-    const utcDate = new Date(date.getTime() + userTimezoneOffset);
-
-    // Devuelve la fecha en formato local sin tiempo
-    return utcDate.toISOString().split('T')[0];
+    // No se realiza ningún ajuste por zona horaria aquí, simplemente se formatea la fecha
+    return date.toISOString().split('T')[0];
   }
 }

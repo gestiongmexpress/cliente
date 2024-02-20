@@ -19,6 +19,7 @@ import { ListarTrabajadoresComponent } from './components/listar-trabajadores/li
 import { DetalleTrabajadorComponent } from './components/detalle-trabajador/detalle-trabajador.component';
 import { CumplesComponent } from './components/cumples/cumples.component';
 import { TerminosContratoComponent } from './components/terminos-contrato/terminos-contrato.component';
+import { HorariosComponent } from './components/horarios/horarios.component';
 
 
 const routes: Routes = [
@@ -45,6 +46,7 @@ const routes: Routes = [
   { path: 'detalle-plaga/:id', component: DetallePlagaComponent, canActivate: [AuthGuard]},
   { path: 'registrar', component: RegistroComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'termino-contrato', component: TerminosContratoComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
+  { path: 'horarios', component: HorariosComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: '**', redirectTo: '', pathMatch: 'full'} 
 ];
 

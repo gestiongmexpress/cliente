@@ -35,4 +35,18 @@ formatDate(date: Date | string): string {
 
     return formatDate(utcDate, format, locale, timeZone);
   }
+
+  formatDayMonth(date: Date | string, locale: string = 'es-ES'): string {
+    if (!date) {
+      return 'No disponible';
+    }
+
+    const format = 'dd MMMM'; // 'dd' para el día y 'MMMM' para el nombre completo del mes
+
+    // Si 'date' es una cadena, conviértela en un objeto Date
+    const dateObj = date instanceof Date ? date : new Date(date);
+
+    // Usa 'formatDate' de '@angular/common' para formatear la fecha
+    return formatDate(dateObj, format, locale);
+  }
 }

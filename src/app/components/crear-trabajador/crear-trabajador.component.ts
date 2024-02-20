@@ -67,7 +67,9 @@ export class CrearTrabajadorComponent implements OnInit {
       escalaRecomendacion: ['', [Validators.min(1), Validators.max(10)]],
       sueldoBase: [''],
       fechaActualizacionOferta: [''],
-      diasVacaciones: ['']
+      diasVacaciones: [''],
+      horarioEntrada: [''],
+      horarioSalida: ['']
     });
     
     this.id = this.aRouter.snapshot.paramMap.get('id');
@@ -114,16 +116,24 @@ export class CrearTrabajadorComponent implements OnInit {
       this.titulo = 'Editar Trabajador';
       this._trabajadorService.obtenerTrabajador(this.id).subscribe(data => {
         const fechaNacimientoFormatted = data.fechaNacimiento ? new Date(data.fechaNacimiento).toISOString().split('T')[0] : '';
+        const fechaInicioContratoFormatted = data.fechaInicioContrato ? new Date(data.fechaInicioContrato).toISOString().split('T')[0] : '';
+        const fechaTerminoContratoFormatted = data.fechaTerminoContrato ? new Date(data.fechaTerminoContrato).toISOString().split('T')[0] : '';
+        const fechaIncorporacionAPFFormatted = data.fechaIncorporacionAFP ? new Date(data.fechaIncorporacionAFP).toISOString().split('T')[0] : '';
+        const fechaFiniquitoFormatted = data.fechaFiniquito ? new Date(data.fechaFiniquito).toISOString().split('T')[0] : '';
+        const fechaActualizacionOfertaFormatted = data.fechaActualizacionOferta ? new Date(data.fechaActualizacionOferta).toISOString().split('T')[0] : '';
   
         this.trabajadorForm.patchValue({
           ...data,
-          fechaNacimiento: fechaNacimientoFormatted, 
+          fechaNacimiento: fechaNacimientoFormatted,
+          fechaInicioContrato: fechaInicioContratoFormatted,
+          fechaTerminoContrato: fechaTerminoContratoFormatted,
+          fechaIncorporacionAFP: fechaIncorporacionAPFFormatted,
+          fechaFiniquito: fechaFiniquitoFormatted,
+          fechaActualizacionOferta: fechaActualizacionOfertaFormatted
         });
       });
     }
-  }  
-
-  
+  }
 
   onChangeLicencia(event: any) {
     this.mostrarTipoLicencia = event.target.value === 'Sí';

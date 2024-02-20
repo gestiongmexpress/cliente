@@ -31,5 +31,4 @@ export class TrabajadorService {
   editarTrabajador(id: string, trabajador: Partial<Trabajador>): Observable<any> {
     return this.http.put(`${this.apiUrl}/${id}`, trabajador);
   }
-
 }
