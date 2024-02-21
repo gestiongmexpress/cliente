@@ -69,7 +69,23 @@ export class CrearTrabajadorComponent implements OnInit {
       fechaActualizacionOferta: [''],
       diasVacaciones: [''],
       horarioEntrada: [''],
-      horarioSalida: ['']
+      horarioSalida: [''],
+      fotocopiaCedula: [''],
+      certificadoAntecendetes: [''],
+      certificadoAFP: [''],
+      certificadoSalud: [''],
+      induccion: [''],
+      perfilDeCargo: [''],
+      obligacionInformacion: [''],
+      recepcionReglamento: [''],
+      examenRiohs: [''],
+      certificadoAprobacionHigiene: [''],
+      recepcionCovid: [''],
+      cartaOferta: [''],
+      registroRopa: [''],
+      contratoFirmado: [''],
+      anexoContrato: [''],
+      estadoDocumentacion: ['Pendiente']
     });
     
     this.id = this.aRouter.snapshot.paramMap.get('id');
@@ -90,7 +106,7 @@ export class CrearTrabajadorComponent implements OnInit {
       const trabajador: Trabajador = this.trabajadorForm.value;
   
       if (this.id) {
-        // Modo edición: actualiza el trabajador existente
+        // Para editar uno existente
         this._trabajadorService.editarTrabajador(this.id, trabajador).subscribe(data => {
           this.toastr.info('Trabajador actualizado', 'El trabajador fue actualizado con éxito');
           this.router.navigate(['/listar-trabajadores']); 
@@ -99,7 +115,7 @@ export class CrearTrabajadorComponent implements OnInit {
           this.toastr.error('Error al actualizar el trabajador');
         });
       } else {
-        // Modo creación: guarda el nuevo trabajador
+        // Para guardar uno nuevo
         this._trabajadorService.guardarTrabajador(trabajador).subscribe(data => {
           this.toastr.success('Trabajador registrado', 'El trabajador fue registrado con éxito');
           this.router.navigate(['/listar-trabajadores']); 

@@ -1,0 +1,124 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+        <div class="card-header">
+        <h4 class="text-center">Editar Documentación de {{ nombreTrabajador }} - {{ rutTrabajador }}</h4>
+            </div>
+            <div class="card-body">
+            <form [formGroup]="documentacionForm" (ngSubmit)="actualizarDocumentacion()">
+  
+                <!-- Focotopia Cédula -->
+                <div class="form-group mb-3">
+                    <label for="focotopiaCedula"><strong>Focotopia Cédula (Link)</strong></label>
+                    <input type="text" id="focotopiaCedula" class="form-control" formControlName="focotopiaCedula">
+                </div>
+  
+                <!-- Certificado Antecedentes -->
+                <div class="form-group mb-3">
+                    <label for="certificadoAntecedentes"><strong>Certificado Antecedentes (Link)</strong></label>
+                    <input type="text" id="certificadoAntecedentes" class="form-control" formControlName="certificadoAntecedentes">
+                </div>
+  
+                <!-- Certificado AFP -->
+                <div class="form-group mb-3">
+                    <label for="certificadoAFP"><strong>Certificado AFP (Link)</strong></label>
+                    <input type="text" id="certificadoAFP" class="form-control" formControlName="certificadoAFP">
+                </div>
+  
+                <!-- Certificado Salud -->
+                <div class="form-group mb-3">
+                    <label for="certificadoSalud"><strong>Certificado Salud (Link)</strong></label>
+                    <input type="text" id="certificadoSalud" class="form-control" formControlName="certificadoSalud">
+                </div>
+  
+                <!-- Inducción -->
+                <div class="form-group mb-3">
+                    <label for="induccion"><strong>Inducción</strong></label>
+                    <select id="induccion" class="form-control" formControlName="induccion">
+                    <option value="">Seleccionar...</option>
+                    <option value="Realizada">Realizada</option>
+                    <option value="Pendiente">Pendiente</option>
+                    </select>
+                </div>
+  
+                <!-- Perfil De Cargo -->
+                <div class="form-group mb-3">
+                    <label for="perfilDeCargo"><strong>Perfil de Cargo</strong></label>
+                    <input type="text" id="perfilDeCargo" class="form-control" formControlName="perfilDeCargo">
+                </div>
+  
+                <!-- Obligación Información -->
+                <div class="form-group mb-3">
+                    <label for="obligacionInformacion"><strong>Obligación Información</strong></label>
+                    <input type="text" id="obligacionInformacion" class="form-control" formControlName="obligacionInformacion">
+                </div>
+  
+                <!-- Recepción Reglamento -->
+                <div class="form-group mb-3">
+                    <label for="recepcionReglamento"><strong>Recepción Reglamento</strong></label>
+                    <input type="text" id="recepcionReglamento" class="form-control" formControlName="recepcionReglamento">
+                </div>
+  
+                <!-- Examen Riohs -->
+                <div class="form-group mb-3">
+                    <label for="examenRiohs"><strong>Examen RIOHS</strong></label>
+                    <input type="text" id="examenRiohs" class="form-control" formControlName="examenRiohs">
+                </div>
+  
+                <!-- Certificado Aprobación Higiene -->
+                <div class="form-group mb-3">
+                    <label for="certificadoAprobacionHigiene"><strong>Certificado Aprobación Higiene</strong></label>
+                    <input type="text" id="certificadoAprobacionHigiene" class="form-control" formControlName="certificadoAprobacionHigiene">
+                </div>
+  
+                <!-- Recepción Covid -->
+                <div class="form-group mb-3">
+                    <label for="recepcionCovid"><strong>Recepción Covid</strong></label>
+                    <input type="text" id="recepcionCovid" class="form-control" formControlName="recepcionCovid">
+                </div>
+  
+                <!-- Carta Oferta -->
+                <div class="form-group mb-3">
+                    <label for="cartaOferta"><strong>Carta Oferta</strong></label>
+                    <input type="text" id="cartaOferta" class="form-control" formControlName="cartaOferta">
+                </div>
+  
+                <!-- Registro Ropa -->
+                <div class="form-group mb-3">
+                    <label for="registroRopa"><strong>Registro Ropa</strong></label>
+                    <select id="registroRopa" class="form-control" formControlName="registroRopa">
+                    <option value="">Seleccionar...</option>
+                    <option value="Realizado">Realizado</option>
+                    <option value="Pendiente">Pendiente</option>
+                    </select>
+                </div>
+  
+                <!-- Contrato Firmado -->
+                <div class="form-group mb-3">
+                    <label for="contratoFirmado"><strong>Contrato Firmado</strong></label>
+                    <select id="contratoFirmado" class="form-control" formControlName="contratoFirmado">
+                    <option value="">Seleccionar...</option>
+                    <option value="Realizado">Realizado</option>
+                    <option value="Pendiente">Pendiente</option>
+                    </select>
+                </div>
+  
+                <!-- Anexo Contrato -->
+                <div class="form-group mb-3">
+                    <label for="anexoContrato"><strong>Anexo Contrato</strong></label>
+                    <input type="text" id="anexoContrato" class="form-control" formControlName="anexoContrato">
+                </div>
+  
+                <!-- Botones de Acción -->
+                <div class="form-group mb-3">
+                    <button type="submit" class="btn btn-success btn-lg float-end" [disabled]="!documentacionForm.valid">Actualizar</button>
+                    <button routerLink="/listar-trabajadores" class="btn btn-secondary btn-lg float-start">Volver</button>
+                </div>
+  
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

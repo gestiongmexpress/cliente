@@ -45,7 +45,23 @@ export class Trabajador {
     fechaActualizacionOferta?: Date;
     diasVacaciones?: number;
     horarioEntrada?: string;
-    horarioSalida?: string
+    horarioSalida?: string;
+    focotopiaCedula?: string;
+    certificadoAntecedentes?: string;
+    certificadoAFP?: string;
+    certificadoSalud?: string;
+    induccion?: string;
+    perfilDeCargo?: string;
+    obligacionInformacion?: string;
+    recepcionReglamento?: string;
+    examenRiohs?: string;
+    certificadoAprobacionHigiene?: string;
+    recepcionCovid?: string;
+    cartaOferta?: string;
+    registroRopa?: string;
+    contratoFirmado?: string;
+    anexoContrato?: string;
+    estadoDocumentacion?: string;
 
     constructor(
         nombre: string,
@@ -93,7 +109,23 @@ export class Trabajador {
         fechaActualizacionOferta?: Date,
         diasVacaciones?: number,
         horarioEntrada?: string,
-        horarioSalida?: string
+        horarioSalida?: string,
+        focotopiaCedula?: string,
+        certificadoAntecedentes?: string,
+        certificadoAFP?: string,
+        certificadoSalud?: string,
+        induccion?: string,
+        perfilDeCargo?: string,
+        obligacionInformacion?: string,
+        recepcionReglamento?: string,
+        examenRiohs?: string,
+        certificadoAprobacionHigiene?: string,
+        recepcionCovid?: string,
+        cartaOferta?: string,
+        registroRopa?: string,
+        contratoFirmado?: string,
+        anexoContrato?: string,
+        estadoDocumentacion?: string
     ) {
         this.nombre = nombre;
         this.rut = rut;
@@ -137,5 +169,21 @@ export class Trabajador {
         this.diasVacaciones = diasVacaciones;
         this.horarioEntrada = horarioEntrada;
         this.horarioSalida = horarioSalida;
+        this.focotopiaCedula = focotopiaCedula;
+        this.certificadoAntecedentes = certificadoAntecedentes;
+        this.certificadoAFP = certificadoAFP;
+        this.certificadoSalud = certificadoSalud;
+        this.induccion = induccion;
+        this.perfilDeCargo = perfilDeCargo;
+        this.obligacionInformacion = obligacionInformacion;
+        this.recepcionReglamento = recepcionReglamento;
+        this.examenRiohs = examenRiohs;
+        this.certificadoAprobacionHigiene = certificadoAprobacionHigiene;
+        this.recepcionCovid = recepcionCovid;
+        this.cartaOferta = cartaOferta;
+        this.registroRopa = registroRopa;
+        this.contratoFirmado = contratoFirmado;
+        this.anexoContrato = anexoContrato;
+        this.estadoDocumentacion = estadoDocumentacion;
     }
 }

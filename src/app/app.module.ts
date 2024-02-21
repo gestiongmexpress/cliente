@@ -31,6 +31,8 @@ import { DetalleTrabajadorComponent } from './components/detalle-trabajador/deta
 import { CumplesComponent } from './components/cumples/cumples.component';
 import { TerminosContratoComponent } from './components/terminos-contrato/terminos-contrato.component';
 import { HorariosComponent } from './components/horarios/horarios.component';
+import { EditarDocumentacionComponent } from './components/editar-documentacion/editar-documentacion.component';
+import { AuditoriaComponent } from './components/auditoria/auditoria.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { HorariosComponent } from './components/horarios/horarios.component';
     DetalleTrabajadorComponent,
     CumplesComponent,
     TerminosContratoComponent,
-    HorariosComponent
+    HorariosComponent,
+    EditarDocumentacionComponent,
+    AuditoriaComponent
   ],
   imports: [
     BrowserModule,

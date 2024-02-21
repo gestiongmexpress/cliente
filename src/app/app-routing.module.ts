@@ -20,6 +20,8 @@ import { DetalleTrabajadorComponent } from './components/detalle-trabajador/deta
 import { CumplesComponent } from './components/cumples/cumples.component';
 import { TerminosContratoComponent } from './components/terminos-contrato/terminos-contrato.component';
 import { HorariosComponent } from './components/horarios/horarios.component';
+import { EditarDocumentacionComponent } from './components/editar-documentacion/editar-documentacion.component';
+import { AuditoriaComponent } from './components/auditoria/auditoria.component';
 
 
 const routes: Routes = [
@@ -40,11 +42,13 @@ const routes: Routes = [
   { path: 'editar-capacitacion/:id', component : CrearCapacitacionComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista', 'APR', 'Enc. Logistica']}},
   { path: 'editar-mantencion/:id', component : CrearMantencionComponent, canActivate: [AuthGuard]},
   { path: 'editar-plaga/:id', component : CrearPlagaComponent, canActivate: [AuthGuard]},
+  { path: 'editar-documentacion/:id', component: EditarDocumentacionComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'detalle-capacitacion/:id', component: DetalleCapacitacionComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista', 'APR', 'Enc. Logistica']}},
-  { path: 'detalle-mantencion/:id', component: DetalleMantencionComponent, canActivate: [AuthGuard]},
+  { path: 'detalle-mantencion/:id', component: DetalleMantencionComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Enc. Logistica'] }},
   { path: 'detalle-trabajador/:id', component: DetalleTrabajadorComponent, canActivate: [AuthGuard]},
   { path: 'detalle-plaga/:id', component: DetallePlagaComponent, canActivate: [AuthGuard]},
   { path: 'registrar', component: RegistroComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
+  { path: 'auditoria', component: AuditoriaComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'termino-contrato', component: TerminosContratoComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'horarios', component: HorariosComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: '**', redirectTo: '', pathMatch: 'full'} 

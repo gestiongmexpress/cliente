@@ -84,40 +84,45 @@
       <div class="me-2">
         <button class="btn btn-primary" routerLink="/horarios">HORARIOS</button>
       </div>
+
+      <!-- Botón Auditoria -->
+      <div class="me-2">
+        <button class="btn btn-primary" routerLink="/auditoria">AUDITORIA</button>
+      </div>
     </div>
   </div>
 
   
+  <div class="container mt-4">
     <!-- Tabla de Trabajadores -->
-    <div class="container mt-4">
-      <!-- Tabla de Trabajadores -->
-      <table class="table table-rounded">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>RUT</th>
-            <th>Fecha de Nacimiento</th>
-            <th>Estado</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let trabajador of trabajadoresFiltrados">
-            <td>{{ trabajador.nombre }}</td>
-            <td>{{ trabajador.rut }}</td>
-            <td>{{ dateFormatService.formatDate(trabajador.fechaNacimiento) }}</td>
-            <td>{{ trabajador.estadoEmpresa }}</td>
-            <td>
-              <!-- Botón Ver Detalles -->
-              <button class="btn btn-info me-2" (click)="verDetalles(trabajador._id!)">Ver Detalles</button>
-              <!-- Botón Editar Trabajador -->
-              <button class="btn btn-primary ms-2" (click)="editarTrabajador(trabajador._id!)">Editar</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <table class="table table-rounded">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>RUT</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trabajador of trabajadoresFiltrados">
+          <td>{{ trabajador.nombre }}</td>
+          <td>{{ trabajador.rut }}</td>
+          <td>{{ trabajador.estadoEmpresa }}</td>
+          <td>
+            <!-- Botón Ver Detalles -->
+            <button class="btn btn-info me-2" (click)="verDetalles(trabajador._id!)">Ver Detalles</button>
+            <!-- Botón Editar Trabajador -->
+            <button class="btn btn-primary ms-2" (click)="editarTrabajador(trabajador._id!)">Editar</button>
+            <!-- Botón Auditoría -->
+            <button class="btn btn-primary ms-2" (click)="auditoriaDocumentacion(trabajador._id!)">Auditoría</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
 
-    <div class="col-md-4 text-end">
-      <button class="btn btn-primary btn-volver" routerLink="/inicio">Volver</button>
-    </div>
+  <div class="col-md-4 text-end">
+    <button class="btn btn-primary btn-volver" routerLink="/inicio">Volver</button>
+  </div>

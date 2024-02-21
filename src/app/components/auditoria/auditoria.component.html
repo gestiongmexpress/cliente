@@ -1,0 +1,170 @@
+<div class="container mt-3">
+    <h2>Auditoria de Trabajadores</h2>
+    <!-- Filtros y Tabla en la misma fila -->
+    <div class="row">
+      <div class="col">
+        <!-- Filtros -->
+        <form [formGroup]="filtroForm" class="mb-3">
+          <div class="d-flex justify-content-start">
+            <!-- Filtro por Sucursal -->
+            <div class="me-2">
+              <label for="sucursal">Sucursal:</label>
+              <select class="form-select" formControlName="sucursal">
+                <option value="">Todas</option>
+                <option value="Central">Central</option>
+                <option value="Faremin">Faremin</option>
+                <option value="Megacentro">Megacentro</option>
+                <option value="Ovalle">Ovalle</option>
+              </select>
+            </div>
+    
+            <!-- Filtro por Área -->
+            <div class="me-2">
+              <label for="area">Área:</label>
+              <select class="form-select" formControlName="area">
+                <option value="">Todas</option>
+                <option value="Administración">Administración</option>
+                <option value="Cocina">Cocina</option>
+                <option value="Caliente">Caliente</option>
+                <option value="Frio">Frio</option>
+                <option value="Coffee Break">Coffee Break</option>
+                <option value="Gestion RRSS">Gestion RRSS</option>
+                <option value="Linier">Linier</option>
+                <option value="Logistica">Logistica</option>
+                <option value="Servicios">Servicios</option>
+                <option value="Transporte">Transporte</option>
+              </select>
+            </div>
+  
+            <!-- Filtro por Estado -->
+            <div class="me-2">
+              <label for="estadoEmpresa">Estado:</label>
+              <select class="form-select" formControlName="estadoEmpresa">
+                <option value="">Todas</option>
+                <option value="Vigente">Vigente</option>
+                <option value="No Vigente">No Vigente</option>
+              </select>
+            </div>
+  
+            <!-- Filtro por Plazo Contrato -->
+            <div class="me-2">
+              <label for="plazoContrato">Plazo Contrato:</label>
+              <select class="form-select" formControlName="plazoContrato">
+                <option value="">Todas</option>
+                <option value="Indefinido">Indefinido</option>
+                <option value="Plazo Fijo">Plazo Fijo</option>
+                <option value="Honorario">Honorario</option>
+                <option value="Coffee Break">Coffee Break</option>
+                <option value="Practica">Practica</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Fecha de Contrato</th>
+            <th>Sucursal</th>
+            <th>Estado</th>
+            <th>Fotocopia Cédula</th>
+            <th>Certificado Antecedentes</th>
+            <th>Certificado AFP</th>
+            <th>Certificado Salud</th>
+            <th>Inducción</th>
+            <th>Perfil De Cargo</th>
+            <th>Obligación Información</th>
+            <th>Recepción Reglamento</th>
+            <th>Examen RIOHS</th>
+            <th>Certificado Aprobación Higiene</th>
+            <th>Recepción Covid</th>
+            <th>Carta Oferta</th>
+            <th>Registro Ropa</th>
+            <th>Contrato Firmado</th>
+            <th>Anexo Contrato</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let trabajador of trabajadoresFiltrados">
+                <td class="nombre-completo">{{ trabajador.nombre }}</td>
+                <td>{{ dateFormatService.formatDate(trabajador.fechaInicioContrato!) }}</td>
+                <td>{{ trabajador.sucursal }}</td>
+                <!-- Estado Documentación -->
+                <td [ngClass]="{'bg-success': trabajador.estadoDocumentacion === 'OK', 'bg-danger': trabajador.estadoDocumentacion === 'Pendiente'}">
+                  {{ trabajador.estadoDocumentacion }}
+                </td>
+                <!-- Fotocopia Cédula -->
+                <td [ngClass]="trabajador.focotopiaCedula ? 'bg-success' : 'bg-danger'">
+                    {{ trabajador.focotopiaCedula ? '' : 'Pendiente' }}
+                    <i *ngIf="trabajador.focotopiaCedula" class="fas fa-eye cursor-pointer" (click)="abrirEnlace(trabajador.focotopiaCedula)"></i>
+                </td>
+                <!-- Certificado Antecedentes -->
+                <td [ngClass]="trabajador.certificadoAntecedentes ? 'bg-success' : 'bg-danger'">
+                  {{ trabajador.certificadoAntecedentes ? '' : 'Pendiente' }}  
+                  <i *ngIf="trabajador.certificadoAntecedentes" class="fas fa-eye cursor-pointer" (click)="abrirEnlace(trabajador.certificadoAntecedentes)"></i>
+                </td>
+                <!-- Certificado AFP -->
+                <td [ngClass]="trabajador.certificadoAFP ? 'bg-success' : 'bg-danger'">
+                    {{ trabajador.certificadoAFP ? '' : 'Pendiente' }}
+                    <i *ngIf="trabajador.certificadoAFP" class="fas fa-eye cursor-pointer" (click)="abrirEnlace(trabajador.certificadoAFP)"></i>
+                </td>
+                <!-- Certificado Salud -->
+                <td [ngClass]="trabajador.certificadoSalud ? 'bg-success' : 'bg-danger'">
+                    {{ trabajador.certificadoSalud ? '' : 'Pendiente' }}
+                    <i *ngIf="trabajador.certificadoSalud" class="fas fa-eye cursor-pointer" (click)="abrirEnlace(trabajador.certificadoSalud)"></i>
+                </td>
+                <!-- Inducción -->
+                <td [ngClass]="trabajador.induccion === 'Realizada' ? 'bg-success' : 'bg-danger'">
+                  {{ trabajador.induccion ? '' : 'Pendiente' }}
+                </td>
+                <!-- Perfil De Cargo -->
+                <td [ngClass]="trabajador.perfilDeCargo ? 'bg-success' : 'bg-danger'">
+                  {{ trabajador.perfilDeCargo ? '' : 'Pendiente' }}
+                </td>
+                <!-- Obligación Información -->
+                <td [ngClass]="trabajador.obligacionInformacion ? 'bg-success' : 'bg-danger'">
+                  {{ trabajador.obligacionInformacion ? '' : 'Pendiente' }}
+                </td>
+                <!-- Recepción Reglamento -->
+                <td [ngClass]="trabajador.recepcionReglamento ? 'bg-success' : 'bg-danger'">
+                  {{ trabajador.recepcionReglamento ? '' : 'Pendiente' }}
+                </td>
+                <!-- Examen RIOHS -->
+                <td [ngClass]="trabajador.examenRiohs ? 'bg-success' : 'bg-danger'">
+                  {{ trabajador.examenRiohs ? '' : 'Pendiente' }}
+                </td>
+                <!-- Certificado Aprobación Higiene -->
+                <td [ngClass]="trabajador.certificadoAprobacionHigiene ? 'bg-success' : 'bg-danger'">
+                  {{ trabajador.certificadoAprobacionHigiene ? '' : 'Pendiente' }}
+                </td>
+                <!-- Recepción Covid -->
+                <td [ngClass]="trabajador.recepcionCovid ? 'bg-success' : 'bg-danger'">
+                  {{ trabajador.recepcionCovid ? '' : 'Pendiente' }}
+                </td>
+                <!-- Carta Oferta -->
+                <td [ngClass]="trabajador.cartaOferta ? 'bg-success' : 'bg-danger'">
+                  {{ trabajador.cartaOferta ? '' : 'Pendiente' }}
+                </td>
+                <!-- Registro Ropa -->
+                <td [ngClass]="trabajador.registroRopa === 'Realizado' ? 'bg-success' : 'bg-danger'">
+                  {{ trabajador.registroRopa ? 'Realizado' : 'Pendiente' }}
+                </td>
+                <!-- Contrato Firmado -->
+                <td [ngClass]="trabajador.contratoFirmado === 'Realizado' ? 'bg-success' : 'bg-danger'">
+                  {{ trabajador.contratoFirmado ? 'Realizado' : 'Pendiente' }}
+                </td>
+                <!-- Anexo Contrato -->
+                <td [ngClass]="trabajador.anexoContrato ? 'bg-success' : 'bg-danger'">
+                  {{ trabajador.anexoContrato ? '' : 'Pendiente' }}
+                </td>
+            </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-md-4 text-end">
+    <button class="btn btn-primary btn-volver" routerLink="/listar-trabajadores">Volver</button>
+  </div>

@@ -63,5 +63,8 @@ export class ListarTrabajadoresComponent implements OnInit {
   editarTrabajador(id: string): void {
     this.router.navigate(['/editar-trabajador', id]); 
   }
-  
+
+  auditoriaDocumentacion(id: string) {
+    this.router.navigate(['/editar-documentacion', id]);
+  }
 }
