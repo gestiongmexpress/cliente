@@ -118,35 +118,42 @@
                 </td>
                 <!-- Inducción -->
                 <td [ngClass]="trabajador.induccion === 'Realizada' ? 'bg-success' : 'bg-danger'">
-                  {{ trabajador.induccion ? '' : 'Pendiente' }}
+                  {{ trabajador.induccion ? 'Realizada' : 'Pendiente' }}
                 </td>
                 <!-- Perfil De Cargo -->
                 <td [ngClass]="trabajador.perfilDeCargo ? 'bg-success' : 'bg-danger'">
                   {{ trabajador.perfilDeCargo ? '' : 'Pendiente' }}
+                  <i *ngIf="trabajador.perfilDeCargo" class="fas fa-eye cursor-pointer" (click)="abrirEnlace(trabajador.perfilDeCargo)"></i>
                 </td>
                 <!-- Obligación Información -->
                 <td [ngClass]="trabajador.obligacionInformacion ? 'bg-success' : 'bg-danger'">
                   {{ trabajador.obligacionInformacion ? '' : 'Pendiente' }}
+                  <i *ngIf="trabajador.obligacionInformacion" class="fas fa-eye cursor-pointer" (click)="abrirEnlace(trabajador.obligacionInformacion)"></i>
                 </td>
                 <!-- Recepción Reglamento -->
                 <td [ngClass]="trabajador.recepcionReglamento ? 'bg-success' : 'bg-danger'">
                   {{ trabajador.recepcionReglamento ? '' : 'Pendiente' }}
+                  <i *ngIf="trabajador.recepcionReglamento" class="fas fa-eye cursor-pointer" (click)="abrirEnlace(trabajador.recepcionReglamento)"></i>
                 </td>
                 <!-- Examen RIOHS -->
                 <td [ngClass]="trabajador.examenRiohs ? 'bg-success' : 'bg-danger'">
                   {{ trabajador.examenRiohs ? '' : 'Pendiente' }}
+                  <i *ngIf="trabajador.examenRiohs" class="fas fa-eye cursor-pointer" (click)="abrirEnlace(trabajador.examenRiohs)"></i>
                 </td>
                 <!-- Certificado Aprobación Higiene -->
                 <td [ngClass]="trabajador.certificadoAprobacionHigiene ? 'bg-success' : 'bg-danger'">
                   {{ trabajador.certificadoAprobacionHigiene ? '' : 'Pendiente' }}
+                  <i *ngIf="trabajador.certificadoSalud" class="fas fa-eye cursor-pointer" (click)="abrirEnlace(trabajador.certificadoSalud)"></i>
                 </td>
                 <!-- Recepción Covid -->
                 <td [ngClass]="trabajador.recepcionCovid ? 'bg-success' : 'bg-danger'">
                   {{ trabajador.recepcionCovid ? '' : 'Pendiente' }}
+                  <i *ngIf="trabajador.recepcionCovid" class="fas fa-eye cursor-pointer" (click)="abrirEnlace(trabajador.recepcionCovid)"></i>
                 </td>
                 <!-- Carta Oferta -->
                 <td [ngClass]="trabajador.cartaOferta ? 'bg-success' : 'bg-danger'">
                   {{ trabajador.cartaOferta ? '' : 'Pendiente' }}
+                  <i *ngIf="trabajador.cartaOferta" class="fas fa-eye cursor-pointer" (click)="abrirEnlace(trabajador.cartaOferta)"></i>
                 </td>
                 <!-- Registro Ropa -->
                 <td [ngClass]="trabajador.registroRopa === 'Realizado' ? 'bg-success' : 'bg-danger'">
@@ -155,10 +162,12 @@
                 <!-- Contrato Firmado -->
                 <td [ngClass]="trabajador.contratoFirmado === 'Realizado' ? 'bg-success' : 'bg-danger'">
                   {{ trabajador.contratoFirmado ? 'Realizado' : 'Pendiente' }}
+                  <i *ngIf="trabajador.contratoFirmado" class="fas fa-eye cursor-pointer" (click)="abrirEnlace(trabajador.contratoFirmado)"></i>
                 </td>
                 <!-- Anexo Contrato -->
                 <td [ngClass]="trabajador.anexoContrato ? 'bg-success' : 'bg-danger'">
                   {{ trabajador.anexoContrato ? '' : 'Pendiente' }}
+                  <i *ngIf="trabajador.anexoContrato" class="fas fa-eye cursor-pointer" (click)="abrirEnlace(trabajador.anexoContrato)"></i>
                 </td>
             </tr>
       </tbody>
