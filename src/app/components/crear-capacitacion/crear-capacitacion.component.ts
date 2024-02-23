@@ -55,7 +55,6 @@ export class CrearCapacitacionComponent implements OnInit {
           this.toastr.info('Capacitación actualizada', 'La capacitación fue actualizada con éxito');
           this.router.navigate(['/listar-capacitacion'])
         }, error => {
-          console.log(error);
           this.toastr.error('Error al actualizar la capacitación');
         });
       } else {
@@ -64,7 +63,6 @@ export class CrearCapacitacionComponent implements OnInit {
           this.toastr.success('Capacitación registrada', 'La capacitación fue registrada con éxito');
           this.router.navigate(['/listar-capacitacion']);
         }, error => {
-          console.log(error);
           this.toastr.error('Error al registrar la capacitación');
         });
       }

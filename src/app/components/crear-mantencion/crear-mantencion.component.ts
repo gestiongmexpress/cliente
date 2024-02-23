@@ -62,7 +62,6 @@ export class CrearMantencionComponent implements OnInit {
           this.toastr.info('Mantención actualizada', 'La mantención fue actualizada con éxito');
           this.router.navigate(['/listar-mantencion']);
         }, error => {
-          console.log(error);
           this.toastr.error('Error al actualizar la mantención');
         });
       } else {
@@ -71,7 +70,6 @@ export class CrearMantencionComponent implements OnInit {
           this.toastr.success('Mantención registrada', 'La mantención fue registrada con éxito');
           this.router.navigate(['/listar-mantencion']);
         }, error => {
-          console.log(error);
           this.toastr.error('Error al registrar la mantención');
         });
       }

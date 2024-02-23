@@ -22,6 +22,8 @@ import { TerminosContratoComponent } from './components/terminos-contrato/termin
 import { HorariosComponent } from './components/horarios/horarios.component';
 import { EditarDocumentacionComponent } from './components/editar-documentacion/editar-documentacion.component';
 import { AuditoriaComponent } from './components/auditoria/auditoria.component';
+import { CrearPrestamoComponent } from './components/crear-prestamo/crear-prestamo.component';
+import { ListarPrestamosComponent } from './components/listar-prestamos/listar-prestamos.component';
 
 
 const routes: Routes = [
@@ -33,6 +35,7 @@ const routes: Routes = [
   { path: 'listar-mantencion', component: ListarMantencionesComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Enc. Logistica'] }},
   { path: 'listar-plagas', component: ListarPlagasComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista'] }},
   { path: 'listar-cumples', component: CumplesComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
+  { path: 'listar-prestamos', component: ListarPrestamosComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
   { path: 'crear-capacitacion', component : CrearCapacitacionComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista', 'APR', 'Enc. Logistica'] }},
   { path: 'crear-mantencion', component : CrearMantencionComponent, canActivate: [AuthGuard]},
   { path: 'crear-plaga', component : CrearPlagaComponent, canActivate: [AuthGuard]},
@@ -41,6 +44,7 @@ const routes: Routes = [
   { path: 'editar-trabajador/:id', component : CrearTrabajadorComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
   { path: 'editar-capacitacion/:id', component : CrearCapacitacionComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista', 'APR', 'Enc. Logistica']}},
   { path: 'editar-mantencion/:id', component : CrearMantencionComponent, canActivate: [AuthGuard]},
+  { path: 'editar-prestamo/:id', component: CrearPrestamoComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'editar-plaga/:id', component : CrearPlagaComponent, canActivate: [AuthGuard]},
   { path: 'editar-documentacion/:id', component: EditarDocumentacionComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'detalle-capacitacion/:id', component: DetalleCapacitacionComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista', 'APR', 'Enc. Logistica']}},
@@ -51,6 +55,7 @@ const routes: Routes = [
   { path: 'auditoria', component: AuditoriaComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'termino-contrato', component: TerminosContratoComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'horarios', component: HorariosComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
+  { path: 'crear-prestamo', component: CrearPrestamoComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: '**', redirectTo: '', pathMatch: 'full'} 
 ];
 

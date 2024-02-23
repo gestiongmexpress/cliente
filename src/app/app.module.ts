@@ -33,6 +33,8 @@ import { TerminosContratoComponent } from './components/terminos-contrato/termin
 import { HorariosComponent } from './components/horarios/horarios.component';
 import { EditarDocumentacionComponent } from './components/editar-documentacion/editar-documentacion.component';
 import { AuditoriaComponent } from './components/auditoria/auditoria.component';
+import { ListarPrestamosComponent } from './components/listar-prestamos/listar-prestamos.component';
+import { CrearPrestamoComponent } from './components/crear-prestamo/crear-prestamo.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { AuditoriaComponent } from './components/auditoria/auditoria.component';
     TerminosContratoComponent,
     HorariosComponent,
     EditarDocumentacionComponent,
-    AuditoriaComponent
+    AuditoriaComponent,
+    ListarPrestamosComponent,
+    CrearPrestamoComponent
   ],
   imports: [
     BrowserModule,

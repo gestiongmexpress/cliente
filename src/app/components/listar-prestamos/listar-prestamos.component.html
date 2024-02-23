@@ -1,0 +1,93 @@
+<div class="container mt-5">
+    <h2>Listado de Préstamos</h2>
+    <!-- Sección de Filtros -->
+    <div class="mb-3">
+      <form [formGroup]="filtroForm">
+        <div class="row g-3 align-items-center">
+          <!-- Filtro por Trabajador -->
+          <div class="col-auto">
+            <label for="trabajador" class="col-form-label">Trabajador:</label>
+            <select id="trabajador" class="form-select" formControlName="trabajador">
+              <option value="">Todos</option>
+              <option *ngFor="let trabajador of trabajadores" [value]="trabajador._id">{{ trabajador.nombre }}</option>
+            </select>
+          </div>
+  
+          <!-- Filtro por Estado -->
+          <div class="col-auto">
+            <label for="estado" class="col-form-label">Estado:</label>
+            <select id="estado" class="form-select" formControlName="estado">
+              <option value="">Todos</option>
+              <option value="Pendiente">Pendiente</option>
+              <option value="Finalizado">Finalizado</option>
+            </select>
+          </div>
+        </div>
+      </form>
+      <!-- Botón Crear Préstamo -->
+      <div class="text-end">
+        <button class="btn btn-primary" routerLink="/crear-prestamo">Crear Préstamo</button>
+      </div>
+    </div>
+  
+    <!-- Tabla de Préstamos -->
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Trabajador</th>
+            <th>Monto Total</th>
+            <th>Cuotas pagadas</th>
+            <th>Cuotas</th>
+            <th>Monto Cuota</th>
+            <th>Estado</th>
+            <th>Fecha de Solicitud</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let prestamo of prestamosFiltrados; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>
+              <ng-container *ngIf="esObjetoTrabajador(prestamo.trabajador)">
+                {{ prestamo.trabajador.nombre }}
+              </ng-container>
+              <ng-container *ngIf="!esObjetoTrabajador(prestamo.trabajador)">
+                {{ prestamo.trabajador }}
+              </ng-container>
+            </td>
+            <td>{{ prestamo.monto | currency }}</td>
+            <td>{{ prestamo.cuotaActual }}</td> 
+            <td>{{ prestamo.cuotas }}</td> 
+            <td>{{ prestamo.cuotaMensual | currency }}</td> 
+            <td>{{ prestamo.estado }}</td>
+            <td>{{ dateFormatService.formatDate(prestamo.fechaInicio) }}</td>
+            <td class="text-nowrap">
+              <div class="btn-group" role="group">
+                <!-- Botón Editar -->
+                  <button class="btn btn-outline-primary btn-sm" *ngIf="prestamo._id" (click)="editarPrestamo(prestamo._id)">
+                    <i class="fa fa-edit"></i> 
+                  </button>
+
+                  <!-- Botón de Eliminar -->
+                  <button class="btn btn-outline-danger btn-sm" (click)="eliminarPrestamo(prestamo._id!)">
+                    <i class="fa fa-trash"></i> 
+                  </button>
+
+                  <!-- Botón Pagar Cuota -->
+                  <button class="btn btn-outline-success btn-sm" (click)="pagarCuota(prestamo)">
+                    Pagar cuota
+                  </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>        
+      </table>
+    </div>
+    
+</div>
+
+<div class="col-md-4 text-end">
+    <button class="btn btn-primary btn-volver" routerLink="/listar-trabajadores">Volver</button>
+</div>

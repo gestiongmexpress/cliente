@@ -111,7 +111,6 @@ export class CrearTrabajadorComponent implements OnInit {
           this.toastr.info('Trabajador actualizado', 'El trabajador fue actualizado con éxito');
           this.router.navigate(['/listar-trabajadores']); 
         }, error => {
-          console.log(error);
           this.toastr.error('Error al actualizar el trabajador');
         });
       } else {
@@ -120,7 +119,6 @@ export class CrearTrabajadorComponent implements OnInit {
           this.toastr.success('Trabajador registrado', 'El trabajador fue registrado con éxito');
           this.router.navigate(['/listar-trabajadores']); 
         }, error => {
-          console.log(error);
           this.toastr.error('Error al registrar el trabajador');
         });
       }

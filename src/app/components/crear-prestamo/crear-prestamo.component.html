@@ -1,0 +1,84 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="text-center">{{ titulo }}</h4>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="prestamoForm" (ngSubmit)="agregarPrestamo()">
+
+                        <!-- Trabajador -->
+                        <div class="form-group mb-3">
+                            <label for="trabajador">Trabajador</label>
+                            <select id="trabajador" class="form-control" formControlName="trabajador">
+                                <option value="">Seleccionar Trabajador</option>
+                                <option *ngFor="let trabajador of trabajadores" [value]="trabajador._id">
+                                    {{ trabajador.nombre + ' - ' + trabajador.rut }}
+                                </option>
+                            </select>
+                            <div *ngIf="prestamoForm.get('trabajador')?.touched && prestamoForm.get('trabajador')?.errors?.['required']" class="text-danger">
+                                Seleccionar un trabajador es obligatorio.
+                            </div>
+                        </div>
+
+
+                        <!-- Monto -->
+                        <div class="form-group mb-3">
+                            <label for="monto">Monto</label>
+                            <input type="number" id="monto" class="form-control" formControlName="monto" placeholder="Monto del préstamo">
+                            <div *ngIf="prestamoForm.get('monto')?.touched && prestamoForm.get('monto')?.errors?.['required']" class="text-danger">
+                                El monto es obligatorio.
+                            </div>
+                        </div>
+
+                        <!-- Cuotas -->
+                        <div class="form-group mb-3">
+                            <label for="cuotas">Cuotas</label>
+                            <input type="number" id="cuotas" class="form-control" formControlName="cuotas" placeholder="Número de cuotas" min="1" step="1">
+                            <div *ngIf="prestamoForm.get('cuotas')?.touched && prestamoForm.get('cuotas')?.errors?.['required']" class="text-danger">
+                                El número de cuotas es obligatorio.
+                            </div>
+                            <div *ngIf="prestamoForm.get('cuotas')?.errors?.['min']" class="text-danger">
+                                El número de cuotas debe ser mayor o igual a 1.
+                            </div>
+                            <div *ngIf="prestamoForm.get('cuotas')?.errors?.['step']" class="text-danger">
+                                El número de cuotas debe ser un valor entero.
+                            </div>
+                        </div>
+
+                        <!-- Cuota mensual -->
+                        <div class="form-group mb-3">
+                            <label for="cuotaMensual">Cuota Mensual</label>
+                            <input type="text" id="cuotaMensual" class="form-control" [value]="cuotaMensual | currency:'CLP'" disabled>
+                        </div>
+
+                        <!-- Fecha de Inicio -->
+                        <div class="form-group mb-3">
+                            <label for="fechaInicio">Fecha de Inicio</label>
+                            <input type="date" id="fechaInicio" class="form-control" formControlName="fechaInicio">
+                            <div *ngIf="prestamoForm.get('fechaInicio')?.touched && prestamoForm.get('fechaInicio')?.errors?.['required']" class="text-danger">
+                                La fecha de inicio es obligatoria.
+                            </div>
+                        </div>
+
+                        <!-- Descripción -->
+                        <div class="form-group mb-3">
+                            <label for="descripcion">Descripción</label>
+                            <textarea id="descripcion" class="form-control" formControlName="descripcion" placeholder="Descripción del préstamo"></textarea>
+                        </div>
+
+                        <!-- Botones de acción -->
+                        <div class="form-group mb-3">
+                            <button type="submit" class="btn btn-success btn-lg float-end" [disabled]="!prestamoForm.valid">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 text-end">
+    <button class="btn btn-primary btn-volver" routerLink="/listar-prestamos">Volver</button>
+</div>

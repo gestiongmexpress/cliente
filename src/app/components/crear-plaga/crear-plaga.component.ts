@@ -60,7 +60,6 @@ export class CrearPlagaComponent implements OnInit {
           this.toastr.info('Control de plaga actualizado', 'El control de plaga fue actualizado con éxito');
           this.router.navigate(['/listar-plagas']);
         }, error => {
-          console.log(error);
           this.toastr.error('Error al actualizar el control de plaga');
         });
       } else {
@@ -69,7 +68,6 @@ export class CrearPlagaComponent implements OnInit {
           this.toastr.success('Control de plaga registrado', 'El control de plaga fue registrado con éxito');
           this.router.navigate(['/listar-plagas']);
         }, error => {
-          console.log(error);
           this.toastr.error('Error al registrar el control de plaga');
         });
       }
