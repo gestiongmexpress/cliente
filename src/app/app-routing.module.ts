@@ -25,6 +25,7 @@ import { AuditoriaComponent } from './components/auditoria/auditoria.component';
 import { CrearPrestamoComponent } from './components/crear-prestamo/crear-prestamo.component';
 import { ListarPrestamosComponent } from './components/listar-prestamos/listar-prestamos.component';
 import { ListarAsistenciasComponent } from './components/listar-asistencias/listar-asistencias.component';
+import { RecursosHumanosComponent } from './components/recursos-humanos/recursos-humanos.component';
 
 
 const routes: Routes = [
@@ -58,6 +59,7 @@ const routes: Routes = [
   { path: 'termino-contrato', component: TerminosContratoComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'horarios', component: HorariosComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'crear-prestamo', component: CrearPrestamoComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
+  { path: 'recursos-humanos', component: RecursosHumanosComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: '**', redirectTo: '', pathMatch: 'full'} 
 ];
 
