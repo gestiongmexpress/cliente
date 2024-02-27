@@ -31,4 +31,12 @@ export class TrabajadorService {
   editarTrabajador(id: string, trabajador: Partial<Trabajador>): Observable<any> {
     return this.http.put(`${this.apiUrl}/${id}`, trabajador);
   }
+
+  proximoVencimientoContrato(): Observable<Trabajador[]> {
+    return this.http.get<Trabajador[]>(`${this.apiUrl}/contratoPr`);
+  }
+  
+  proximoCumpleanos(): Observable<Trabajador[]> {
+    return this.http.get<Trabajador[]>(`${this.apiUrl}/cumplePr`);
+  }
 }

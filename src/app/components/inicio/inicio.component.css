@@ -52,11 +52,30 @@
   }
 
   .btn-verde-claro {
-    background-color: #4aa24a; /* Este es un tono de verde claro, puedes ajustarlo según tus preferencias */
-    color: #fff; /* Texto blanco para mejor contraste */
-    /* Agrega cualquier otro estilo que desees, como padding, bordes, etc. */
+    background-color: #4aa24a; 
+    color: #fff; 
   }
   
   .btn-verde-claro:hover {
-    background-color: #76de76; /* Un tono de verde un poco más oscuro para el hover, ajusta como prefieras */
+    background-color: #76de76; 
   }
+
+  .notificacion-roja-suave {
+    background-color: #ffcccc; 
+    color: black;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 3px;
+  }
+  
+  th, td {
+    vertical-align: middle;
+    text-align: center;
+  }
+  

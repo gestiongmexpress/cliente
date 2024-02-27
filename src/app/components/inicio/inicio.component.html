@@ -1,7 +1,46 @@
 <div class="auth-container">
   <h2 class="auth-title">Bienvenido al sistema de gestión de GM Express, {{ nombreUsuario }}</h2>
   <p class="rol-indicator">Usted tiene rol de {{ rol }}</p>
-  
+
+  <!-- Notificaciones de Contratos Próximos a Vencer -->
+  <div *ngIf="trabajadoresConContratoPr.length > 0" class="notificacion-roja-suave">
+    <h3>Contratos próximos a vencer</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre del Trabajador</th>
+          <th>Fecha de Vencimiento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trabajador of trabajadoresConContratoPr">
+          <td>{{ trabajador.nombre }}</td>
+          <td>{{ dateFormatService.formatDate(trabajador.fechaTerminoContrato!) }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Notificaciones de Cumpleaños Próximos -->
+  <div *ngIf="trabajadoresConCumplePr.length > 0" class="notificacion-roja-suave">
+    <h3>Cumpleaños próximos</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre del Trabajador</th>
+          <th>Fecha de Cumpleaños</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trabajador of trabajadoresConCumplePr">
+          <td>{{ trabajador.nombre }}</td>
+          <!-- Asegúrate de utilizar la propiedad correcta para la fecha del próximo cumpleaños -->
+          <td>{{ formatDate(trabajador.fechaNacimiento) }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   <!-- Sección para registrar nuevo usuario -->
   <div *ngIf="mostrarRegistro" class="list-group">
     <a routerLink="/listar-usuarios" class="list-group-item list-group-item-action btn-verde-claro">Gestión de usuarios</a>
@@ -17,13 +56,14 @@
     <a routerLink="/listar-capacitacion" class="list-group-item list-group-item-action">R-SGI-44 Programa anual de capacitaciones</a>
   </div>
 
+  <!-- Sección para listar plagas -->
+  <div *ngIf="mostrarListaPlagas" class="list-group">
+    <a routerLink="/listar-plagas" class="list-group-item list-group-item-action">R-SGI-88 Programa anual de control de plagas</a>
+  </div>
+
   <!-- Sección para listar mantenciones -->
   <div *ngIf="mostrarListarMantenciones" class="list-group">
     <a routerLink="/listar-mantencion" class="list-group-item list-group-item-action">R-SGI-89 Programa anual de mantenciones</a>
-  </div>
-
-  <div *ngIf="mostrarListaPlagas" class="list-group">
-    <a routerLink="/listar-plagas" class="list-group-item list-group-item-action">R-SGI-88 Programa anual de control de plagas</a>
   </div>
   
   <!-- Botón de cerrar sesión -->

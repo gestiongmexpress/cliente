@@ -20,7 +20,6 @@ export class CumplesComponent implements OnInit {
     this.trabajadorService.getTrabajadores().subscribe(data => {
       this.trabajadores = data.map(trabajador => ({
         ...trabajador,
-        // Asegúrate de que fechaNacimiento sea un objeto Date
         fechaNacimiento: new Date(trabajador.fechaNacimiento)
       }));
       this.organizarCumpleanios();
@@ -30,9 +29,8 @@ export class CumplesComponent implements OnInit {
   
 
   private organizarCumpleanios(): void {
-    this.cumpleaniosPorMes = {}; // Reiniciar el objeto para evitar datos obsoletos
+    this.cumpleaniosPorMes = {}; 
     this.trabajadores.forEach(trabajador => {
-      // Asumiendo que trabajador.fechaNacimiento ya es un objeto Date en UTC
       const mes = trabajador.fechaNacimiento.getUTCMonth();
       if (!this.cumpleaniosPorMes[mes]) {
         this.cumpleaniosPorMes[mes] = [];
@@ -43,8 +41,8 @@ export class CumplesComponent implements OnInit {
   }
   
   private encontrarCumpleaniosProximo(): void {
-    const hoy = new Date(Date.now()); // Fecha actual en la zona horaria local
-    const hoyUTC = new Date(Date.UTC(hoy.getFullYear(), hoy.getMonth(), hoy.getDate())); // Convertir a UTC
+    const hoy = new Date(Date.now()); 
+    const hoyUTC = new Date(Date.UTC(hoy.getFullYear(), hoy.getMonth(), hoy.getDate())); 
     let cumpleaniosProximos: Trabajador[] = [];
   
     this.trabajadores.forEach(trabajador => {
