@@ -1,0 +1,64 @@
+<div class="container mt-5">
+    <h2>Listado de Asistencias</h2>
+    <!-- Sección de Filtros -->
+    <div class="mb-3">
+      <form [formGroup]="filtroForm">
+        <div class="row g-3 align-items-center">
+          <!-- Filtro por Fecha -->
+          <div class="col-auto">
+            <label for="fecha" class="col-form-label">Fecha:</label>
+            <input type="date" id="fecha" class="form-control" formControlName="fecha">
+          </div>
+          <!-- Filtro por Trabajador -->
+          <div class="col-auto">
+            <label for="trabajador" class="col-form-label">Trabajador:</label>
+            <select id="trabajador" class="form-select" formControlName="trabajador">
+              <option value="">Todos</option>
+              <!-- Se generan opciones de trabajadores dinámicamente -->
+              <option *ngFor="let trabajador of trabajadores" [value]="trabajador._id">{{ trabajador.nombre }}</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+  
+    <!-- Tabla de Asistencias -->
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Trabajador</th>
+            <th>Fecha</th>
+            <th>Hora de Entrada</th>
+            <th>Hora de Salida</th>
+            <th>Total Horas</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Se generan filas de asistencias dinámicamente -->
+          <tr *ngFor="let asistencia of asistenciasFiltradas; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>
+                <ng-container *ngIf="esObjetoTrabajador(asistencia.trabajador); else nombreString">
+                    {{ asistencia.trabajador.nombre }}
+                </ng-container>
+                <ng-template #nombreString>{{ asistencia.trabajador }}</ng-template>
+            </td>              
+            <td>{{ asistencia.dia | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ asistencia.horaEntrada | date: 'HH:mm' }}</td>
+            <td>{{ asistencia.horaSalida | date: 'HH:mm' }}</td>
+            <td class="text-nowrap">
+              <div class="btn-group" role="group">
+              </div>
+            </td>
+          </tr>
+        </tbody>        
+      </table>
+    </div>
+</div>
+
+<div class="col-md-4 text-end">
+  <button class="btn btn-primary btn-volver" routerLink="/inicio">Volver</button>
+</div>

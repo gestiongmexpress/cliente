@@ -35,6 +35,8 @@ import { EditarDocumentacionComponent } from './components/editar-documentacion/
 import { AuditoriaComponent } from './components/auditoria/auditoria.component';
 import { ListarPrestamosComponent } from './components/listar-prestamos/listar-prestamos.component';
 import { CrearPrestamoComponent } from './components/crear-prestamo/crear-prestamo.component';
+import { ListarAsistenciasComponent } from './components/listar-asistencias/listar-asistencias.component';
+import { RecursosHumanosComponent } from './components/recursos-humanos/recursos-humanos.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,9 @@ import { CrearPrestamoComponent } from './components/crear-prestamo/crear-presta
     EditarDocumentacionComponent,
     AuditoriaComponent,
     ListarPrestamosComponent,
-    CrearPrestamoComponent
+    CrearPrestamoComponent,
+    ListarAsistenciasComponent,
+    RecursosHumanosComponent
   ],
   imports: [
     BrowserModule,
