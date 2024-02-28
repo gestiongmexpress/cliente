@@ -37,6 +37,7 @@ import { ListarPrestamosComponent } from './components/listar-prestamos/listar-p
 import { CrearPrestamoComponent } from './components/crear-prestamo/crear-prestamo.component';
 import { ListarAsistenciasComponent } from './components/listar-asistencias/listar-asistencias.component';
 import { RecursosHumanosComponent } from './components/recursos-humanos/recursos-humanos.component';
+import { CrearAsistenciaComponent } from './components/crear-asistencia/crear-asistencia.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { RecursosHumanosComponent } from './components/recursos-humanos/recursos
     ListarPrestamosComponent,
     CrearPrestamoComponent,
     ListarAsistenciasComponent,
-    RecursosHumanosComponent
+    RecursosHumanosComponent,
+    CrearAsistenciaComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,17 @@
+<div class="container">
+    <h2>Crear Asistencias Masivas</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="trabajadorId" class="form-label">Trabajador</label>
+        <select class="form-select" id="trabajadorId" formControlName="trabajadorId">
+          <option *ngFor="let trabajador of trabajadores" [value]="trabajador._id">{{ trabajador.nombre }}</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="mes" class="form-label">Mes</label>
+        <input type="month" class="form-control" id="mes" formControlName="mes">
+      </div>
+      <button type="submit" class="btn btn-primary">Crear Asistencias</button>
+    </form>
+  </div>
+  

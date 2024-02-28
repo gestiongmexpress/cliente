@@ -33,30 +33,35 @@ export class ListarAsistenciasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.asistenciaService.getAsistencias().subscribe(data => {
-      this.asistencias = data;
-      this.asistenciasFiltradas = data;
-    });
-
-    this.trabajadorService.getTrabajadores().subscribe(data => { 
-      this.trabajadores = data;
-    });
-
-    this.filtroForm.valueChanges.subscribe(valoresFiltro => {
-      this.filtrarAsistencias(valoresFiltro);
+    this.cargarAsistencias();
+    this.cargarTrabajadores();
+  
+    this.filtroForm.valueChanges.subscribe(valores => {
+      const { fecha, trabajador } = valores;
+  
+      if (fecha) {
+        const [year, month] = fecha.split('-').map((part: string) => parseInt(part, 10));
+        const startDate = new Date(year, month - 1, 1);
+        const endDate = new Date(year, month, 0);
+        this.filtrarPorMes(startDate, endDate);
+      } else {
+        this.asistenciasFiltradas = [...this.asistencias];
+      }
+  
+      if (trabajador) {
+        this.filtrarPorTrabajador(trabajador);
+      }
     });
   }
 
   filtrarAsistencias(filtros: any): void {
-    let asistenciasTemp = [...this.asistencias]; 
-  
+    let asistenciasTemp = [...this.asistencias];
     if (filtros.trabajador) {
-      asistenciasTemp = asistenciasTemp.filter(a => {
-        if (this.esObjetoTrabajador(a.trabajador)) {
-          return a.trabajador._id === filtros.trabajador;
-        }
-        return false;
-      });
+      asistenciasTemp = asistenciasTemp.filter(a =>
+        this.esObjetoTrabajador(a.trabajador) && a.trabajador.nombre === filtros.trabajador
+      );
+    } else {
+      asistenciasTemp = [...this.asistencias];
     }
     this.asistenciasFiltradas = asistenciasTemp;
   }
@@ -65,4 +70,43 @@ export class ListarAsistenciasComponent implements OnInit {
     return typeof trabajador === 'object' && trabajador !== null && '_id' in trabajador;
   }
 
+  calcularDiferencia(asistencia: Asistencia): number {
+    return 0;
+  }
+
+  filtrarPorMes(startDate: Date, endDate: Date): void {
+    this.asistenciasFiltradas = this.asistencias.filter(asistencia => {
+      const asistenciaDate = new Date(asistencia.dia);
+      return asistenciaDate >= startDate && asistenciaDate <= endDate;
+    });
+  }
+
+  filtrarPorTrabajador(nombreTrabajador: string): void {
+    this.asistenciasFiltradas = this.asistenciasFiltradas.filter(asistencia =>
+      this.esObjetoTrabajador(asistencia.trabajador) && asistencia.trabajador.nombre === nombreTrabajador
+    );
+  }  
+
+  cargarAsistencias(): void {
+    this.asistenciaService.getAsistencias().subscribe(
+      (asistencias: Asistencia[]) => {
+        this.asistencias = asistencias.sort((a, b) => new Date(a.dia).getTime() - new Date(b.dia).getTime());
+        this.asistenciasFiltradas = [...this.asistencias];
+      },
+      (error: any) => {
+        console.error('Error al cargar asistencias', error);
+      }
+    );
+  }
+
+  cargarTrabajadores(): void {
+    this.trabajadorService.getTrabajadores().subscribe(
+      (trabajadores: Trabajador[]) => {
+        this.trabajadores = trabajadores;
+      },
+      (error: any) => {
+        console.error('Error al cargar trabajadores', error);
+      }
+    );
+  }
 }

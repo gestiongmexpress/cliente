@@ -30,4 +30,8 @@ export class AsistenciaService {
   editarAsistencia(id: string, asistencia: Partial<Asistencia>): Observable<any> {
     return this.http.put(`${this.apiUrl}/${id}`, asistencia);
   }
+
+  crearAsistenciasMasivas(data: { trabajadorId: string; mes: string }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/crearMasivo`, data);
+  }
 }

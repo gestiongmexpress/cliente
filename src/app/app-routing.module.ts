@@ -26,6 +26,7 @@ import { CrearPrestamoComponent } from './components/crear-prestamo/crear-presta
 import { ListarPrestamosComponent } from './components/listar-prestamos/listar-prestamos.component';
 import { ListarAsistenciasComponent } from './components/listar-asistencias/listar-asistencias.component';
 import { RecursosHumanosComponent } from './components/recursos-humanos/recursos-humanos.component';
+import { CrearAsistenciaComponent } from './components/crear-asistencia/crear-asistencia.component';
 
 
 const routes: Routes = [
@@ -40,6 +41,7 @@ const routes: Routes = [
   { path: 'listar-prestamos', component: ListarPrestamosComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
   { path: 'listar-asistencias', component: ListarAsistenciasComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
   { path: 'crear-capacitacion', component : CrearCapacitacionComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista', 'APR', 'Enc. Logistica'] }},
+  { path: 'crear-asistencia', component: CrearAsistenciaComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
   { path: 'crear-mantencion', component : CrearMantencionComponent, canActivate: [AuthGuard]},
   { path: 'crear-plaga', component : CrearPlagaComponent, canActivate: [AuthGuard]},
   { path: 'crear-trabajador', component : CrearTrabajadorComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
