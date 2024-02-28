@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Asistencia } from '../models/asistencia';
@@ -33,5 +33,12 @@ export class AsistenciaService {
 
   crearAsistenciasMasivas(data: { trabajadorId: string; mes: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/crearMasivo`, data);
+  }
+
+  obtenerAsistenciasPorTrabajadorYMes(trabajadorId: string, inicioMes: string): Observable<Asistencia[]> {
+    const queryParams = new HttpParams()
+      .set('trabajadorId', trabajadorId)
+      .set('inicioMes', inicioMes);
+    return this.http.get<Asistencia[]>(`${this.apiUrl}/porMes`, { params: queryParams });
   }
 }

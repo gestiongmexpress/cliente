@@ -41,18 +41,41 @@ export class CrearAsistenciaComponent implements OnInit {
 
   onSubmit(): void {
     if (this.form.valid) {
-      const payload = {
-        trabajadorId: this.form.value.trabajadorId, 
-        mes: this.form.value.mes
-      };
-  
-      this.asistenciaService.crearAsistenciasMasivas(payload).subscribe(
-        response => {
-        },
-        error => {
-          console.error('Error al crear asistencias masivas', error);
-        }
-      );
+      const { trabajadorId, mes } = this.form.value;
+      this.verificarYCrearAsistencias(trabajadorId, mes);
     }
   }
-}
+
+  verificarYCrearAsistencias(trabajadorId: string, mes: string): void {
+    const inicioMes = `${mes}-01`;
+  
+    this.asistenciaService.obtenerAsistenciasPorTrabajadorYMes(trabajadorId, inicioMes).subscribe(
+      asistencias => {
+        if (asistencias.length > 0) {
+          alert('Ya existen asistencias para este trabajador en el mes seleccionado.');
+        } else {
+          this.crearAsistenciasMensuales(trabajadorId, mes);
+        }
+      },
+      error => {
+        console.error('Error al verificar asistencias', error);
+      }
+    );
+  }
+
+  crearAsistenciasMensuales(trabajadorId: string, mes: string): void {
+    const payload = {
+      trabajadorId: trabajadorId,
+      mes: mes
+    };
+    this.asistenciaService.crearAsistenciasMasivas(payload).subscribe(
+      response => {
+        alert('Asistencias creadas con éxito.');
+      },
+      error => {
+        console.error('Error al crear asistencias masivas', error);
+        alert('Ocurrió un error al crear las asistencias.');
+      }
+    );
+  }
+};

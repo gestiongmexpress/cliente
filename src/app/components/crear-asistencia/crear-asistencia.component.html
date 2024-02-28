@@ -1,5 +1,5 @@
 <div class="container">
-    <h2>Crear Asistencias Masivas</h2>
+    <h2>Crear Asistencias Mensuales</h2>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="mb-3">
         <label for="trabajadorId" class="form-label">Trabajador</label>
@@ -15,3 +15,6 @@
     </form>
   </div>
   
+  <div class="col-md-4 text-end">
+    <button class="btn btn-primary btn-volver" routerLink="/listar-asistencias">Volver</button>
+  </div>

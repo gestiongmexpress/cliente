@@ -1,25 +1,29 @@
 <div class="container mt-5">
-    <h2>Listado de Asistencias</h2>
-    <!-- Sección de Filtros -->
-    <div class="mb-3">
-      <form [formGroup]="filtroForm">
-        <div class="row g-3 align-items-center">
-          <!-- Filtro por Fecha -->
-          <div class="col-auto">
-            <label for="fecha" class="col-form-label">Fecha:</label>
-            <input type="month" id="fecha" class="form-control" formControlName="fecha">
-          </div>
-          <!-- Filtro por Trabajador -->
-          <div class="col-auto">
-            <label for="trabajador" class="col-form-label">Trabajador:</label>
-            <select id="trabajador" class="form-select" formControlName="trabajador">
-              <option value="">Todos</option>
-              <option *ngFor="let trabajador of trabajadores" [ngValue]="trabajador.nombre">{{ trabajador.nombre }}</option>
-            </select>            
-          </div>
+  <h2>Listado de Asistencias</h2>
+  <!-- Sección de Filtros -->
+  <div class="mb-3">
+    <form [formGroup]="filtroForm">
+      <div class="row align-items-center">
+        <!-- Filtro por Fecha -->
+        <div class="col">
+          <label for="fecha" class="col-form-label">Fecha:</label>
+          <input type="month" id="fecha" class="form-control" formControlName="fecha">
         </div>
-      </form>
-    </div>
+        <!-- Filtro por Trabajador -->
+        <div class="col">
+          <label for="trabajador" class="col-form-label">Trabajador:</label>
+          <select id="trabajador" class="form-select" formControlName="trabajador">
+            <option value="">Todos</option>
+            <option *ngFor="let trabajador of trabajadores" [ngValue]="trabajador.nombre">{{ trabajador.nombre }}</option>
+          </select>
+        </div>
+        <!-- Botón de Añadir Asistencia Mensual -->
+        <div class="col text-end">
+          <button class="btn btn-success" routerLink="/crear-asistencia">Añadir asistencia mensual</button>
+        </div>
+      </div>
+    </form>
+  </div>
   
     <!-- Tabla de Asistencias -->
     <div class="table-responsive">
