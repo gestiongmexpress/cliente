@@ -7,7 +7,6 @@ import { Prestamo } from '../../models/prestamo';
 import { TrabajadorService } from '../../services/trabajador.service'; 
 import { Trabajador } from '../../models/trabajador';
 
-
 @Component({
   selector: 'app-crear-prestamo',
   templateUrl: './crear-prestamo.component.html',

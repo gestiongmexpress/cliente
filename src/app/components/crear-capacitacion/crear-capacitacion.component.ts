@@ -45,9 +45,8 @@ export class CrearCapacitacionComponent implements OnInit {
 
   agregarCapacitacion() {
     if (this.capacitacionForm.valid) {
-      // Usa los valores de formulario incluyendo asistentes y nota
       const capacitacion: Capacitacion = this.capacitacionForm.value;
-      capacitacion.estado = 'Pendiente'; // Añade el estado
+      capacitacion.estado = 'Pendiente';
 
       if(this.id) {
         // Modo edición: actualiza la capacitación existente
@@ -73,12 +72,10 @@ export class CrearCapacitacionComponent implements OnInit {
     if (this.id) {
       this.titulo = 'Editar capacitación';
       this._capacitacionService.obtenerCapacitacion(this.id).subscribe(data => {
-        // Asegúrate de que la fecha se convierte al formato correcto (YYYY-MM-DD)
         const fechaRealizacionFormatted = data.diaRealizado
           ? new Date(data.diaRealizado).toISOString().split('T')[0]
           : '';
   
-        // Carga los valores existentes incluyendo asistentes, nota y diaRealizado
         this.capacitacionForm.patchValue({
           ...data,
           diaRealizado: fechaRealizacionFormatted
@@ -86,5 +83,4 @@ export class CrearCapacitacionComponent implements OnInit {
       });
     }
   }
-  
 }

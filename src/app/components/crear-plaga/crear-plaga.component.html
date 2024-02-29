@@ -56,52 +56,52 @@
                   <option value="Noviembre">Noviembre</option>
                   <option value="Diciembre">Diciembre</option>
                 </select>
-                <div *ngIf="plagaForm.get('mes')?.touched && plagaForm.get('mes')?.errors?.['required']" class="text-danger">
-                  El mes es obligatorio.
-                </div>
-              </div>
-  
-              <!-- Año -->
-              <div class="form-group mb-3">
-                <label for="ano">Año</label>
-                <input type="number" id="ano" class="form-control" formControlName="ano" placeholder="Año">
-                <div *ngIf="plagaForm.get('ano')?.touched && plagaForm.get('ano')?.errors?.['required']" class="text-danger">
-                  El año es obligatorio y debe ser mayor o igual a 2023.
-                </div>
-              </div>
-  
-              <!-- Encargado -->
-              <div class="form-group mb-3">
-                <label for="Encargado">Encargado</label>
-                <select id="encargado" class="form-control" formControlName="encargado">
-                    <option value="">Seleccionar Cargo</option>
-                    <option value="Nutricionista">Nutricionista</option>
-                </select>
-                <div *ngIf="plagaForm.get('encargado')?.touched && plagaForm.get('encargado')?.invalid" class="alert alert-danger">
-                  La selección de un encargado es obligatoria.
+              <div *ngIf="plagaForm.get('mes')?.touched && plagaForm.get('mes')?.errors?.['required']" class="text-danger">
+                El mes es obligatorio.
               </div>
             </div>
   
-              <!-- Campo para la Fecha de Realización, visible solo en modo edición -->
-              <div class="mb-3" *ngIf="esModoEdicion">
-                <label for="fechaRealizacion" class="form-label">Fecha de Realización</label>
-                <input type="date" formControlName="fechaRealizacion" id="fechaRealizacion" class="form-control">
+            <!-- Año -->
+            <div class="form-group mb-3">
+              <label for="ano">Año</label>
+              <input type="number" id="ano" class="form-control" formControlName="ano" placeholder="Año">
+              <div *ngIf="plagaForm.get('ano')?.touched && plagaForm.get('ano')?.errors?.['required']" class="text-danger">
+                El año es obligatorio y debe ser mayor o igual a 2023.
               </div>
+            </div>
   
-              <!-- Campo para la Prueba, visible solo en modo edición -->
-              <div class="mb-3" *ngIf="esModoEdicion">
-                <label for="prueba" class="form-label">Prueba</label>
-                <input type="text" formControlName="prueba" id="prueba" class="form-control" placeholder="Resultado de la prueba">
+            <!-- Encargado -->
+            <div class="form-group mb-3">
+              <label for="Encargado">Encargado</label>
+              <select id="encargado" class="form-control" formControlName="encargado">
+                  <option value="">Seleccionar Cargo</option>
+                  <option value="Nutricionista">Nutricionista</option>
+              </select>
+              <div *ngIf="plagaForm.get('encargado')?.touched && plagaForm.get('encargado')?.invalid" class="alert alert-danger">
+                La selección de un encargado es obligatoria.
               </div>
+            </div>
   
-              <!-- Botones de acción -->
-              <div class="form-group mb-3">
-                <button type="submit" class="btn btn-success btn-lg float-end" [disabled]="!plagaForm.valid">GUARDAR</button>
-                <button routerLink="/listar-plagas" class="btn btn-secondary btn-lg float-start">VOLVER</button>
-              </div>
-            </form>
-          </div>
+            <!-- Campo para la Fecha de Realización, visible solo en modo edición -->
+            <div class="mb-3" *ngIf="esModoEdicion">
+              <label for="fechaRealizacion" class="form-label">Fecha de Realización</label>
+              <input type="date" formControlName="fechaRealizacion" id="fechaRealizacion" class="form-control">
+            </div>
+  
+            <!-- Campo para la Prueba, visible solo en modo edición -->
+            <div class="mb-3" *ngIf="esModoEdicion">
+              <label for="prueba" class="form-label">Prueba</label>
+              <input type="text" formControlName="prueba" id="prueba" class="form-control" placeholder="Resultado de la prueba">
+            </div>
+  
+            <!-- Botones de acción -->
+            <div class="form-group mb-3">
+              <button type="submit" class="btn btn-success btn-lg float-end" [disabled]="!plagaForm.valid">GUARDAR</button>
+              <button routerLink="/listar-plagas" class="btn btn-secondary btn-lg float-start">VOLVER</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
+</div>

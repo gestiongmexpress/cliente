@@ -49,7 +49,6 @@ export class CrearMantencionComponent implements OnInit {
     if (this.mantencionForm.valid) {
       const mantencion: Mantencion = this.mantencionForm.value;
   
-      // Cambiar el estado a 'Realizado' si se han proporcionado proveedor y fecha de realización
       if (mantencion.proveedor && mantencion.fechaRealizacion) {
         mantencion.estado = 'Realizado';
       } else {

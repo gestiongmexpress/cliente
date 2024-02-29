@@ -35,7 +35,7 @@ export class ListarAsistenciasComponent implements OnInit {
     this.cargarTrabajadores();
 
     this.filtroForm.valueChanges.subscribe(valores => {
-      this.asistenciasFiltradas = []; // Asegurar que la tabla comienza vacía hasta que se apliquen los filtros.
+      this.asistenciasFiltradas = [];
       const { fecha, trabajador } = valores;
       if (fecha && trabajador) {
         this.aplicarFiltros(fecha, trabajador);

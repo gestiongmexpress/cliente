@@ -50,7 +50,7 @@ export class RegistroComponent implements OnInit {
         data => {
           this.usuarioForm.setValue({
             username: data.username,
-            password: '', // No cargamos la contraseña por seguridad
+            password: '',
             rol: data.rol
           });
         },
@@ -103,7 +103,6 @@ export class RegistroComponent implements OnInit {
   cambiarRol(userId: string, nuevoRol: string): void {
     this.authService.actualizarRolUsuario(userId, nuevoRol).subscribe({
       next: (response) => {
-        // Actualiza la lista de usuarios o maneja la respuesta como prefieras
         this.toastr.success('Rol del usuario actualizado correctamente');
       },
       error: (error) => {

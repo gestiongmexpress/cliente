@@ -235,119 +235,119 @@
                 <input type="text" id="afp" class="form-control" formControlName="afp" placeholder="AFP">
               </div>
 
-              <!-- Fecha de Incorporación a la AFP -->
-              <div class="form-group mb-3">
-                <label for="fechaIncorporacionAFP">Fecha de Incorporación a la AFP</label>
-                <input type="date" id="fechaIncorporacionAFP" class="form-control" formControlName="fechaIncorporacionAFP">
-              </div>
+            <!-- Fecha de Incorporación a la AFP -->
+            <div class="form-group mb-3">
+              <label for="fechaIncorporacionAFP">Fecha de Incorporación a la AFP</label>
+              <input type="date" id="fechaIncorporacionAFP" class="form-control" formControlName="fechaIncorporacionAFP">
+            </div>
 
-              <!-- Institución de Salud -->
-              <div class="form-group mb-3">
-                <label for="institucionSalud">Institución de Salud</label>
-                <select id="institucionSalud" class="form-control" formControlName="institucionSalud">
-                  <option value="">Seleccionar Institución de Salud</option>
-                  <option value="Fonasa">Fonasa</option>
-                  <option value="Isapre">Isapre</option>
-                  <option value="Ninguna">Ninguna</option>
-                </select>
-              </div>
+            <!-- Institución de Salud -->
+            <div class="form-group mb-3">
+              <label for="institucionSalud">Institución de Salud</label>
+              <select id="institucionSalud" class="form-control" formControlName="institucionSalud">
+                <option value="">Seleccionar Institución de Salud</option>
+                <option value="Fonasa">Fonasa</option>
+                <option value="Isapre">Isapre</option>
+                <option value="Ninguna">Ninguna</option>
+              </select>
+            </div>
 
-              <!-- Entrega de Ropa de Trabajo -->
-              <div class="form-group mb-3">
-                <label for="entregaRopaTrabajo">¿Se ha entregado Ropa de Trabajo?</label>
-                <select id="entregaRopaTrabajo" class="form-control" formControlName="entregaRopaTrabajo">
-                  <option value="">Seleccionar</option>
-                  <option value="Sí">Sí</option>
-                  <option value="No">No</option>
-                </select>
-              </div>
+            <!-- Entrega de Ropa de Trabajo -->
+            <div class="form-group mb-3">
+              <label for="entregaRopaTrabajo">¿Se ha entregado Ropa de Trabajo?</label>
+              <select id="entregaRopaTrabajo" class="form-control" formControlName="entregaRopaTrabajo">
+                <option value="">Seleccionar</option>
+                <option value="Sí">Sí</option>
+                <option value="No">No</option>
+              </select>
+            </div>
 
-              <!-- Contacto de Emergencia -->
-              <div formGroupName="contactoEmergencia">
-                <div class="form-group mb-3">
-                  <label for="nombreEmergencia">Nombre del contacto de emergencia</label>
-                  <input type="text" id="nombreEmergencia" class="form-control" formControlName="nombre" placeholder="Nombre del contacto de emergencia">
+            <!-- Contacto de Emergencia -->
+            <div formGroupName="contactoEmergencia">
+              <div class="form-group mb-3">
+              <label for="nombreEmergencia">Nombre del contacto de emergencia</label>
+              <input type="text" id="nombreEmergencia" class="form-control" formControlName="nombre" placeholder="Nombre del contacto de emergencia">
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="parentescoEmergencia">Parentesco</label>
+              <input type="text" id="parentescoEmergencia" class="form-control" formControlName="parentesco" placeholder="Parentesco con el contacto">
+            </div>
+
+            <!-- Teléfono de Emergencia -->
+            <div class="form-group mb-3">
+              <label for="telefono">Teléfono de Emergencia</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">+569</span>
                 </div>
-
-                <div class="form-group mb-3">
-                  <label for="parentescoEmergencia">Parentesco</label>
-                  <input type="text" id="parentescoEmergencia" class="form-control" formControlName="parentesco" placeholder="Parentesco con el contacto">
-                </div>
-
-                <!-- Teléfono de Emergencia -->
-                <div class="form-group mb-3">
-                  <label for="telefono">Teléfono de Emergencia</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">+569</span>
-                    </div>
-                    <input type="tel" id="telefono" class="form-control" formControlName="telefono" placeholder="12345678" pattern="[0-9]*" inputmode="numeric">
-                  </div>
-                </div>
-              </div>
-
-
-              <!-- Fecha Finiquito -->
-              <div class="form-group mb-3">
-                <label for="fechaFiniquito">Fecha de Finiquito</label>
-                <input type="date" id="fechaFiniquito" class="form-control" formControlName="fechaFiniquito">
-              </div>
-
-              <!-- Causa Finiquito -->
-              <div class="form-group mb-3">
-                <label for="causaFiniquito">Causa de Finiquito</label>
-                <input type="text" id="causaFiniquito" class="form-control" formControlName="causaFiniquito" placeholder="Causa del Finiquito">
-              </div>
-
-              <!-- Escala de Recomendación -->
-              <div class="form-group mb-3">
-                <label for="escalaRecomendacion">Escala de Recomendación (1-10)</label>
-                <input type="number" id="escalaRecomendacion" class="form-control" formControlName="escalaRecomendacion" min="1" max="10" placeholder="Escala de 1 a 10">
-              </div>
-
-              <!-- Sueldo Base -->
-              <div class="form-group mb-3">
-                <label for="sueldoBase">Sueldo Base</label>
-                <input type="number" id="sueldoBase" class="form-control" formControlName="sueldoBase" placeholder="Sueldo Base">
-              </div>
-
-              <!-- Fecha Actualización Oferta -->
-              <div class="form-group mb-3">
-                <label for="fechaActualizacionOferta">Fecha de Actualización de la Oferta</label>
-                <input type="date" id="fechaActualizacionOferta" class="form-control" formControlName="fechaActualizacionOferta">
-              </div>
-
-              <!-- Días de Vacaciones -->
-              <div class="form-group mb-3">
-                <label for="diasVacaciones">Días de Vacaciones</label>
-                <input type="number" id="diasVacaciones" class="form-control" formControlName="diasVacaciones" placeholder="Días de Vacaciones">
-              </div>
-
-              <!-- Estado -->
-              <div class="form-group mb-3">
-                <label for="estadoEmpresa"><strong>Estado</strong></label>
-                <select id="estadoEmpresa" class="form-control" formControlName="estadoEmpresa">
-                  <option value="">Seleccionar Estado</option>
-                  <option value="Vigente">Vigente</option>
-                  <option value="No Vigente">No Vigente</option>
-                </select>
-                <div *ngIf="trabajadorForm.get('estadoEmpresa')?.touched && trabajadorForm.get('estadoEmpresa')?.errors?.['required']" class="text-danger">
-                  Escoger un estado es obligatorio.
+                  <input type="tel" id="telefono" class="form-control" formControlName="telefono" placeholder="12345678" pattern="[0-9]*" inputmode="numeric">
                 </div>
               </div>
+            </div>
 
-              <!-- Botones de acción -->
-              <div class="form-group mb-3">
-                <button type="submit" class="btn btn-success btn-lg float-end" [disabled]="!trabajadorForm.valid">Guardar</button>
-                <button routerLink="/listar-trabajadores" class="btn btn-secondary btn-lg float-start">Volver</button>
+
+            <!-- Fecha Finiquito -->
+            <div class="form-group mb-3">
+              <label for="fechaFiniquito">Fecha de Finiquito</label>
+              <input type="date" id="fechaFiniquito" class="form-control" formControlName="fechaFiniquito">
+            </div>
+
+            <!-- Causa Finiquito -->
+            <div class="form-group mb-3">
+              <label for="causaFiniquito">Causa de Finiquito</label>
+              <input type="text" id="causaFiniquito" class="form-control" formControlName="causaFiniquito" placeholder="Causa del Finiquito">
+            </div>
+
+            <!-- Escala de Recomendación -->
+            <div class="form-group mb-3">
+              <label for="escalaRecomendacion">Escala de Recomendación (1-10)</label>
+              <input type="number" id="escalaRecomendacion" class="form-control" formControlName="escalaRecomendacion" min="1" max="10" placeholder="Escala de 1 a 10">
+            </div>
+
+            <!-- Sueldo Base -->
+            <div class="form-group mb-3">
+              <label for="sueldoBase">Sueldo Base</label>
+              <input type="number" id="sueldoBase" class="form-control" formControlName="sueldoBase" placeholder="Sueldo Base">
+            </div>
+
+            <!-- Fecha Actualización Oferta -->
+            <div class="form-group mb-3">
+              <label for="fechaActualizacionOferta">Fecha de Actualización de la Oferta</label>
+              <input type="date" id="fechaActualizacionOferta" class="form-control" formControlName="fechaActualizacionOferta">
+            </div>
+
+            <!-- Días de Vacaciones -->
+            <div class="form-group mb-3">
+              <label for="diasVacaciones">Días de Vacaciones</label>
+              <input type="number" id="diasVacaciones" class="form-control" formControlName="diasVacaciones" placeholder="Días de Vacaciones">
+            </div>
+
+            <!-- Estado -->
+            <div class="form-group mb-3">
+              <label for="estadoEmpresa"><strong>Estado</strong></label>
+              <select id="estadoEmpresa" class="form-control" formControlName="estadoEmpresa">
+                <option value="">Seleccionar Estado</option>
+                <option value="Vigente">Vigente</option>
+                <option value="No Vigente">No Vigente</option>
+              </select>
+              <div *ngIf="trabajadorForm.get('estadoEmpresa')?.touched && trabajadorForm.get('estadoEmpresa')?.errors?.['required']" class="text-danger">
+                Escoger un estado es obligatorio.
               </div>
-            </form>
-          </div>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="form-group mb-3">
+              <button type="submit" class="btn btn-success btn-lg float-end" [disabled]="!trabajadorForm.valid">Guardar</button>
+              <button routerLink="/listar-trabajadores" class="btn btn-secondary btn-lg float-start">Volver</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-  </div>  
-
-  <div class="col-md-4 text-end">
-    <button class="btn btn-primary btn-volver" routerLink="/listar-trabajadores">Volver</button>
   </div>
+</div>  
+
+<div class="col-md-4 text-end">
+  <button class="btn btn-primary btn-volver" routerLink="/listar-trabajadores">Volver</button>
+</div>

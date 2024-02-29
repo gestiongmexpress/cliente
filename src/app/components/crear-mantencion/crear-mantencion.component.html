@@ -80,48 +80,48 @@
                 </div>
               </div>
   
-              <!-- Año -->
-              <div class="form-group mb-3">
-                <label for="ano">Año</label>
-                <input type="number" id="ano" class="form-control" formControlName="ano" placeholder="Año">
-                <div *ngIf="mantencionForm.get('ano')?.touched && mantencionForm.get('ano')?.errors?.['required']" class="text-danger">
-                  El año es obligatorio y debe ser mayor o igual a 2023.
-                </div>
+            <!-- Año -->
+            <div class="form-group mb-3">
+              <label for="ano">Año</label>
+              <input type="number" id="ano" class="form-control" formControlName="ano" placeholder="Año">
+               <div *ngIf="mantencionForm.get('ano')?.touched && mantencionForm.get('ano')?.errors?.['required']" class="text-danger">
+                El año es obligatorio y debe ser mayor o igual a 2023.
               </div>
+            </div>
   
             <!-- Encargado (fijo a "Enc. Logística") -->
             <div class="form-group mb-3">
-              <label for="Encargado">Encargado</label>
-              <select id="encargado" class="form-control" formControlName="encargado">
-                  <option value="">Seleccionar Cargo</option>
-                  <option value="Enc. Logistica">Enc. Logistica</option>
-              </select>
-              <div *ngIf="mantencionForm.get('encargado')?.touched && mantencionForm.get('encargado')?.invalid" class="alert alert-danger">
-                La selección de un encargado es obligatoria.
+            <label for="Encargado">Encargado</label>
+            <select id="encargado" class="form-control" formControlName="encargado">
+                <option value="">Seleccionar Cargo</option>
+                <option value="Enc. Logistica">Enc. Logistica</option>
+            </select>
+            <div *ngIf="mantencionForm.get('encargado')?.touched && mantencionForm.get('encargado')?.invalid" class="alert alert-danger">
+              La selección de un encargado es obligatoria.
             </div>
-          </div>
+            </div>
   
-              <!-- Campo para la Fecha de Realización, visible solo en modo edición -->
-              <div class="mb-3" *ngIf="esModoEdicion">
-                <label for="fechaRealizacion" class="form-label">Fecha de Realización</label>
-                <input type="date" formControlName="fechaRealizacion" id="fechaRealizacion" class="form-control">
-              </div>
+            <!-- Campo para la Fecha de Realización, visible solo en modo edición -->
+            <div class="mb-3" *ngIf="esModoEdicion">
+              <label for="fechaRealizacion" class="form-label">Fecha de Realización</label>
+              <input type="date" formControlName="fechaRealizacion" id="fechaRealizacion" class="form-control">
+            </div>
 
-              <!-- Campo para el Proveedor, visible solo en modo edición -->
-              <div class="mb-3" *ngIf="esModoEdicion">
-                <label for="proveedor" class="form-label">Proveedor</label>
-                <input type="text" formControlName="proveedor" id="proveedor" class="form-control" placeholder="Nombre del proveedor">
-              </div>
+            <!-- Campo para el Proveedor, visible solo en modo edición -->
+            <div class="mb-3" *ngIf="esModoEdicion">
+              <label for="proveedor" class="form-label">Proveedor</label>
+              <input type="text" formControlName="proveedor" id="proveedor" class="form-control" placeholder="Nombre del proveedor">
+            </div>
 
-              <!-- Botones de acción -->
-              <div class="form-group mb-3">
-                <button type="submit" class="btn btn-success btn-lg float-end" [disabled]="!mantencionForm.valid">GUARDAR</button>
-                <button routerLink="/listar-mantencion" class="btn btn-secondary btn-lg float-start">VOLVER</button>
-              </div>
-            </form>
-          </div>
+            <!-- Botones de acción -->
+            <div class="form-group mb-3">
+              <button type="submit" class="btn btn-success btn-lg float-end" [disabled]="!mantencionForm.valid">GUARDAR</button>
+              <button routerLink="/listar-mantencion" class="btn btn-secondary btn-lg float-start">VOLVER</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
+</div>
   

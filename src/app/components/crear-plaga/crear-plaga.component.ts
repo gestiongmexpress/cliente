@@ -46,8 +46,6 @@ export class CrearPlagaComponent implements OnInit {
   agregarPlaga() {
     if (this.plagaForm.valid) {
       const plaga: Plaga = this.plagaForm.value;
-  
-      // Cambiar el estado a 'Realizado' si se han proporcionado proveedor y fecha de realización
       if (plaga.prueba && plaga.fechaRealizacion) {
         plaga.estado = 'Realizado';
       } else {
@@ -55,7 +53,7 @@ export class CrearPlagaComponent implements OnInit {
       }
   
       if (this.id) {
-        // Modo edición: actualiza la mantención existente
+        // Modo edición
         this._plagaService.editarPlaga(this.id, plaga).subscribe(data => {
           this.toastr.info('Control de plaga actualizado', 'El control de plaga fue actualizado con éxito');
           this.router.navigate(['/listar-plagas']);
@@ -63,7 +61,7 @@ export class CrearPlagaComponent implements OnInit {
           this.toastr.error('Error al actualizar el control de plaga');
         });
       } else {
-        // Modo creación: guarda la nueva mantención
+        // Modo creación
         this._plagaService.guardarPlaga(plaga).subscribe(data => {
           this.toastr.success('Control de plaga registrado', 'El control de plaga fue registrado con éxito');
           this.router.navigate(['/listar-plagas']);
@@ -73,7 +71,6 @@ export class CrearPlagaComponent implements OnInit {
       }
     }
   }
-  
 
   esEditar() {
     if (this.id) {

@@ -24,10 +24,8 @@ export class TerminosContratoComponent implements OnInit {
   }
 
   private organizarTerminos(): void {
-    // Obtener la fecha de hoy
     const ahora = new Date();
     
-    // Filtra solo los trabajadores con fechaTerminoContrato definida
     const trabajadoresConTermino = this.trabajadores.filter(t => t.fechaTerminoContrato)
       .map(t => ({
         ...t,
@@ -35,10 +33,8 @@ export class TerminosContratoComponent implements OnInit {
       }))
       .sort((a, b) => a.fechaTerminoContrato!.getTime() - b.fechaTerminoContrato!.getTime());
     
-    // Ordena por los términos de contrato más próximos y guarda los primeros 3
     this.terminosProximos = trabajadoresConTermino.slice(0, 3);
     
-    // Agrupa los términos de contrato por mes y año
     trabajadoresConTermino.forEach(t => {
       const mes = t.fechaTerminoContrato!.getMonth();
       const año = t.fechaTerminoContrato!.getFullYear();
