@@ -45,10 +45,8 @@ export class HorariosComponent implements OnInit {
   }
 
   cambiarHorarioEntrada(trabajadorId: string, nuevoHorarioEntrada: string): void {
-    // Crea un objeto con el horario de entrada actualizado
     const trabajadorActualizado = { horarioEntrada: nuevoHorarioEntrada };
   
-    // Llama a editarTrabajador con el ID y el objeto trabajadorActualizado
     this.trabajadorService.editarTrabajador(trabajadorId, trabajadorActualizado).subscribe({
       next: (response) => {
         this.toastr.success('Horario de entrada actualizado correctamente');
@@ -61,10 +59,8 @@ export class HorariosComponent implements OnInit {
   }
   
   cambiarHorarioSalida(trabajadorId: string, nuevoHorarioSalida: string): void {
-    // Crea un objeto con el horario de salida actualizado
     const trabajadorActualizado = { horarioSalida: nuevoHorarioSalida };
-  
-    // Llama a editarTrabajador con el ID y el objeto trabajadorActualizado
+
     this.trabajadorService.editarTrabajador(trabajadorId, trabajadorActualizado).subscribe({
       next: (response) => {
         this.toastr.success('Horario de salida actualizado correctamente');

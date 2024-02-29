@@ -6,6 +6,7 @@ import { Trabajador } from '../../models/trabajador';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DateFormatService } from '../../services/date-format.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-listar-asistencias',
@@ -23,7 +24,8 @@ export class ListarAsistenciasComponent implements OnInit {
     private trabajadorService: TrabajadorService,
     private fb: FormBuilder,
     private router: Router,
-    public dateFormatService: DateFormatService
+    public dateFormatService: DateFormatService,
+    private toastr: ToastrService
   ) {
     this.filtroForm = this.fb.group({
       trabajador: [''],
@@ -85,5 +87,32 @@ export class ListarAsistenciasComponent implements OnInit {
 
   calcularDiferencia(asistencia: Asistencia): number {
     return 0;
+  }
+
+  cambiarHorarioEntrada(asistenciaId: string, nuevoHorarioEntrada: string): void {
+    this.asistenciaService.editarAsistencia(asistenciaId, { horaEntrada: nuevoHorarioEntrada }).subscribe({
+      next: (response) => {
+        this.toastr.success('Horario de entrada actualizado correctamente');
+        // Actualiza la lista de asistencias después de cambiar el horario
+        this.aplicarFiltros(this.filtroForm.value.fecha, this.filtroForm.value.trabajador);
+      },
+      error: (error) => {
+        console.error(error);
+        this.toastr.error('Hubo un error al actualizar el horario de entrada');
+      }
+    });
+  }
+
+  cambiarHorarioSalida(asistenciaId: string, nuevoHorarioSalida: string): void {
+    this.asistenciaService.editarAsistencia(asistenciaId, { horaSalida: nuevoHorarioSalida }).subscribe({
+      next: (response) => {
+        this.toastr.success('Horario de salida actualizado correctamente');
+        this.aplicarFiltros(this.filtroForm.value.fecha, this.filtroForm.value.trabajador);
+      },
+      error: (error) => {
+        console.error(error);
+        this.toastr.error('Hubo un error al actualizar el horario de salida');
+      }
+    });
   }
 }
