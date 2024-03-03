@@ -39,4 +39,8 @@ export class TrabajadorService {
   proximoCumpleanos(): Observable<Trabajador[]> {
     return this.http.get<Trabajador[]>(`${this.apiUrl}/cumplePr`);
   }
+
+  proximoContratoVencido(): Observable<Trabajador[]> {
+    return this.http.get<Trabajador[]>(`${this.apiUrl}/contratoV`);
+  }  
 }

@@ -34,12 +34,31 @@
       <tbody>
         <tr *ngFor="let trabajador of trabajadoresConCumplePr">
           <td>{{ trabajador.nombre }}</td>
-          <!-- Asegúrate de utilizar la propiedad correcta para la fecha del próximo cumpleaños -->
           <td>{{ formatDate(trabajador.fechaNacimiento) }}</td>
         </tr>
       </tbody>
     </table>
   </div>
+
+  <!-- Notificaciones de Contratos Vencidos -->
+  <div *ngIf="trabajadoresContratoVencido.length > 0" class="notificacion-roja-suave">
+    <h3>Contratos Vencidos</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre del Trabajador</th>
+          <th>Fecha de término del Contrato</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trabajador of trabajadoresContratoVencido">
+          <td>{{ trabajador.nombre }}</td>
+          <td>{{ formatDate(trabajador.fechaTerminoContrato!) }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
 
   <!-- Sección para registrar nuevo usuario -->
   <div *ngIf="mostrarRecursosHumanos" class="list-group">

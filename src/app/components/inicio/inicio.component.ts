@@ -19,6 +19,7 @@ export class InicioComponent implements OnInit {
   mostrarNotificaciones: boolean = false;
   trabajadoresConContratoPr: Trabajador[] = [];
   trabajadoresConCumplePr: Trabajador[] = [];
+  trabajadoresContratoVencido: Trabajador[] = [];
   formatDate = this.dateFormatService.formatDate.bind(this.dateFormatService);
   
   constructor(
@@ -47,6 +48,7 @@ export class InicioComponent implements OnInit {
       if (rolesNotificaciones.includes(this.rol)) {
         this.obtenerTrabajadoresConContratoPr();
         this.obtenerTrabajadoresConCumplePr();
+        this.obtenerTrabajadoresContratoVencido();
       }
     }
   }
@@ -75,12 +77,26 @@ export class InicioComponent implements OnInit {
     });
   }
 
+  obtenerTrabajadoresContratoVencido() {
+    this.trabajadorService.proximoContratoVencido().subscribe({
+      next: (trabajadores) => {
+        this.trabajadoresContratoVencido = trabajadores;
+        this.actualizarMostrarNotificaciones();
+      },
+      error: (error) => {
+        console.error('Error al cargar trabajadores con contrato vencido', error);
+      }
+    });
+  }  
+
   cerrarSesion(): void {
     localStorage.removeItem('token');
     this.router.navigate(['/']);
   }
 
   actualizarMostrarNotificaciones() {
-    this.mostrarNotificaciones = this.trabajadoresConContratoPr.length > 0 || this.trabajadoresConCumplePr.length > 0;
+    this.mostrarNotificaciones = this.trabajadoresConContratoPr.length > 0 || 
+                                this.trabajadoresConCumplePr.length > 0 || 
+                                this.trabajadoresContratoVencido.length > 0;
   }  
 }
