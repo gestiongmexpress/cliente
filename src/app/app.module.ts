@@ -38,6 +38,8 @@ import { CrearPrestamoComponent } from './components/crear-prestamo/crear-presta
 import { ListarAsistenciasComponent } from './components/listar-asistencias/listar-asistencias.component';
 import { RecursosHumanosComponent } from './components/recursos-humanos/recursos-humanos.component';
 import { CrearAsistenciaComponent } from './components/crear-asistencia/crear-asistencia.component';
+import { HorasExtrasComponent } from './components/horas-extras/horas-extras.component';
+import { PermisoComponent } from './components/permiso/permiso.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import { CrearAsistenciaComponent } from './components/crear-asistencia/crear-as
     CrearPrestamoComponent,
     ListarAsistenciasComponent,
     RecursosHumanosComponent,
-    CrearAsistenciaComponent
+    CrearAsistenciaComponent,
+    HorasExtrasComponent,
+    PermisoComponent
   ],
   imports: [
     BrowserModule,

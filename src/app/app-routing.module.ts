@@ -27,6 +27,8 @@ import { ListarPrestamosComponent } from './components/listar-prestamos/listar-p
 import { ListarAsistenciasComponent } from './components/listar-asistencias/listar-asistencias.component';
 import { RecursosHumanosComponent } from './components/recursos-humanos/recursos-humanos.component';
 import { CrearAsistenciaComponent } from './components/crear-asistencia/crear-asistencia.component';
+import { HorasExtrasComponent } from './components/horas-extras/horas-extras.component';
+import { PermisoComponent } from './components/permiso/permiso.component';
 
 
 const routes: Routes = [
@@ -42,26 +44,28 @@ const routes: Routes = [
   { path: 'listar-asistencias', component: ListarAsistenciasComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
   { path: 'crear-capacitacion', component : CrearCapacitacionComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista', 'APR', 'Enc. Logistica'] }},
   { path: 'crear-asistencia', component: CrearAsistenciaComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
-  { path: 'crear-mantencion', component : CrearMantencionComponent, canActivate: [AuthGuard]},
-  { path: 'crear-plaga', component : CrearPlagaComponent, canActivate: [AuthGuard]},
+  { path: 'crear-mantencion', component : CrearMantencionComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Enc. Logistica'] }},
+  { path: 'crear-plaga', component : CrearPlagaComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista'] }},
   { path: 'crear-trabajador', component : CrearTrabajadorComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
   { path: 'editar-usuario/:id', component : RegistroComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
   { path: 'editar-trabajador/:id', component : CrearTrabajadorComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
   { path: 'editar-capacitacion/:id', component : CrearCapacitacionComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista', 'APR', 'Enc. Logistica']}},
-  { path: 'editar-mantencion/:id', component : CrearMantencionComponent, canActivate: [AuthGuard]},
+  { path: 'editar-mantencion/:id', component : CrearMantencionComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Enc. Logistica'] }},
   { path: 'editar-prestamo/:id', component: CrearPrestamoComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
-  { path: 'editar-plaga/:id', component : CrearPlagaComponent, canActivate: [AuthGuard]},
+  { path: 'editar-plaga/:id', component : CrearPlagaComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista'] }},
   { path: 'editar-documentacion/:id', component: EditarDocumentacionComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'detalle-capacitacion/:id', component: DetalleCapacitacionComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista', 'APR', 'Enc. Logistica']}},
   { path: 'detalle-mantencion/:id', component: DetalleMantencionComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Enc. Logistica'] }},
-  { path: 'detalle-trabajador/:id', component: DetalleTrabajadorComponent, canActivate: [AuthGuard]},
-  { path: 'detalle-plaga/:id', component: DetallePlagaComponent, canActivate: [AuthGuard]},
+  { path: 'detalle-trabajador/:id', component: DetalleTrabajadorComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
+  { path: 'detalle-plaga/:id', component: DetallePlagaComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista'] }},
   { path: 'registrar', component: RegistroComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'auditoria', component: AuditoriaComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'termino-contrato', component: TerminosContratoComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'horarios', component: HorariosComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'crear-prestamo', component: CrearPrestamoComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'recursos-humanos', component: RecursosHumanosComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
+  { path: 'horasExtra', component: HorasExtrasComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
+  { path: 'permisos', component: PermisoComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: '**', redirectTo: '', pathMatch: 'full'} 
 ];
 

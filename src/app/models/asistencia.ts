@@ -10,4 +10,8 @@ export interface Asistencia {
   salidaReal?: string;
   diferencia?: number;
   horasTotales?: string;
+  horasExtras?: boolean;
+  montoExtra?: string;
+  permiso?: boolean;
+  montoPermiso?: string;
 }
