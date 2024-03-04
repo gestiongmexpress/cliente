@@ -27,7 +27,7 @@
   
     <!-- Tabla de Asistencias -->
     <div class="table-responsive">
-      <table class="table table-striped">
+      <table class="table table-striped table-rounded">
         <thead>
           <tr>
             <th>#</th>
@@ -64,17 +64,46 @@
                 <option *ngFor="let hora of horasOpciones" [value]="hora">{{ hora }}</option>
               </select>
             </td>
-            <td>{{ asistencia.entradaReal }}</td>
-            <td>{{ asistencia.salidaReal }}</td>
-            <td>{{ calcularDiferencia(asistencia) }}</td>
-            <td>{{ asistencia.horasTotales }}</td>
             <td>
+              <input type="time" class="form-control"
+                [(ngModel)]="asistencia.entradaReal"
+                (change)="cambiarHorarioEntradaReal(asistencia._id!, asistencia.entradaReal!)">
             </td>
+            <td>
+              <input type="time" class="form-control"
+                [(ngModel)]="asistencia.salidaReal"
+                (change)="cambiarHorarioSalidaReal(asistencia._id!, asistencia.salidaReal!)">
+            </td>
+            <td>{{ asistencia.diferencia }}</td>
+            <td>{{ asistencia.horasTotales }}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="7">Totales del Mes</td>
+            <td>{{ totalDiferenciaMes }}</td>
+            <td>{{ totalHorasMes }}</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="informacion-adicional mt-4">
+      <h3>Información adicional:</h3>
+      <table class="table table-bordered table-rounded">
+        <tbody>
+          <tr>
+            <th>Días trabajados:</th>
+            <td>{{ contarDiasTrabajados(asistenciasFiltradas) }}</td>
+          </tr>
+          <tr>
+            <th>Días que llega atrasado (>5 min):</th>
+            <td>{{ contarDiasConRetraso(asistenciasFiltradas, 5) }}</td>
           </tr>
         </tbody>
       </table>
     </div>
-</div>
+  </div>
 
 <div class="col-md-4 text-end">
   <button class="btn btn-primary btn-volver" routerLink="/recursos-humanos">Volver</button>

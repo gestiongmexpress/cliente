@@ -9,5 +9,5 @@ export interface Asistencia {
   entradaReal?: string;
   salidaReal?: string;
   diferencia?: number;
-  horasTotales?: number;
+  horasTotales?: string;
 }

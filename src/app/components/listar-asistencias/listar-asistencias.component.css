@@ -174,3 +174,11 @@ select {
   border-radius: 5px;
   border: 1px solid #ccc;
 }
+
+.informacion-adicional {
+  margin-top: 20px;
+}
+
+.informacion-adicional h3 {
+  margin-bottom: 15px;
+}
