@@ -114,7 +114,6 @@ export class ListarAsistenciasComponent implements OnInit {
         }
       });
     }
-    this.calcularTotales();
     this.contarDiasConRetraso(this.asistenciasFiltradas, 5);
   }  
 
@@ -123,6 +122,7 @@ export class ListarAsistenciasComponent implements OnInit {
     if (asistencia) {
       asistencia.horaSalida = nuevoHorarioSalida;
       const diferencia = this.calcularDiferencia(asistencia);
+      asistencia.horasTotales = this.calcularTotalHoras(asistencia);
       this.asistenciaService.editarAsistencia(asistenciaId, { horaSalida: nuevoHorarioSalida, diferencia }).subscribe({
         next: (response) => {
           this.toastr.success('Horario de salida actualizada correctamente');
@@ -134,7 +134,6 @@ export class ListarAsistenciasComponent implements OnInit {
         }
       });
     }
-    this.calcularTotales();
   }
   
   generarOpcionesDeHoras() {
@@ -152,6 +151,7 @@ export class ListarAsistenciasComponent implements OnInit {
     if (asistencia) {
       asistencia.entradaReal = nuevaEntradaReal;
       asistencia.diferencia = this.calcularDiferencia(asistencia);
+      asistencia.horasTotales = this.calcularTotalHoras(asistencia);
   
       const actualizacion = {
         entradaReal: nuevaEntradaReal,
@@ -169,7 +169,6 @@ export class ListarAsistenciasComponent implements OnInit {
         }
       });
     }
-    this.calcularTotales();
     this.contarDiasConRetraso(this.asistenciasFiltradas, 5);
   }
   
@@ -196,7 +195,6 @@ export class ListarAsistenciasComponent implements OnInit {
         }
       });
     }
-    this.calcularTotales();
   }
 
   convertirHoraAMinutos(hora: string): number {
@@ -224,27 +222,38 @@ export class ListarAsistenciasComponent implements OnInit {
   calcularTotalHoras(asistencia: Asistencia): string {
     if (asistencia.horaEntrada && asistencia.salidaReal) {
       const entradaMinutos = this.convertirHoraAMinutos(asistencia.horaEntrada);
+      const entradaRealMinutos = this.convertirHoraAMinutos(asistencia.entradaReal || asistencia.horaEntrada);
       const salidaRealMinutos = this.convertirHoraAMinutos(asistencia.salidaReal);
+      
       let totalMinutos = salidaRealMinutos - entradaMinutos - 90;
+      const diferenciaEntrada = entradaRealMinutos - entradaMinutos;
+      if (diferenciaEntrada > 0) {
+        totalMinutos -= diferenciaEntrada;
+      }
+      
       totalMinutos = Math.max(totalMinutos, 0);
       const horas = Math.floor(totalMinutos / 60);
       const minutos = totalMinutos % 60;
       return `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}`;
     }
     return "00:00";
-  }
+  }  
   
   calcularTotales(): void {
-    this.totalDiferenciaMes = this.asistenciasFiltradas.reduce((acc, asistencia) => acc + (asistencia.diferencia || 0), 0);
+    this.totalDiferenciaMes = 0;
     let totalMinutosMes = 0;
     this.asistenciasFiltradas.forEach(asistencia => {
-        const [horas, minutos] = (asistencia.horasTotales || '0:00').split(':').map(Number);
-        totalMinutosMes += horas * 60 + minutos;
+      asistencia.diferencia = this.calcularDiferencia(asistencia);
+      asistencia.horasTotales = this.calcularTotalHoras(asistencia);
+      this.totalDiferenciaMes += asistencia.diferencia || 0;
+      const [horas, minutos] = (asistencia.horasTotales || '0:00').split(':').map(Number);
+      totalMinutosMes += horas * 60 + minutos;
     });
     const horasTotales = Math.floor(totalMinutosMes / 60);
     const minutosTotales = totalMinutosMes % 60;
     this.totalHorasMes = `${horasTotales.toString().padStart(2, '0')}:${minutosTotales.toString().padStart(2, '0')}`;
   }
+  
 
   contarDiasConRetraso(asistencias: Asistencia[], umbralMinutos: number): number {
     return asistencias.reduce((contador, asistencia) => {
