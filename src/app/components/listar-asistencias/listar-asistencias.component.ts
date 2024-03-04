@@ -16,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ListarAsistenciasComponent implements OnInit {
   asistencias: Asistencia[] = [];
   trabajadores: Trabajador[] = [];
+  horasOpciones: string[] = [];
   asistenciasFiltradas: Asistencia[] = [];
   filtroForm: FormGroup;
 
@@ -35,7 +36,7 @@ export class ListarAsistenciasComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarTrabajadores();
-
+    this.generarOpcionesDeHoras();
     this.filtroForm.valueChanges.subscribe(valores => {
       this.asistenciasFiltradas = [];
       const { fecha, trabajador } = valores;
@@ -93,7 +94,6 @@ export class ListarAsistenciasComponent implements OnInit {
     this.asistenciaService.editarAsistencia(asistenciaId, { horaEntrada: nuevoHorarioEntrada }).subscribe({
       next: (response) => {
         this.toastr.success('Horario de entrada actualizado correctamente');
-        // Actualiza la lista de asistencias después de cambiar el horario
         this.aplicarFiltros(this.filtroForm.value.fecha, this.filtroForm.value.trabajador);
       },
       error: (error) => {
@@ -114,5 +114,15 @@ export class ListarAsistenciasComponent implements OnInit {
         this.toastr.error('Hubo un error al actualizar el horario de salida');
       }
     });
+  }
+
+  generarOpcionesDeHoras() {
+    for (let hora = 0; hora < 24; hora++) {
+      for (let minuto = 0; minuto < 60; minuto += 15) {
+        const horaStr = hora.toString().padStart(2, '0');
+        const minutoStr = minuto.toString().padStart(2, '0');
+        this.horasOpciones.push(`${horaStr}:${minutoStr}`);
+      }
+    }
   }
 }
