@@ -253,7 +253,6 @@ export class ListarAsistenciasComponent implements OnInit {
     const minutosTotales = totalMinutosMes % 60;
     this.totalHorasMes = `${horasTotales.toString().padStart(2, '0')}:${minutosTotales.toString().padStart(2, '0')}`;
   }
-  
 
   contarDiasConRetraso(asistencias: Asistencia[], umbralMinutos: number): number {
     return asistencias.reduce((contador, asistencia) => {
