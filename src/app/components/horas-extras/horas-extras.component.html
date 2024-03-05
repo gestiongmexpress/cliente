@@ -1,24 +1,40 @@
 <div class="container mt-3">
     <h2>Registro de Horas Extras</h2>
     <form [formGroup]="horasExtrasForm" (ngSubmit)="onSubmit()">
-        <div class="mb-3">
-            <label for="tipoHoraExtra" class="form-label">Tipo de Hora Extra:</label>
-            <select id="tipoHoraExtra" class="form-select" formControlName="esPrevio">
-                <option value="true">Diurna (previa a la entrada)</option>
-                <option value="false">Tardía (posterior a la salida)</option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="horasExtras" class="form-label">Cantidad de Horas Extras (HH:MM):</label>
-            <select id="horasExtras" class="form-control" formControlName="horasExtras">
+      <table class="table table-rounded">
+        <tbody>
+          <tr>
+            <td>
+              <label for="tipoHoraExtra" class="form-label">Tipo de Hora Extra:</label>
+            </td>
+            <td>
+              <select id="tipoHoraExtra" class="form-select" formControlName="esPrevio">
+                <option value="true">Previa a la entrada</option>
+                <option value="false">Posterior a la salida</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="horasExtras" class="form-label">Cantidad de Horas Extras (HH:MM):</label>
+            </td>
+            <td>
+              <select id="horasExtras" class="form-control" formControlName="horasExtras">
                 <option value="" disabled selected>Seleccionar Horas Extras</option>
                 <option *ngFor="let hora of horasOpciones" [ngValue]="hora">{{ hora }}</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="text-center">
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </form>
-</div>
-
-<div class="col-md-4 text-end">
+  </div>
+  
+  <div class="col-md-4 text-end">
     <button class="btn btn-primary btn-volver" routerLink="/listar-asistencias">Volver</button>
-</div>
+  </div>  

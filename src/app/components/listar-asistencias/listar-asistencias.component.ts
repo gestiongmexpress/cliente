@@ -22,8 +22,8 @@ export class ListarAsistenciasComponent implements OnInit {
   totalHorasMes: string = '00:00';
   filtroForm: FormGroup;
   diasConRetraso: number = 0;
-  public diasConHorasExtrasDiurnas: { dia: string, horas: string }[] = [];
-  public diasConHorasExtrasTardias: { dia: string, horas: string }[] = [];
+  public diasConHorasExtrasDiurnas: { _id: string, dia: string, horas: string }[] = [];
+  public diasConHorasExtrasTardias: { _id: string, dia: string, horas: string }[] = [];
 
   constructor(
     private asistenciaService: AsistenciaService,
@@ -69,6 +69,22 @@ export class ListarAsistenciasComponent implements OnInit {
         this.asistenciasFiltradas = asistenciasPorFecha;
         this.calcularTotales();
         this.contarDiasConRetraso(this.asistenciasFiltradas, 5);
+        
+        this.diasConHorasExtrasDiurnas = this.asistenciasFiltradas
+          .filter(asistencia => asistencia.extraDiurno)
+          .map(asistencia => ({
+            _id: asistencia._id!,
+            dia: this.dateFormatService.formatDate(asistencia.dia),
+            horas: asistencia.horasExtraDiurno || '00:00'
+          }));
+
+        this.diasConHorasExtrasTardias = this.asistenciasFiltradas
+          .filter(asistencia => asistencia.extraTardio)
+          .map(asistencia => ({
+            _id: asistencia._id!,
+            dia: this.dateFormatService.formatDate(asistencia.dia),
+            horas: asistencia.horasExtraTardio || '00:00'
+          }));
       },
       (error: any) => {
         console.error('Error al cargar asistencias', error);
@@ -283,4 +299,53 @@ export class ListarAsistenciasComponent implements OnInit {
   horasExtras(asistenciaId: string): void {
     this.router.navigate(['/horas-extras', asistenciaId]);
   }
+
+  minutosAHoras(minutos: number): string {
+    const hrs = Math.floor(minutos / 60);
+    const mins = minutos % 60;
+    return `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
+  }
+
+  eliminarHoraExtra(tipo: 'diurno' | 'tardio', asistenciaId: string): void {
+    const asistencia = this.asistenciasFiltradas.find(a => a._id === asistenciaId);
+    if (!asistencia) return;
+    const minutosExtra = tipo === 'diurno'
+      ? this.convertirHoraAMinutos(asistencia.horasExtraDiurno!)
+      : this.convertirHoraAMinutos(asistencia.horasExtraTardio!);
+  
+    const horarioActual = tipo === 'diurno'
+      ? this.convertirHoraAMinutos(asistencia.horaEntrada!)
+      : this.convertirHoraAMinutos(asistencia.horaSalida!);
+  
+    const horarioOriginal = tipo === 'diurno'
+      ? horarioActual + minutosExtra
+      : horarioActual - minutosExtra;
+  
+    const actualizacion: Partial<Asistencia> = {
+      [tipo === 'diurno' ? 'horaEntrada' : 'horaSalida']: this.minutosAHoras(horarioOriginal),
+      [tipo === 'diurno' ? 'extraDiurno' : 'extraTardio']: false,
+      [tipo === 'diurno' ? 'horasExtraDiurno' : 'horasExtraTardio']: null
+    };
+    this.asistenciaService.editarAsistencia(asistencia._id!, actualizacion).subscribe({
+      next: () => {
+        this.toastr.success('Hora extra eliminada con éxito');
+        if (tipo === 'diurno') {
+          this.diasConHorasExtrasDiurnas = this.diasConHorasExtrasDiurnas.filter(diaExtra => diaExtra._id !== asistenciaId);
+        } else {
+          this.diasConHorasExtrasTardias = this.diasConHorasExtrasTardias.filter(diaExtra => diaExtra._id !== asistenciaId);
+        }
+        const index = this.asistenciasFiltradas.findIndex(a => a._id === asistenciaId);
+        if (index !== -1) {
+          this.asistenciasFiltradas[index] = {
+            ...this.asistenciasFiltradas[index],
+            ...actualizacion
+          };
+        }
+      },
+      error: (error) => {
+        this.toastr.error('Error al eliminar la hora extra');
+        console.error(error);
+      }
+    });
+  }  
 }

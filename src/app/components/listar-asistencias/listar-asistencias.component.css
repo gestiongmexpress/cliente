@@ -100,15 +100,15 @@
 }
 
 #btn-top, #btn-bottom {
-  background-color: #009688; /* Color de fondo */
-  color: white; /* Color del texto */
-  border: none; /* Sin bordes */
-  cursor: pointer; /* Cursor en forma de mano al pasar el mouse */
-  border-radius: 5px; /* Bordes redondeados */
+  background-color: #009688;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 #btn-top:hover, #btn-bottom:hover {
-  background-color: #00796b; /* Color de fondo al pasar el mouse */
+  background-color: #00796b;
 }
 
 .scroll-to-top-btn {
@@ -175,10 +175,63 @@ select {
   border: 1px solid #ccc;
 }
 
-.informacion-adicional {
-  margin-top: 20px;
+.informacion-adicional h3, .informacion-adicional h4 {
+  font-size: 1rem;
+  color: #000000;
+  margin-bottom: 0.5rem;
 }
 
-.informacion-adicional h3 {
-  margin-bottom: 15px;
+.informacion-adicional ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.informacion-adicional li {
+  padding: 0.25rem 0;
+}
+
+.table-bordered th, .table-bordered td {
+  border: 1px solid #dee2e6;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+
+.btn-eliminar {
+  border: none;
+  background-color: #dc3545;
+  color: white;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.btn-eliminar i {
+  margin: 0;
+}
+
+.btn-eliminar:hover {
+  background-color: #c82333;
+}
+
+.btn-third {
+  font-size: 0.6rem;
+  background-color: #009688; 
+  border-color: #00695c; 
+}
+
+.btn-third:hover {
+  background-color: #00695c; 
 }

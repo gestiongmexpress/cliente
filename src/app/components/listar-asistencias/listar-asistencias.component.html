@@ -77,7 +77,7 @@
             <td>{{ asistencia.diferencia }}</td>
             <td>{{ asistencia.horasTotales }}</td>
             <td>
-              <button class="btn btn-sm" (click)="horasExtras(asistencia._id!)">Horas Extra</button>
+              <button class="btn btn-third" (click)="horasExtras(asistencia._id!)">Horas Extra</button>
             </td>
           </tr>
         </tbody>
@@ -104,10 +104,39 @@
             <td>{{ contarDiasConRetraso(asistenciasFiltradas, 5) }}</td>
           </tr>
         </tbody>
+        <tfoot>
+          <tr>
+            <th>Días con horas extras de entrada:</th>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <ul>
+                <li *ngFor="let diaExtra of diasConHorasExtrasDiurnas; let i = index" class="list-item">
+                  {{ diaExtra.dia }} : {{ diaExtra.horas }}
+                  <button class="btn-eliminar" (click)="eliminarHoraExtra('diurno', diaExtra._id)">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th>Días con horas extras de salida:</th>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <ul>
+                <li *ngFor="let diaExtra of diasConHorasExtrasTardias; let i = index">
+                  {{ diaExtra.dia }} : {{ diaExtra.horas }}
+                  <button (click)="eliminarHoraExtra('tardio', diaExtra._id)">Eliminar</button>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tfoot>
       </table>
-    </div>
-</div>
+    </div>    
 
-<div class="col-md-4 text-end">
-  <button class="btn btn-primary btn-volver" routerLink="/recursos-humanos">Volver</button>
-</div>
+  <div class="col-md-4 text-end">
+    <button class="btn btn-primary btn-volver" routerLink="/recursos-humanos">Volver</button>
+  </div>
