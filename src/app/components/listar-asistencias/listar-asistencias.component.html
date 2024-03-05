@@ -78,6 +78,7 @@
             <td>{{ asistencia.horasTotales }}</td>
             <td>
               <button class="btn btn-third" (click)="horasExtras(asistencia._id!)">Horas Extra</button>
+              <button class="btn btn-third" (click)="permisos(asistencia._id!)">Permisos</button>
             </td>
           </tr>
         </tbody>
@@ -129,6 +130,36 @@
                 <li *ngFor="let diaExtra of diasConHorasExtrasTardias; let i = index" class="list-item">
                   Día : {{ diaExtra.dia }} | Horas extra trabajadas : {{ diaExtra.horas }}
                   <button class="btn-eliminar" (click)="eliminarHoraExtra('tardio', diaExtra._id)">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </li>
+              </ul>
+            </td>            
+          </tr>
+          <tr>
+            <th>Días con permisos de entrada:</th>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <ul>
+                <li *ngFor="let diaPermiso of diasConPermisoDiurno; let i = index" class="list-item">
+                  Día : {{ diaPermiso.dia }} | Horas de permiso : {{ diaPermiso.horas }}
+                  <button class="btn-eliminar" (click)="eliminarPermiso('diurno', diaPermiso._id)">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th>Días con permisos de salida:</th>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <ul>
+                <li *ngFor="let diaPermiso of diasConPermisoTardio; let i = index" class="list-item">
+                  Día : {{ diaPermiso.dia }} | Horas de permiso : {{ diaPermiso.horas }}
+                  <button class="btn-eliminar" (click)="eliminarPermiso('tardio', diaPermiso._id)">
                     <i class="fas fa-trash-alt"></i>
                   </button>
                 </li>

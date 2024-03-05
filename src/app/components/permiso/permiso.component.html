@@ -1,1 +1,40 @@
-<p>permiso works!</p>
+<div class="container mt-3">
+    <h2>Registro de Permisos</h2>
+    <form [formGroup]="permisoForm" (ngSubmit)="onSubmit()">
+        <table class="table table-rounded">
+            <tbody>
+            <tr>
+                <td>
+                <label for="tipoPermiso" class="form-label">Tipo de Permiso:</label>
+                </td>
+                <td>
+                <select id="tipoPermiso" class="form-select" formControlName="esDiurno">
+                    <option value="true">Permiso de entrada</option>
+                    <option value="false">Permiso de salida</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <label for="horasPermiso" class="form-label">Cantidad de Horas de Permiso (HH:MM):</label>
+                </td>
+                <td>
+                <select id="horasPermiso" class="form-control" formControlName="horasPermiso">
+                    <option value="" disabled selected>Seleccionar Horas de Permiso</option>
+                    <option *ngFor="let hora of horasOpciones" [ngValue]="hora">{{ hora }}</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-center">
+                <button type="submit" class="btn btn-primary">Registrar Permiso</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        </form>
+    </div>
+    
+    <div class="col-md-4 text-end">
+        <button class="btn btn-primary btn-volver" routerLink="/listar-asistencias">Volver</button>
+    </div>  

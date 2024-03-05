@@ -24,6 +24,8 @@ export class ListarAsistenciasComponent implements OnInit {
   diasConRetraso: number = 0;
   public diasConHorasExtrasDiurnas: { _id: string, dia: string, horas: string }[] = [];
   public diasConHorasExtrasTardias: { _id: string, dia: string, horas: string }[] = [];
+  public diasConPermisoDiurno: { _id: string, dia: string, horas: string }[] = [];
+  public diasConPermisoTardio: { _id: string, dia: string, horas: string }[] = [];
 
   constructor(
     private asistenciaService: AsistenciaService,
@@ -84,6 +86,22 @@ export class ListarAsistenciasComponent implements OnInit {
             _id: asistencia._id!,
             dia: this.dateFormatService.formatDate(asistencia.dia),
             horas: asistencia.horasExtraTardio || '00:00'
+          }));
+        
+        this.diasConPermisoDiurno = this.asistenciasFiltradas
+          .filter(asistencia => asistencia.permisoDiurno)
+          .map(asistencia => ({
+            _id: asistencia._id!,
+            dia: this.dateFormatService.formatDate(asistencia.dia),
+            horas: asistencia.horasPermisoDiurno || '00:00'
+          }));
+
+        this.diasConPermisoTardio = this.asistenciasFiltradas
+          .filter(asistencia => asistencia.permisoTardio)
+          .map(asistencia => ({
+            _id: asistencia._id!,
+            dia: this.dateFormatService.formatDate(asistencia.dia),
+            horas: asistencia.horasPermisoTardio || '00:00'
           }));
       },
       (error: any) => {
@@ -300,6 +318,10 @@ export class ListarAsistenciasComponent implements OnInit {
     this.router.navigate(['/horas-extras', asistenciaId]);
   }
 
+  permisos(asistenciaId: string): void {
+    this.router.navigate(['/permisos', asistenciaId]);
+  }
+
   minutosAHoras(minutos: number): string {
     const hrs = Math.floor(minutos / 60);
     const mins = minutos % 60;
@@ -344,6 +366,52 @@ export class ListarAsistenciasComponent implements OnInit {
       },
       error: (error) => {
         this.toastr.error('Error al eliminar la hora extra');
+        console.error(error);
+      }
+    });
+  }
+
+  eliminarPermiso(tipo: 'diurno' | 'tardio', asistenciaId: string): void {
+    const asistencia = this.asistenciasFiltradas.find(a => a._id === asistenciaId);
+    if (!asistencia) return;
+    const minutosPermiso = tipo === 'diurno' ?
+      asistencia.horasPermisoDiurno ?
+        this.convertirHoraAMinutos(asistencia.horasPermisoDiurno) : 0 :
+      asistencia.horasPermisoTardio ?
+        this.convertirHoraAMinutos(asistencia.horasPermisoTardio) : 0;
+  
+    const horarioActual = tipo === 'diurno' ?
+      this.convertirHoraAMinutos(asistencia.horaEntrada || '00:00') :
+      this.convertirHoraAMinutos(asistencia.horaSalida || '00:00');
+  
+    const horarioOriginal = tipo === 'diurno' ?
+      horarioActual - minutosPermiso :
+      horarioActual + minutosPermiso;
+  
+    const actualizacion: Partial<Asistencia> = {
+      [tipo === 'diurno' ? 'horaEntrada' : 'horaSalida']: this.minutosAHoras(horarioOriginal),
+      [tipo === 'diurno' ? 'permisoDiurno' : 'permisoTardio']: false,
+      [tipo === 'diurno' ? 'horasPermisoDiurno' : 'horasPermisoTardio']: null
+    };
+  
+    this.asistenciaService.editarAsistencia(asistencia._id!, actualizacion).subscribe({
+      next: () => {
+        this.toastr.success('Permiso eliminado con éxito');
+        if (tipo === 'diurno') {
+          this.diasConPermisoDiurno = this.diasConPermisoDiurno.filter(permiso => permiso._id !== asistenciaId);
+        } else {
+          this.diasConPermisoTardio = this.diasConPermisoTardio.filter(permiso => permiso._id !== asistenciaId);
+        }
+        const index = this.asistenciasFiltradas.findIndex(a => a._id === asistenciaId);
+        if (index !== -1) {
+          this.asistenciasFiltradas[index] = {
+            ...this.asistenciasFiltradas[index],
+            ...actualizacion
+          };
+        }
+      },
+      error: (error) => {
+        this.toastr.error('Error al eliminar el permiso');
         console.error(error);
       }
     });
