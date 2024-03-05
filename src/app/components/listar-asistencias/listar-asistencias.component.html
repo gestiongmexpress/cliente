@@ -76,6 +76,9 @@
             </td>
             <td>{{ asistencia.diferencia }}</td>
             <td>{{ asistencia.horasTotales }}</td>
+            <td>
+              <button class="btn btn-sm" (click)="horasExtras(asistencia._id!)">Horas Extra</button>
+            </td>
           </tr>
         </tbody>
         <tfoot>
@@ -103,7 +106,7 @@
         </tbody>
       </table>
     </div>
-  </div>
+</div>
 
 <div class="col-md-4 text-end">
   <button class="btn btn-primary btn-volver" routerLink="/recursos-humanos">Volver</button>

@@ -22,6 +22,8 @@ export class ListarAsistenciasComponent implements OnInit {
   totalHorasMes: string = '00:00';
   filtroForm: FormGroup;
   diasConRetraso: number = 0;
+  public diasConHorasExtrasDiurnas: { dia: string, horas: string }[] = [];
+  public diasConHorasExtrasTardias: { dia: string, horas: string }[] = [];
 
   constructor(
     private asistenciaService: AsistenciaService,
@@ -276,5 +278,9 @@ export class ListarAsistenciasComponent implements OnInit {
       asistencia.horaEntrada && asistencia.horaSalida && 
       asistencia.entradaReal && asistencia.salidaReal
     ).length;
-  }  
+  }
+
+  horasExtras(asistenciaId: string): void {
+    this.router.navigate(['/horas-extras', asistenciaId]);
+  }
 }
