@@ -112,7 +112,7 @@
             <td colspan="2">
               <ul>
                 <li *ngFor="let diaExtra of diasConHorasExtrasDiurnas; let i = index" class="list-item">
-                  {{ diaExtra.dia }} : {{ diaExtra.horas }}
+                  Día : {{ diaExtra.dia }} | Horas extra trabajadas : {{ diaExtra.horas }}
                   <button class="btn-eliminar" (click)="eliminarHoraExtra('diurno', diaExtra._id)">
                     <i class="fas fa-trash-alt"></i>
                   </button>
@@ -126,12 +126,14 @@
           <tr>
             <td colspan="2">
               <ul>
-                <li *ngFor="let diaExtra of diasConHorasExtrasTardias; let i = index">
-                  {{ diaExtra.dia }} : {{ diaExtra.horas }}
-                  <button (click)="eliminarHoraExtra('tardio', diaExtra._id)">Eliminar</button>
+                <li *ngFor="let diaExtra of diasConHorasExtrasTardias; let i = index" class="list-item">
+                  Día : {{ diaExtra.dia }} | Horas extra trabajadas : {{ diaExtra.horas }}
+                  <button class="btn-eliminar" (click)="eliminarHoraExtra('tardio', diaExtra._id)">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
                 </li>
               </ul>
-            </td>
+            </td>            
           </tr>
         </tfoot>
       </table>

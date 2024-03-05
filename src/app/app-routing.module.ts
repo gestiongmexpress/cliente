@@ -65,7 +65,7 @@ const routes: Routes = [
   { path: 'crear-prestamo', component: CrearPrestamoComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'recursos-humanos', component: RecursosHumanosComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'horas-extras/:id', component: HorasExtrasComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
-  { path: 'permisos', component: PermisoComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
+  { path: 'permisos/:id', component: PermisoComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: '**', redirectTo: '', pathMatch: 'full'} 
 ];
 
