@@ -33,12 +33,12 @@
             <th>#</th>
             <th>Trabajador</th>
             <th>Fecha</th>
-            <th>Hora de Entrada</th>
-            <th>Hora de Salida</th>
-            <th>Hora de Entrada Real</th>
-            <th>Hora de Salida Real</th>
-            <th>Diferencia (minutos)</th>
-            <th>Total Horas</th>
+            <th class="hora-columna">Hora de Entrada</th>
+            <th class="hora-columna">Hora de Salida</th>
+            <th class="hora-columna">Hora de Entrada Real</th>
+            <th class="hora-columna">Hora de Salida Real</th>
+            <th class="hora-columna">Diferencia (minutos)</th>
+            <th class="hora-columna">Total Horas</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -76,7 +76,7 @@
             </td>
             <td>{{ asistencia.diferencia }}</td>
             <td>{{ asistencia.horasTotales }}</td>
-            <td>
+            <td class="actions-cell">
               <button class="btn btn-third" (click)="horasExtras(asistencia._id!)">Horas Extra</button>
               <button class="btn btn-third" (click)="permisos(asistencia._id!)">Permisos</button>
             </td>

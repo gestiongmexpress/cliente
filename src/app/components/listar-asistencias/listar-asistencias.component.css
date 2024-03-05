@@ -235,3 +235,13 @@ select {
 .btn-third:hover {
   background-color: #00695c; 
 }
+
+.hora-columna {
+  width: 100px;
+}
+
+.actions-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
