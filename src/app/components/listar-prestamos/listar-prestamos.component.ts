@@ -48,15 +48,19 @@ export class ListarPrestamosComponent implements OnInit {
   }
 
   filtrarPrestamos(filtros: any): void {
-    let prestamosTemp = [...this.prestamos]; 
+    let prestamosTemp = [...this.prestamos];
+    
     if (filtros.trabajador) {
-      prestamosTemp = prestamosTemp.filter(p => p.trabajador === filtros.trabajador); 
+      prestamosTemp = prestamosTemp.filter(p => {
+        return typeof p.trabajador === 'object' ? p.trabajador._id === filtros.trabajador : p.trabajador === filtros.trabajador;
+      });
     }
     if (filtros.estado) {
       prestamosTemp = prestamosTemp.filter(p => p.estado === filtros.estado);
     }
     this.prestamosFiltrados = prestamosTemp;
   }
+  
 
   verDetalles(id: string): void {
     this.router.navigate(['/detalle-prestamo', id]);
