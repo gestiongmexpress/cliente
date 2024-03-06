@@ -25,30 +25,27 @@ export class TerminosContratoComponent implements OnInit {
 
   private organizarTerminos(): void {
     const ahora = new Date();
-    
-    const trabajadoresConTermino = this.trabajadores.filter(t => t.fechaTerminoContrato)
-      .map(t => ({
-        ...t,
-        fechaTerminoContrato: new Date(t.fechaTerminoContrato!)
-      }))
+    const nombresDeMeses = [
+      'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+      'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+    ];
+    const trabajadoresConTermino = this.trabajadores
+      .filter(t => t.fechaTerminoContrato && new Date(t.fechaTerminoContrato) > ahora)
+      .map(t => ({ ...t, fechaTerminoContrato: new Date(t.fechaTerminoContrato!) }))
       .sort((a, b) => a.fechaTerminoContrato!.getTime() - b.fechaTerminoContrato!.getTime());
-    
     this.terminosProximos = trabajadoresConTermino.slice(0, 3);
-    
+    this.terminosPorMes = {};
     trabajadoresConTermino.forEach(t => {
       const mes = t.fechaTerminoContrato!.getMonth();
       const año = t.fechaTerminoContrato!.getFullYear();
-      const key = `${mes}-${año}`;
-  
+      const key = `${nombresDeMeses[mes]}-${año}`;
       if (!this.terminosPorMes[key]) {
         this.terminosPorMes[key] = [];
       }
       this.terminosPorMes[key].push(t);
     });
-    
-    this.trabajadoresSinTermino = this.trabajadores.filter(t => !t.fechaTerminoContrato);
+    this.trabajadoresSinTermino = this.trabajadores.filter(t => !t.fechaTerminoContrato || new Date(t.fechaTerminoContrato) <= ahora);
   }
-  
 
   objectKeys(obj: any): string[] {
     return Object.keys(obj);

@@ -26,7 +26,7 @@
   <div *ngFor="let key of objectKeys(terminosPorMes)">
     <div class="card mb-3">
       <div class="card-body">
-        <h3 class="card-title">{{ key | nombreMesAno }}</h3>
+        <h3 class="card-title">{{ key }}</h3>
         <table class="table">
           <thead>
             <tr>
@@ -47,24 +47,26 @@
     </div>
   </div>
 
-  <div *ngIf="trabajadoresSinTermino.length > 0" class="container mt-5">
-    <h2>Personas sin fecha de término</h2>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>RUT</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let trabajador of trabajadoresSinTermino">
-          <td>{{ trabajador.nombre }}</td>
-          <td>{{ trabajador.rut }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div *ngIf="trabajadoresSinTermino.length > 0" class="card mb-5">
+    <div class="card-body">
+      <h2 class="card-title">Personas sin fecha de término</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>RUT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let trabajador of trabajadoresSinTermino">
+            <td>{{ trabajador.nombre }}</td>
+            <td>{{ trabajador.rut }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
-<div class="col-md-4 text-end">
-  <button class="btn btn-primary btn-volver" routerLink="/listar-trabajadores">Volver</button>
-</div>
+  
+  <div class="col-md-4 text-end">
+    <button class="btn btn-primary btn-volver" routerLink="/listar-trabajadores">Volver</button>
+  </div>
