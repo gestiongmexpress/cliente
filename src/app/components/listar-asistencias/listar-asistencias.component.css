@@ -229,7 +229,8 @@ select {
 .btn-third {
   font-size: 0.6rem;
   background-color: #009688; 
-  border-color: #00695c; 
+  border-color: #00695c;
+  margin-right: 8px;
 }
 
 .btn-third:hover {
