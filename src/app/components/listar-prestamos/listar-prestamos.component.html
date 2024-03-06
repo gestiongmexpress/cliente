@@ -39,8 +39,9 @@
             <th>Trabajador</th>
             <th>Monto Total</th>
             <th>Cuotas pagadas</th>
-            <th>Cuotas</th>
+            <th>Cuotas Totales</th>
             <th>Monto Cuota</th>
+            <th>Saldo Restante</th>
             <th>Estado</th>
             <th>Fecha de Solicitud</th>
             <th>Acciones</th>
@@ -57,10 +58,11 @@
                 {{ prestamo.trabajador }}
               </ng-container>
             </td>
-            <td>{{ prestamo.monto | currency }}</td>
-            <td>{{ prestamo.cuotaActual }}</td> 
-            <td>{{ prestamo.cuotas }}</td> 
-            <td>{{ prestamo.cuotaMensual | currency }}</td> 
+            <td>{{ prestamo.monto | currency:'CLP':'symbol':'1.0-0' }}</td>
+            <td>{{ prestamo.cuotaActual }}</td>
+            <td>{{ prestamo.cuotas }}</td>
+            <td>{{ prestamo.cuotaMensual | currency:'CLP':'symbol':'1.0-0' }}</td>
+            <td>{{ prestamo.saldo | currency:'CLP':'symbol':'1.0-0' }}</td>
             <td>{{ prestamo.estado }}</td>
             <td>{{ dateFormatService.formatDate(prestamo.fechaInicio) }}</td>
             <td class="text-nowrap">

@@ -9,5 +9,6 @@ export interface Prestamo {
   fechaInicio: Date | string; 
   estado: string;
   cuotaActual: number;
+  saldo: number;
   descripcion?: string; 
 }

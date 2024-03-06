@@ -66,7 +66,8 @@ export class CrearPrestamoComponent implements OnInit {
         ...this.prestamoForm.value,
         cuotaMensual, 
         estado: 'Pendiente',
-        cuotaActual: 0
+        cuotaActual: 0,
+        saldo: monto,
       };
   
       if (this.id) {
