@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AsistenciaService } from '../../services/asistencia.service';
@@ -13,6 +13,8 @@ import { Asistencia } from '../../models/asistencia';
 export class PermisoComponent implements OnInit {
   permisoForm!: FormGroup;
   horasOpciones: string[] = [];
+  trabajadorId: string | null = null;
+  fecha: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -25,11 +27,13 @@ export class PermisoComponent implements OnInit {
   ngOnInit(): void {
     this.permisoForm = this.fb.group({
       asistenciaId: [''],
-      horasPermiso: [''],
+      horasPermiso: ['', Validators.required],
       esDiurno: [false]
     });
-    this.route.params.subscribe(params => {
-      const asistenciaId = params['id'];
+    this.route.queryParams.subscribe(params => {
+      this.trabajadorId = params['trabajador'];
+      this.fecha = params['fecha'];
+      const asistenciaId = this.route.snapshot.params['id'];
       if (asistenciaId) {
         this.permisoForm.patchValue({ asistenciaId });
       }
@@ -46,7 +50,7 @@ export class PermisoComponent implements OnInit {
           this.asistenciaService.editarAsistencia(asistenciaId, actualizacion).subscribe({
             next: () => {
               this.toastr.success('Permiso registrado con éxito');
-              this.router.navigate(['/listar-asistencias']);
+              this.router.navigate(['/listar-asistencias'], { queryParams: { trabajador: this.trabajadorId, fecha: this.fecha } });
             },
             error: (error) => {
               this.toastr.error('Error al registrar el permiso');
@@ -60,7 +64,7 @@ export class PermisoComponent implements OnInit {
         }
       });
     }
-  }
+  }  
 
   calcularNuevoHorarioPermiso(asistencia: Asistencia, horasPermiso: string, esDiurno: boolean): Partial<Asistencia> {
     const [horas, minutos] = horasPermiso.split(':').map(Number);
@@ -84,7 +88,6 @@ export class PermisoComponent implements OnInit {
       };
     }
   }
-  
 
   convertirHoraAMinutos(hora: string): number {
     const [hrs, mins] = hora.split(':').map(Number);
@@ -106,4 +109,8 @@ export class PermisoComponent implements OnInit {
       }
     }
   }
+
+  volverAListado(): void {
+    this.router.navigate(['/listar-asistencias'], { queryParams: { trabajador: this.trabajadorId, fecha: this.fecha } });
+  }  
 }

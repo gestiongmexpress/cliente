@@ -3,13 +3,12 @@ import { AsistenciaService } from '../../services/asistencia.service';
 import { TrabajadorService } from '../../services/trabajador.service';
 import { Asistencia } from '../../models/asistencia';
 import { Trabajador } from '../../models/trabajador';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DateFormatService } from '../../services/date-format.service';
 import { ToastrService } from 'ngx-toastr';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
-
 
 @Component({
   selector: 'app-listar-asistencias',
@@ -48,11 +47,18 @@ export class ListarAsistenciasComponent implements OnInit {
   ngOnInit(): void {
     this.cargarTrabajadores();
     this.generarOpcionesDeHoras();
+    this.route.queryParams.subscribe(params => {
+      if (params['trabajador'] && params['fecha']) {
+        this.filtroForm.setValue({
+          trabajador: params['trabajador'],
+          fecha: params['fecha']
+        });
+        this.aplicarFiltros(params['fecha'], params['trabajador']);
+      }
+    });
     this.filtroForm.valueChanges.subscribe(valores => {
-      this.asistenciasFiltradas = [];
-      const { fecha, trabajador } = valores;
-      if (fecha && trabajador) {
-        this.aplicarFiltros(fecha, trabajador);
+      if (valores.fecha && valores.trabajador) {
+        this.aplicarFiltros(valores.fecha, valores.trabajador);
       }
     });
     this.calcularTotales();
@@ -319,12 +325,22 @@ export class ListarAsistenciasComponent implements OnInit {
   }
 
   horasExtras(asistenciaId: string): void {
-    this.router.navigate(['/horas-extras', asistenciaId]);
+    this.router.navigate(['/horas-extras', asistenciaId], { 
+      queryParams: {
+        trabajador: this.filtroForm.value.trabajador,
+        fecha: this.filtroForm.value.fecha
+      } 
+    });
   }
-
+  
   permisos(asistenciaId: string): void {
-    this.router.navigate(['/permisos', asistenciaId]);
-  }
+    this.router.navigate(['/permisos', asistenciaId], { 
+      queryParams: {
+        trabajador: this.filtroForm.value.trabajador,
+        fecha: this.filtroForm.value.fecha
+      } 
+    });
+  }  
 
   minutosAHoras(minutos: number): string {
     const hrs = Math.floor(minutos / 60);
@@ -367,6 +383,7 @@ export class ListarAsistenciasComponent implements OnInit {
             ...actualizacion
           };
         }
+        this.aplicarFiltros(this.filtroForm.value.fecha, this.filtroForm.value.trabajador);
       },
       error: (error) => {
         this.toastr.error('Error al eliminar la hora extra');
@@ -413,6 +430,7 @@ export class ListarAsistenciasComponent implements OnInit {
             ...actualizacion
           };
         }
+        this.aplicarFiltros(this.filtroForm.value.fecha, this.filtroForm.value.trabajador);
       },
       error: (error) => {
         this.toastr.error('Error al eliminar el permiso');

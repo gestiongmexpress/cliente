@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
@@ -14,6 +14,8 @@ import { Asistencia } from '../../models/asistencia';
 export class HorasExtrasComponent implements OnInit {
   horasExtrasForm!: FormGroup;
   horasOpciones: string[] = [];
+  trabajadorId: string | null = null;
+  fecha: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -26,7 +28,7 @@ export class HorasExtrasComponent implements OnInit {
   ngOnInit(): void {
     this.horasExtrasForm = this.fb.group({
       asistenciaId: [''],
-      horasExtras: [''],
+      horasExtras: ['', Validators.required],
       esPrevio: [false]
     });
     this.route.params.subscribe(params => {
@@ -34,6 +36,10 @@ export class HorasExtrasComponent implements OnInit {
       if (asistenciaId) {
         this.horasExtrasForm.patchValue({ asistenciaId });
       }
+    });
+    this.route.queryParams.subscribe(params => {
+      this.trabajadorId = params['trabajador'];
+      this.fecha = params['fecha'];
     });
     this.generarOpcionesDeHoras();
   }
@@ -47,7 +53,7 @@ export class HorasExtrasComponent implements OnInit {
           this.asistenciaService.editarAsistencia(asistenciaId, actualizacion).subscribe({
             next: () => {
               this.toastr.success('Horario ajustado con éxito');
-              this.router.navigate(['/listar-asistencias']);
+              this.router.navigate(['/listar-asistencias'], { queryParams: { trabajador: this.trabajadorId, fecha: this.fecha } });
             },
             error: (error) => {
               this.toastr.error('Error al ajustar el horario');
@@ -61,7 +67,7 @@ export class HorasExtrasComponent implements OnInit {
         }
       });
     }
-  }
+  }  
 
   calcularNuevosHorarios(asistencia: Asistencia, horasExtras: string, esDiurno: boolean): Partial<Asistencia> {
     const [horas, minutos] = horasExtras.split(':').map(Number);
