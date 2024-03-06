@@ -48,6 +48,7 @@
 .btn-primary {
   background-color: #009688; 
   border-color: #00695c; 
+  margin-right: 8px;
 }
 
 .btn-primary:hover {
@@ -227,7 +228,7 @@ select {
 }
 
 .btn-third {
-  font-size: 0.6rem;
+  font-size: 0.9rem;
   background-color: #009688; 
   border-color: #00695c;
   margin-right: 8px;

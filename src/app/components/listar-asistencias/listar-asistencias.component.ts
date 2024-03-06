@@ -4,9 +4,12 @@ import { TrabajadorService } from '../../services/trabajador.service';
 import { Asistencia } from '../../models/asistencia';
 import { Trabajador } from '../../models/trabajador';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DateFormatService } from '../../services/date-format.service';
 import { ToastrService } from 'ngx-toastr';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
+
 
 @Component({
   selector: 'app-listar-asistencias',
@@ -32,6 +35,7 @@ export class ListarAsistenciasComponent implements OnInit {
     private trabajadorService: TrabajadorService,
     private fb: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute,
     public dateFormatService: DateFormatService,
     private toastr: ToastrService
   ) {
@@ -415,5 +419,52 @@ export class ListarAsistenciasComponent implements OnInit {
         console.error(error);
       }
     });
-  }  
+  }
+
+  exportarTablaAExcel(): void {
+    if (this.trabajadores.length === 0) {
+      this.toastr.error('La lista de trabajadores aún no está cargada');
+      return;
+    }
+    const datosParaExportar = this.asistenciasFiltradas.map(asistencia => {
+      let nombreTrabajador = 'Desconocido';
+      if (typeof asistencia.trabajador === 'string') {
+        const trabajadorEncontrado = this.trabajadores.find(trab => trab._id === asistencia.trabajador);
+        nombreTrabajador = trabajadorEncontrado ? trabajadorEncontrado.nombre : 'Desconocido';
+      } else if (asistencia.trabajador && typeof asistencia.trabajador === 'object' && 'nombre' in asistencia.trabajador) {
+        nombreTrabajador = asistencia.trabajador.nombre;
+      }
+      return {
+        ...asistencia,
+        trabajador: nombreTrabajador,
+        dia: this.dateFormatService.formatDate(asistencia.dia),
+      };
+    });
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(datosParaExportar, {
+      header: [
+        'trabajador',
+        'dia',
+        'horaEntrada',
+        'horaSalida',
+        'extraDiurno',
+        'extraTardio',
+        'permisoDiurno',
+        'permisoTardio',
+        'horasExtraDiurno',
+        'horasExtraTardio',
+        'diferencia',
+        'entradaReal',
+        'salidaReal',
+        'horasTotales'
+      ],
+      skipHeader: false
+    });
+  
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Asistencias');
+  
+    const wbout: ArrayBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    const blob: Blob = new Blob([wbout], { type: 'application/octet-stream' });
+    saveAs(blob, 'asistencias.xlsx');
+  }
 }

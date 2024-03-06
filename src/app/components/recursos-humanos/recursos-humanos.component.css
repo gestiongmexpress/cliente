@@ -78,3 +78,12 @@ th, td {
   vertical-align: middle;
   text-align: center;
 }
+
+.btn-volver {
+  background-color: #dc3545;
+  color: white; 
+}
+
+.btn-volver:hover {
+  background-color: #c82333;
+}

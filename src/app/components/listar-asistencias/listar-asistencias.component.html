@@ -19,7 +19,8 @@
         </div>        
         <!-- Botón de Añadir Asistencia Mensual -->
         <div class="col text-end">
-          <button class="btn btn-success" routerLink="/crear-asistencia">Añadir asistencia mensual</button>
+          <button class="btn btn-primary" routerLink="/crear-asistencia">Añadir asistencia mensual</button>
+          <button class="btn btn-primary" (click)="exportarTablaAExcel()">Exportar a Excel</button>
         </div>
       </div>
     </form>

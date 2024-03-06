@@ -13,9 +13,5 @@ export class RecursosHumanosComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // Aquí puedes inicializar datos o servicios si es necesario
   }
-
-  // Aquí puedes agregar métodos para manejar las acciones específicas de la página,
-  // como cargar datos o responder a eventos de la interfaz de usuario.
 }
