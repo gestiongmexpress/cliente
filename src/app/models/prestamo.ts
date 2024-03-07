@@ -10,5 +10,6 @@ export interface Prestamo {
   estado: string;
   cuotaActual: number;
   saldo: number;
-  descripcion?: string; 
+  quincena: boolean;
+  descripcion?: string;
 }

@@ -22,6 +22,26 @@
               <option value="Finalizado">Finalizado</option>
             </select>
           </div>
+
+          <!-- Filtro de Quincena -->
+          <div class="col-auto">
+            <label for="quincena" class="col-form-label">Quincena:</label>
+            <select id="quincena" class="form-select" formControlName="quincena">
+              <option value="">Todos</option>
+              <option value="true">Sí</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+
+          <!-- Filtro de fecha -->
+          <div class="col-auto">
+            <label for="fechaInicio" class="form-label">Fecha Inicio:</label>
+            <input type="date" id="fechaInicio" class="form-control" formControlName="fechaInicio">
+          </div>
+          <div class="col-auto">
+            <label for="fechaFin" class="form-label">Fecha Fin:</label>
+            <input type="date" id="fechaFin" class="form-control" formControlName="fechaFin">
+          </div>
         </div>
       </form>
       <!-- Botón Crear Préstamo -->

@@ -33,19 +33,32 @@ export class ListarPrestamosComponent implements OnInit {
     this.filtroForm = this.fb.group({
       trabajador: [''],
       estado: [''],
+      quincena: [''],
+      fechaInicio: [''],
+      fechaFin: ['']
     });
   }
 
   ngOnInit(): void {
+    const hoy = new Date();
+    const haceTreintaDias = new Date();
+    haceTreintaDias.setDate(hoy.getDate() - 30);
     this.prestamoService.getPrestamos().subscribe(data => {
       this.prestamos = data;
       this.prestamosFiltrados = data;
       this.calcularTotales();
     });
+    this.filtroForm.patchValue({
+      fechaInicio: this.formatDate(haceTreintaDias),
+      fechaFin: this.formatDate(hoy),
+    });
+    this.prestamoService.getPrestamos().subscribe(data => {
+      this.prestamos = data;
+      this.filtrarPrestamos(this.filtroForm.value);
+    });
     this.trabajadorService.getTrabajadores().subscribe(data => { 
       this.trabajadores = data;
     });
-
     this.filtroForm.valueChanges.subscribe(valoresFiltro => {
       this.filtrarPrestamos(valoresFiltro);
     });
@@ -60,6 +73,18 @@ export class ListarPrestamosComponent implements OnInit {
     }
     if (filtros.estado) {
       prestamosTemp = prestamosTemp.filter(p => p.estado === filtros.estado);
+    }
+    if (filtros.quincena) {
+      const esQuincena = filtros.quincena === 'true';
+      prestamosTemp = prestamosTemp.filter(p => p.quincena === esQuincena);
+    }
+    if (filtros.fechaInicio) {
+      prestamosTemp = prestamosTemp.filter(p => 
+        new Date(p.fechaInicio) >= new Date(filtros.fechaInicio));
+    }
+    if (filtros.fechaFin) {
+      prestamosTemp = prestamosTemp.filter(p => 
+        new Date(p.fechaInicio) <= new Date(filtros.fechaFin));
     }
     this.prestamosFiltrados = prestamosTemp;
     this.calcularTotales();
@@ -97,6 +122,7 @@ export class ListarPrestamosComponent implements OnInit {
     this.prestamoService.getPrestamos().subscribe(data => {
       this.prestamos = data;
       this.prestamosFiltrados = data; 
+      this.calcularTotales();
     }, error => {
       console.error('Error al cargar los préstamos', error);
     });
@@ -134,5 +160,14 @@ export class ListarPrestamosComponent implements OnInit {
   calcularTotales(): void {
     this.totalMonto = this.prestamosFiltrados.reduce((acc, prestamo) => acc + prestamo.monto, 0);
     this.totalSaldo = this.prestamosFiltrados.reduce((acc, prestamo) => acc + prestamo.saldo, 0);
-  }  
+  }
+
+  formatDate(date: Date): string {
+    const d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+  
+    return [year, month.padStart(2, '0'), day.padStart(2, '0')].join('-');
+  }
 }

@@ -18,6 +18,7 @@ export class CrearPrestamoComponent implements OnInit {
   id: string | null;
   trabajadores: Trabajador[] = []; 
   cuotaMensual: number | null = null;
+  esQuincena: boolean = false;
 
   constructor(
     private fb: FormBuilder, 
@@ -32,7 +33,8 @@ export class CrearPrestamoComponent implements OnInit {
       monto: ['', [Validators.required, Validators.min(1)]],
       cuotas: ['1', [Validators.required, Validators.min(1)]],
       fechaInicio: ['', Validators.required] ,
-      descripcion: ['']
+      descripcion: [''],
+      quincena: ['']
     });
     this.id = this.aRouter.snapshot.paramMap.get('id');
   }
@@ -126,5 +128,15 @@ export class CrearPrestamoComponent implements OnInit {
         this.toastr.error('Error al cargar los trabajadores');
       }
     );
+  }
+
+  onQuincenaChange(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    this.esQuincena = selectElement.value === 'true';
+    if (this.esQuincena) {
+      this.prestamoForm.patchValue({ descripcion: 'QUINCENA' });
+    } else {
+      this.prestamoForm.patchValue({ descripcion: '' });
+    }
   }
 }

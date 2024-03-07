@@ -22,6 +22,15 @@
                             </div>
                         </div>
 
+                        <!-- Pregunta de Quincena -->
+                        <div class="form-group mb-3">
+                        <label for="quincena">¿Es quincena?</label>
+                        <select id="quincena" class="form-control" formControlName="quincena" (change)="onQuincenaChange($event)">
+                            <option value="">Seleccionar</option>
+                            <option value="true">Sí</option>
+                            <option value="false">No</option>
+                        </select>
+                        </div>
 
                         <!-- Monto -->
                         <div class="form-group mb-3">
@@ -65,8 +74,8 @@
                         <!-- Descripción -->
                         <div class="form-group mb-3">
                             <label for="descripcion">Descripción</label>
-                            <textarea id="descripcion" class="form-control" formControlName="descripcion" placeholder="Descripción del préstamo"></textarea>
-                        </div>
+                            <textarea id="descripcion" class="form-control" formControlName="descripcion" placeholder="Descripción del préstamo" [readonly]="esQuincena"></textarea>
+                        </div>              
 
                         <!-- Botones de acción -->
                         <div class="form-group mb-3">
