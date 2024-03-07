@@ -5,12 +5,12 @@
     <form [formGroup]="filtroForm">
       <div class="row align-items-center">
         <!-- Filtro por Fecha -->
-        <div class="col">
+        <div class="col-md-3">
           <label for="fecha" class="col-form-label">Fecha:</label>
           <input type="month" id="fecha" class="form-control" formControlName="fecha">
         </div>
         <!-- Filtro por Trabajador -->
-        <div class="col">
+        <div class="col-md-3">
           <label for="trabajador" class="col-form-label">Trabajador:</label>
           <select id="trabajador" class="form-select" formControlName="trabajador">
             <option value="" disabled>Seleccionar trabajador</option>
@@ -78,8 +78,8 @@
             <td>{{ asistencia.diferencia }}</td>
             <td>{{ asistencia.horasTotales }}</td>
             <td class="actions-cell">
-              <button class="btn btn-third" (click)="horasExtras(asistencia._id!)">Horas Extra</button>
-              <button class="btn btn-third" (click)="permisos(asistencia._id!)">Permisos</button>
+              <button class="btn btn-primary" (click)="horasExtras(asistencia._id!)">Horas Extra</button>
+              <button class="btn btn-primary" (click)="permisos(asistencia._id!)">Permisos</button>
             </td>
           </tr>
         </tbody>

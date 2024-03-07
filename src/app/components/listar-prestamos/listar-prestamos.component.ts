@@ -6,6 +6,7 @@ import { Trabajador } from '../../models/trabajador';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DateFormatService } from '../../services/date-format.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-listar-prestamos',
@@ -18,13 +19,16 @@ export class ListarPrestamosComponent implements OnInit {
   trabajadores: Trabajador[] = []; 
   prestamosFiltrados: Prestamo[] = [];
   filtroForm: FormGroup;
+  totalMonto: number = 0;
+  totalSaldo: number = 0;
 
   constructor(
     private prestamoService: PrestamoService,
     private trabajadorService: TrabajadorService, 
     private fb: FormBuilder, 
     private router: Router, 
-    public dateFormatService: DateFormatService
+    public dateFormatService: DateFormatService,
+    private toastr: ToastrService
   ) {
     this.filtroForm = this.fb.group({
       trabajador: [''],
@@ -36,8 +40,8 @@ export class ListarPrestamosComponent implements OnInit {
     this.prestamoService.getPrestamos().subscribe(data => {
       this.prestamos = data;
       this.prestamosFiltrados = data;
+      this.calcularTotales();
     });
-
     this.trabajadorService.getTrabajadores().subscribe(data => { 
       this.trabajadores = data;
     });
@@ -49,7 +53,6 @@ export class ListarPrestamosComponent implements OnInit {
 
   filtrarPrestamos(filtros: any): void {
     let prestamosTemp = [...this.prestamos];
-    
     if (filtros.trabajador) {
       prestamosTemp = prestamosTemp.filter(p => {
         return typeof p.trabajador === 'object' ? p.trabajador._id === filtros.trabajador : p.trabajador === filtros.trabajador;
@@ -59,8 +62,8 @@ export class ListarPrestamosComponent implements OnInit {
       prestamosTemp = prestamosTemp.filter(p => p.estado === filtros.estado);
     }
     this.prestamosFiltrados = prestamosTemp;
+    this.calcularTotales();
   }
-  
 
   verDetalles(id: string): void {
     this.router.navigate(['/detalle-prestamo', id]);
@@ -102,21 +105,34 @@ export class ListarPrestamosComponent implements OnInit {
   pagarCuota(prestamo: Prestamo) {
     if (prestamo._id && prestamo.cuotaActual < prestamo.cuotas) {
       prestamo.cuotaActual += 1;
-  
+      prestamo.saldo -= prestamo.cuotaMensual;
       if (prestamo.cuotaActual === prestamo.cuotas) {
         prestamo.estado = 'Finalizado';
+        prestamo.saldo = 0;
       }
-  
       this.prestamoService.editarPrestamo(prestamo._id, prestamo).subscribe({
         next: (response) => {
+          this.toastr.success('Cuota pagada correctamente', 'Actualización Exitosa');
           this.cargarPrestamos();
         },
         error: (error) => {
           console.error('Error al actualizar el préstamo', error);
+          this.toastr.error('Hubo un error al pagar la cuota', 'Error');
         }
       });
     } else {
-      console.error('El ID del préstamo no está definido');
+      if (!prestamo._id) {
+        console.error('El ID del préstamo no está definido');
+        this.toastr.error('El ID del préstamo no está definido', 'Error');
+      } else {
+        console.error('Todas las cuotas del préstamo ya han sido pagadas');
+        this.toastr.info('Todas las cuotas del préstamo ya han sido pagadas', 'Información');
+      }
     }
   }
+
+  calcularTotales(): void {
+    this.totalMonto = this.prestamosFiltrados.reduce((acc, prestamo) => acc + prestamo.monto, 0);
+    this.totalSaldo = this.prestamosFiltrados.reduce((acc, prestamo) => acc + prestamo.saldo, 0);
+  }  
 }
