@@ -39,8 +39,8 @@ export class ListarAsistenciasComponent implements OnInit {
     private toastr: ToastrService
   ) {
     this.filtroForm = this.fb.group({
-      trabajador: [''],
-      fecha: ['']
+      trabajador: ['', Validators.required],
+      fecha: ['', Validators.required]
     });
   }
 
@@ -343,10 +343,13 @@ export class ListarAsistenciasComponent implements OnInit {
   }  
 
   minutosAHoras(minutos: number): string {
-    const hrs = Math.floor(minutos / 60);
-    const mins = minutos % 60;
-    return `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
-  }
+    const signo = minutos < 0 ? "-" : "";
+    const minutosAbs = Math.abs(minutos);
+    const hrs = Math.floor(minutosAbs / 60);
+    const mins = minutosAbs % 60;
+    return `${signo}${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
+}
+
 
   eliminarHoraExtra(tipo: 'diurno' | 'tardio', asistenciaId: string): void {
     const asistencia = this.asistenciasFiltradas.find(a => a._id === asistenciaId);
@@ -444,45 +447,60 @@ export class ListarAsistenciasComponent implements OnInit {
       this.toastr.error('La lista de trabajadores aún no está cargada');
       return;
     }
-    const datosParaExportar = this.asistenciasFiltradas.map(asistencia => {
-      let nombreTrabajador = 'Desconocido';
+    let nombreTrabajador = 'Desconocido';
+    let fechaReferencia = 'Fecha';
+    if (this.asistenciasFiltradas.length > 0) {
+      const asistencia = this.asistenciasFiltradas[0];
       if (typeof asistencia.trabajador === 'string') {
         const trabajadorEncontrado = this.trabajadores.find(trab => trab._id === asistencia.trabajador);
         nombreTrabajador = trabajadorEncontrado ? trabajadorEncontrado.nombre : 'Desconocido';
       } else if (asistencia.trabajador && typeof asistencia.trabajador === 'object' && 'nombre' in asistencia.trabajador) {
         nombreTrabajador = asistencia.trabajador.nombre;
       }
+      fechaReferencia = this.dateFormatService.formatDate(asistencia.dia);
+    }
+    const datosParaExportar = this.asistenciasFiltradas.map(asistencia => {
+      const horasExtrasEntrada = asistencia.extraDiurno ? asistencia.horasExtraDiurno : '';
+      const horasExtrasSalida = asistencia.extraTardio ? asistencia.horasExtraTardio : '';
+      const permisoEntrada = asistencia.permisoDiurno ? asistencia.horasPermisoDiurno : '';
+      const permisoSalida = asistencia.permisoTardio ? asistencia.horasPermisoTardio : '';
       return {
-        ...asistencia,
-        trabajador: nombreTrabajador,
-        dia: this.dateFormatService.formatDate(asistencia.dia),
+        Trabajador: nombreTrabajador,
+        Fecha: this.dateFormatService.formatDate(asistencia.dia),
+        'Hora de entrada': asistencia.horaEntrada,
+        'Hora de salida': asistencia.horaSalida,
+        'Entrada real': asistencia.entradaReal,
+        'Salida real': asistencia.salidaReal,
+        'Diferencia': this.minutosAHoras(asistencia.diferencia!),
+        'Total horas': asistencia.horasTotales,
+        'Horas extras entrada': horasExtrasEntrada,
+        'Horas extras salida': horasExtrasSalida,
+        'Permiso de entrada': permisoEntrada,
+        'Permiso de salida': permisoSalida
       };
     });
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(datosParaExportar, {
       header: [
-        'trabajador',
-        'dia',
-        'horaEntrada',
-        'horaSalida',
-        'extraDiurno',
-        'extraTardio',
-        'permisoDiurno',
-        'permisoTardio',
-        'horasExtraDiurno',
-        'horasExtraTardio',
-        'diferencia',
-        'entradaReal',
-        'salidaReal',
-        'horasTotales'
+        'Trabajador',
+        'Fecha',
+        'Hora de entrada',
+        'Hora de salida',
+        'Entrada real',
+        'Salida real',
+        'Diferencia',
+        'Total horas',
+        'Horas extras entrada',
+        'Horas extras salida',
+        'Permiso de entrada',
+        'Permiso de salida'
       ],
       skipHeader: false
     });
-  
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Asistencias');
-  
     const wbout: ArrayBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
     const blob: Blob = new Blob([wbout], { type: 'application/octet-stream' });
-    saveAs(blob, 'asistencias.xlsx');
-  }
+    const nombreArchivo = `asistencia_${nombreTrabajador.replace(/\s+/g, '_')}-${fechaReferencia}.xlsx`;
+    saveAs(blob, nombreArchivo);
+  }  
 }
