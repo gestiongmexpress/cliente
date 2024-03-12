@@ -7,7 +7,7 @@ import { Asistencia } from '../models/asistencia';
   providedIn: 'root'
 })
 export class AsistenciaService {
-  private apiUrl = 'https://gmexpress.onrender.com/api/asistencia'; 
+  private apiUrl = 'https://gmexpress.onrender.com/api/asistencia';
 
   constructor(private http: HttpClient) { }
 
