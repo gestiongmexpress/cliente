@@ -65,6 +65,11 @@
     <a routerLink="/recursos-humanos" class="list-group-item list-group-item-action btn-verde-claro">Recursos Humanos</a>
   </div>
 
+  <!-- Sección para Administración de Tickets -->
+  <div *ngIf="mostrarAdministracionTickets" class="list-group">
+    <a routerLink="/administracion-tickets" class="list-group-item list-group-item-action">Administración de Tickets</a>
+  </div>
+
   <!-- Sección para listar capacitaciones -->
   <div *ngIf="mostrarListarCapacitaciones" class="list-group">
     <a routerLink="/listar-capacitacion" class="list-group-item list-group-item-action">R-SGI-44 Programa anual de capacitaciones</a>

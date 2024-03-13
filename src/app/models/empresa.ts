@@ -8,6 +8,7 @@ export interface Empresa {
     colorLetraAsignado?: string;
     valorNeto: number;
     servicioNegociado: string;
-    coloresTraspasadosASucursal?: string;
+    sucursal: string;
+    coloresTraspasadosA?: string;
     facturacion: string;
 }

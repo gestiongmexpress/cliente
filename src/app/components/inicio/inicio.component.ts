@@ -16,6 +16,7 @@ export class InicioComponent implements OnInit {
   mostrarListarCapacitaciones: boolean = false;
   mostrarListarMantenciones: boolean = false;
   mostrarListaPlagas: boolean = false;
+  mostrarAdministracionTickets: boolean = false;
   mostrarNotificaciones: boolean = false;
   trabajadoresConContratoPr: Trabajador[] = [];
   trabajadoresConCumplePr: Trabajador[] = [];
@@ -40,10 +41,12 @@ export class InicioComponent implements OnInit {
       const rolesListarCapacitaciones = ['Gerente', 'Administrador', 'Nutricionista', 'APR', 'Enc. Logistica'];
       const rolesListarMantenciones = ['Administrador', 'Gerente', 'Enc. Logistica'];
       const rolesListarPlagas = ['Administrador', 'Gerente', 'Nutricionista'];
+      const rolesAdministracionTickets = ['Administrador', 'Gerente', 'Asistente'];
       this.mostrarRecursosHumanos = rolesNotificaciones.includes(this.rol);
       this.mostrarListaPlagas = rolesListarPlagas.includes(this.rol);
       this.mostrarListarCapacitaciones = rolesListarCapacitaciones.includes(this.rol);
       this.mostrarListarMantenciones = rolesListarMantenciones.includes(this.rol);
+      this.mostrarAdministracionTickets = rolesAdministracionTickets.includes(this.rol);
 
       if (rolesNotificaciones.includes(this.rol)) {
         this.obtenerTrabajadoresConContratoPr();

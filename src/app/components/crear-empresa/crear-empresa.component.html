@@ -1,0 +1,89 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="text-center">{{ titulo }}</h4>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="empresaForm" (ngSubmit)="agregarOEditarEmpresa()">
+
+                        <!-- Nombre -->
+                        <div class="form-group mb-3">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" class="form-control" formControlName="nombre" placeholder="Nombre de la empresa">
+                        </div>
+
+                        <!-- RUT -->
+                        <div class="form-group mb-3">
+                            <label for="rut">RUT</label>
+                            <input type="text" id="rut" class="form-control" formControlName="rut" placeholder="RUT de la empresa">
+                        </div>
+
+                        <!-- Vigente -->
+                        <div class="form-group mb-3">
+                            <label for="vigente">Vigente</label>
+                            <select id="vigente" class="form-control" formControlName="vigente">
+                                <option value="" disabled>Seleccionar</option>
+                                <option value="Si">Sí</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+
+                        <!-- Orden de Compra -->
+                        <div class="form-group mb-3">
+                            <label for="ordenCompra">Orden de Compra</label>
+                            <select id="ordenCompra" class="form-control" formControlName="ordenCompra">
+                                <option value="" disabled>Seleccionar</option>
+                                <option value="Si">Sí</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+
+                        <!-- Color Fondo Asignado -->
+                        <div class="form-group mb-3">
+                            <label for="colorFondoAsignado">Color Fondo Asignado</label>
+                            <input type="text" id="colorFondoAsignado" class="form-control" formControlName="colorFondoAsignado" placeholder="Color Fondo Asignado">
+                        </div>
+
+                        <!-- Color Letra Asignado -->
+                        <div class="form-group mb-3">
+                            <label for="colorLetraAsignado">Color Letra Asignado</label>
+                            <input type="text" id="colorLetraAsignado" class="form-control" formControlName="colorLetraAsignado" placeholder="Color Letra Asignado">
+                        </div>
+
+                        <!-- Valor Neto -->
+                        <div class="form-group mb-3">
+                            <label for="valorNeto">Valor Neto</label>
+                            <input type="number" id="valorNeto" class="form-control" formControlName="valorNeto" placeholder="Valor Neto">
+                        </div>
+
+                        <!-- Servicio Negociado -->
+                        <div class="form-group mb-3">
+                            <label for="servicioNegociado">Servicio Negociado</label>
+                            <input type="text" id="servicioNegociado" class="form-control" formControlName="servicioNegociado" placeholder="Servicio Negociado">
+                        </div>
+
+                        <!-- Sucursal -->
+                        <div class="form-group mb-3">
+                            <label for="sucursal">Sucursal</label>
+                            <input type="text" id="sucursal" class="form-control" formControlName="sucursal" placeholder="Sucursal">
+                        </div>
+
+                        <!-- Facturación -->
+                        <div class="form-group mb-3">
+                            <label for="facturacion">Facturación</label>
+                            <input type="text" id="facturacion" class="form-control" formControlName="facturacion" placeholder="Facturación">
+                        </div>
+
+                        <!-- Botones de Acción -->
+                        <div class="form-group mb-3 text-end">
+                            <button type="submit" class="btn btn-primary me-2" [disabled]="!empresaForm.valid">Guardar</button>
+                            <button type="button" class="btn btn-secondary" (click)="router.navigate(['/listar-empresas'])">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
