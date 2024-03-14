@@ -12,13 +12,13 @@ export interface RegistroTicket {
   folioFinal: number;
   estado: string;
   fechaCaducidad: Date;
-  vigencia: string;
+  vigencia?: string;
   facturado: 'Si' | 'No';
   mesFactura?: string;
   factura?: number;
   totalNeto: number;
   totalFactura: number;
   observacion?: string;
-  facturacion: string;
-  ano: number;
+  facturacion?: string;
+  ano?: number;
 }

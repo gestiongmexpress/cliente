@@ -12,6 +12,12 @@
                             <label for="fecha">Fecha de Entrega</label>
                             <input type="date" id="fecha" class="form-control" formControlName="fecha">
                         </div>
+
+                        <!-- Fecha de Caducidad -->
+                        <div class="form-group mb-3">
+                            <label for="fechaCaducidad">Fecha de Caducidad</label>
+                            <input type="date" id="fechaCaducidad" class="form-control" formControlName="fechaCaducidad" readonly>
+                        </div>
                         
                         <!-- Empresa -->
                         <div class="form-group mb-3">
@@ -20,7 +26,21 @@
                                 <option *ngFor="let empresa of empresas" [value]="empresa._id">{{ empresa.nombre }}</option>
                             </select>
                         </div>
-                        
+                        <div *ngIf="empresaSeleccionada">
+                            <div class="form-group mb-3">
+                                <label>RUT Empresa</label>
+                                <input type="text" class="form-control" [value]="empresaSeleccionada!.rut" readonly>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label>Vigente</label>
+                                <input type="text" class="form-control" [value]="empresaSeleccionada!.vigente" readonly>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label>Orden de Compra</label>
+                                <input type="text" class="form-control" [value]="empresaSeleccionada!.ordenCompra" readonly>
+                            </div>
+                        </div>
+
                         <!-- Talonarios -->
                         <div class="form-group mb-3">
                             <label for="talonarios">Número de Talonarios</label>
@@ -32,11 +52,80 @@
                             <label for="unidades">Unidades por Talonario</label>
                             <input type="number" id="unidades" class="form-control" formControlName="unidades">
                         </div>
+
+                        <!-- Total -->
+                        <div class="form-group mb-3">
+                            <label>Total</label>
+                            <input type="text" class="form-control" formControlName="total" readonly>
+                        </div>
                         
                         <!-- Folio Inicial -->
                         <div class="form-group mb-3">
                             <label for="folioInicial">Folio Inicial</label>
                             <input type="number" id="folioInicial" class="form-control" formControlName="folioInicial">
+                        </div>
+
+                        <!-- Folio Final -->
+                        <div class="form-group mb-3">
+                            <label for="folioFinal">Folio Final</label>
+                            <input type="text" id="folioFinal" class="form-control" [value]="ticketForm.get('folioFinal')?.value" readonly>
+                        </div>
+
+                        <!-- Valor Neto de la Empresa Seleccionada -->
+                        <div class="form-group mb-3" *ngIf="empresaSeleccionada">
+                            <label>Valor Neto</label>
+                            <input type="text" class="form-control" [value]="empresaSeleccionada.valorNeto" readonly>
+                        </div>
+
+                        <!-- Selector de Estado del Ticket -->
+                        <div class="form-group mb-3">
+                            <label for="estado">Estado</label>
+                            <select id="estado" class="form-control" formControlName="estado">
+                            <option value="Pendiente">Pendiente</option>
+                            <option value="Creado">Creado</option>
+                            <option value="Disponible">Disponible</option>
+                            <option value="Entregado">Entregado</option>
+                            <option value="Impreso">Impreso</option>
+                            <option value="Nulo">Nulo</option>
+                            </select>
+                        </div>
+
+                        <!-- Facturado -->
+                        <div class="form-group mb-3">
+                            <label for="facturado">Facturado?</label>
+                            <select id="facturado" class="form-control" formControlName="facturado">
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>
+                            </select>
+                        </div>
+
+                        <!-- Mes a facturar -->
+                        <div class="form-group mb-3">
+                            <label for="mesFactura">Mes a facturar</label>
+                            <select id="mesFactura" class="form-control" formControlName="mesFactura">
+                                <option value="">Seleccione un mes</option>
+                                <option value="Enero">Enero</option>
+                                <option value="Febrero">Febrero</option>
+                              </select>
+                              
+                        </div>
+
+                        <!-- N° de factura -->
+                        <div class="form-group mb-3">
+                            <label for="factura">N° de Factura</label>
+                            <input type="text" id="factura" class="form-control" formControlName="factura">
+                        </div>
+
+                        <!-- Total Neto -->
+                        <div class="form-group mb-3">
+                            <label for="totalNeto">Total Neto</label>
+                            <input type="text" id="totalNeto" class="form-control" formControlName="totalNeto" readonly>
+                        </div>
+                        
+                        <!-- Total Facturado -->
+                        <div class="form-group mb-3">
+                            <label for="totalFactura">Total Facturado</label>
+                            <input type="text" id="totalFactura" class="form-control" formControlName="totalFactura" readonly>
                         </div>
                         
                         <!-- Observación -->
@@ -54,11 +143,14 @@
                         <!-- Botones -->
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary mr-2">Guardar</button>
-                            <button type="button" class="btn btn-secondary" (click)="router.navigate(['/listar-tickets'])">Cancelar</button>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+</div>
+
+<div class="btn-volver">
+    <button class="btn btn-primary" routerLink="/listar-tickets">Volver</button>
 </div>

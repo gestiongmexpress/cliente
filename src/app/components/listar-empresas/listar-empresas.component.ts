@@ -49,4 +49,19 @@ export class ListarEmpresasComponent implements OnInit {
       });
     }
   }
+
+  actualizarEstadoEmpresa(id: string, campo: 'vigente' | 'ordenCompra', event: Event): void {
+    const elemento = event.target as HTMLSelectElement;
+    const valorActualizado = elemento.value as 'Si' | 'No';
+    this.empresaService.actualizarEmpresa(id, { [campo]: valorActualizado }).subscribe({
+      next: () => {
+        this.toastr.success('Empresa actualizada con éxito');
+        this.cargarEmpresas();
+      },
+      error: (e) => {
+        console.error(e);
+        this.toastr.error('Error al actualizar la empresa');
+      }
+    });
+  }
 }

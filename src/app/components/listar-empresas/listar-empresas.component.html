@@ -22,8 +22,18 @@
                 <td>{{ i + 1 }}</td>
                 <td>{{ empresa.nombre }}</td>
                 <td>{{ empresa.rut }}</td>
-                <td>{{ empresa.vigente }}</td>
-                <td>{{ empresa.ordenCompra }}</td>
+                <td>
+                    <select class="form-select" (change)="actualizarEstadoEmpresa(empresa._id!, 'vigente', $event)">
+                        <option [selected]="empresa.vigente === 'Si'" value="Si">Si</option>
+                        <option [selected]="empresa.vigente === 'No'" value="No">No</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="form-select" (change)="actualizarEstadoEmpresa(empresa._id!, 'ordenCompra', $event)">
+                        <option [selected]="empresa.ordenCompra === 'Si'" value="Si">Si</option>
+                        <option [selected]="empresa.ordenCompra === 'No'" value="No">No</option>
+                    </select>
+                </td>
                 <td>{{ empresa.facturacion }}</td>
                 <td>{{ empresa.sucursal }}</td>
                 <td class="actions-cell">
