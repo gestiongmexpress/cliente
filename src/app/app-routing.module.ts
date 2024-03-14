@@ -32,6 +32,7 @@ import { PermisoComponent } from './components/permiso/permiso.component';
 import { CrearEmpresaComponent } from './components/crear-empresa/crear-empresa.component';
 import { ListarEmpresasComponent } from './components/listar-empresas/listar-empresas.component';
 import { AdministracionTicketsComponent } from './components/administracion-tickets/administracion-tickets.component';
+import { CrearTicketComponent } from './components/crear-ticket/crear-ticket.component';
 
 
 const routes: Routes = [
@@ -51,6 +52,7 @@ const routes: Routes = [
   { path: 'crear-empresa', component: CrearEmpresaComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Asistente']}},
   { path: 'crear-mantencion', component : CrearMantencionComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Enc. Logistica'] }},
   { path: 'crear-plaga', component : CrearPlagaComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista'] }},
+  { path: 'crear-ticket', component: CrearTicketComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Asistente']}},
   { path: 'crear-trabajador', component : CrearTrabajadorComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
   { path: 'editar-usuario/:id', component : RegistroComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
   { path: 'editar-trabajador/:id', component : CrearTrabajadorComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},

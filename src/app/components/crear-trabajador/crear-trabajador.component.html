@@ -345,6 +345,18 @@
               </div>
             </div>
 
+            <!-- Fecha en que el trabajador dejó de estar vigente -->
+            <div class="form-group mb-3" *ngIf="trabajadorForm.get('estadoEmpresa')?.value === 'No Vigente'">
+              <label for="fechaNoVigencia">Fecha en que el trabajador dejó de estar vigente</label>
+              <input type="date" id="fechaNoVigencia" class="form-control" formControlName="fechaNoVigencia">
+            </div>
+
+            <!-- Motivo de no vigencia -->
+            <div class="form-group mb-3" *ngIf="trabajadorForm.get('estadoEmpresa')?.value === 'No Vigente'">
+                <label for="razonNoVigencia">Motivo de no vigencia</label>
+                <input type="text" id="razonNoVigencia" class="form-control" formControlName="razonNoVigencia">
+            </div>
+
             <!-- Botones de acción -->
             <div class="form-group mb-3">
               <button type="submit" class="btn btn-success btn-lg float-end" [disabled]="!trabajadorForm.valid">Guardar</button>

@@ -57,7 +57,7 @@
   }
   
   .btn-verde-claro:hover {
-    background-color: #76de76; 
+    background-color: #519751; 
   }
 
   .notificacion-roja-suave {
@@ -78,4 +78,12 @@
     vertical-align: middle;
     text-align: center;
   }
+
+  .btn-oscuro {
+    background-color: #005d0c;
+    color: white;
+  }
   
+  .btn-oscuro:hover {
+    background-color: #1b7d00;
+  }

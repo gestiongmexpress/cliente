@@ -67,13 +67,23 @@
                         <!-- Sucursal -->
                         <div class="form-group mb-3">
                             <label for="sucursal">Sucursal</label>
-                            <input type="text" id="sucursal" class="form-control" formControlName="sucursal" placeholder="Sucursal">
+                            <select id="sucursal" class="form-control" formControlName="sucursal">
+                                <option value="" disabled>Seleccionar</option>
+                                <option value="Central">Central</option>
+                                <option value="Megacentro">Megacentro</option>
+                                <option value="Faremin">Faremin</option>
+                                <option value="Ovalle">Ovalle</option>
+                            </select>
                         </div>
 
                         <!-- Facturación -->
                         <div class="form-group mb-3">
                             <label for="facturacion">Facturación</label>
-                            <input type="text" id="facturacion" class="form-control" formControlName="facturacion" placeholder="Facturación">
+                            <select id="facturacion" class="form-control" formControlName="facturacion">
+                                <option value="" disabled>Seleccionar</option>
+                                <option value="Sociedad">Sociedad</option>
+                                <option value="Personal Natural">Personal Natural</option>
+                            </select>
                         </div>
 
                         <!-- Botones de Acción -->

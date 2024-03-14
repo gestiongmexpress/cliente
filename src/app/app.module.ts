@@ -43,6 +43,9 @@ import { PermisoComponent } from './components/permiso/permiso.component';
 import { CrearEmpresaComponent } from './components/crear-empresa/crear-empresa.component';
 import { ListarEmpresasComponent } from './components/listar-empresas/listar-empresas.component';
 import { AdministracionTicketsComponent } from './components/administracion-tickets/administracion-tickets.component';
+import { ListarTicketsComponent } from './components/listar-tickets/listar-tickets.component';
+import { GenerarTicketsComponent } from './components/generar-tickets/generar-tickets.component';
+import { CrearTicketComponent } from './components/crear-ticket/crear-ticket.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +83,10 @@ import { AdministracionTicketsComponent } from './components/administracion-tick
     PermisoComponent,
     CrearEmpresaComponent,
     ListarEmpresasComponent,
-    AdministracionTicketsComponent
+    AdministracionTicketsComponent,
+    ListarTicketsComponent,
+    GenerarTicketsComponent,
+    CrearTicketComponent
   ],
   imports: [
     BrowserModule,

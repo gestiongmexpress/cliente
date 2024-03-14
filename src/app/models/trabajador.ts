@@ -44,6 +44,8 @@ export class Trabajador {
     sueldoBase?: number;
     fechaActualizacionOferta?: Date;
     diasVacaciones?: number;
+    fechaNoVigencia?: Date;
+    razonNoVigencia?: string;
     horarioEntrada?: string;
     horarioSalida?: string;
     focotopiaCedula?: string;
@@ -108,6 +110,8 @@ export class Trabajador {
         sueldoBase?: number,
         fechaActualizacionOferta?: Date,
         diasVacaciones?: number,
+        fechaNoVigencia?: Date,
+        razonNoVigencia?: string,
         horarioEntrada?: string,
         horarioSalida?: string,
         focotopiaCedula?: string,
@@ -167,6 +171,8 @@ export class Trabajador {
         this.sueldoBase = sueldoBase;
         this.fechaActualizacionOferta = fechaActualizacionOferta;
         this.diasVacaciones = diasVacaciones;
+        this.fechaNoVigencia = fechaNoVigencia;
+        this.razonNoVigencia = razonNoVigencia;
         this.horarioEntrada = horarioEntrada;
         this.horarioSalida = horarioSalida;
         this.focotopiaCedula = focotopiaCedula;

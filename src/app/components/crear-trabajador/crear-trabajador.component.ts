@@ -62,6 +62,8 @@ export class CrearTrabajadorComponent implements OnInit {
         telefono: ['', Validators.pattern(/^\d+$/)]
       }),
       estadoEmpresa: ['', Validators.required],
+      fechaNoVigencia: [''],
+      razonNoVigencia: [''],
       fechaFiniquito: [''],
       causaFiniquito: [''],
       escalaRecomendacion: ['', [Validators.min(1), Validators.max(10)]],
@@ -99,6 +101,22 @@ export class CrearTrabajadorComponent implements OnInit {
     if (this.esModoEdicion) {
       this.esEditar();
     }
+
+    this.trabajadorForm.get('estadoEmpresa')?.valueChanges.subscribe((value) => {
+      const fechaNoVigenciaControl = this.trabajadorForm.get('fechaNoVigencia');
+      const razonNoVigenciaControl = this.trabajadorForm.get('razonNoVigencia');
+
+      if (value === 'No Vigente') {
+        fechaNoVigenciaControl?.setValidators([Validators.required]);
+        razonNoVigenciaControl?.setValidators([Validators.required]);
+      } else {
+        fechaNoVigenciaControl?.clearValidators();
+        razonNoVigenciaControl?.clearValidators();
+      }
+
+      fechaNoVigenciaControl?.updateValueAndValidity();
+      razonNoVigenciaControl?.updateValueAndValidity();
+    });
   }
 
   agregarTrabajador() {
