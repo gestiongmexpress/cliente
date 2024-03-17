@@ -1,4 +1,53 @@
 <div class="container mt-4">
+    <!-- Sección de Filtros -->
+    <div class="mb-3">
+        <form [formGroup]="filtroForm">
+        <div class="row g-3 align-items-center">
+            <!-- Filtro por Empresa -->
+            <div class="col-auto">
+            <label for="empresa" class="col-form-label">Empresa:</label>
+            <select id="empresa" class="form-select" formControlName="empresa">
+                <option value="">Todas</option>
+                <option *ngFor="let empresa of empresas" [value]="empresa._id">{{ empresa.nombre }}</option>
+            </select>
+            </div>
+    
+            <!-- Filtro por Estado de la Empresa -->
+            <div class="col-auto">
+            <label for="estadoEmpresa" class="col-form-label">Empresa vigente:</label>
+            <select id="estadoEmpresa" class="form-select" formControlName="estadoEmpresa">
+                <option value="">Todos</option>
+                <option value="Si">Sí</option>
+                <option value="No">No</option>
+            </select>
+            </div>
+    
+            <!-- Filtro por Orden de Compra -->
+            <div class="col-auto">
+            <label for="ordenCompra" class="col-form-label">Orden de Compra:</label>
+            <select id="ordenCompra" class="form-select" formControlName="ordenCompra">
+                <option value="">Todos</option>
+                <option value="Si">Sí</option>
+                <option value="No">No</option>
+            </select>
+            </div>
+    
+            <!-- Filtro por Estado del Ticket -->
+            <div class="col-auto">
+            <label for="estadoTicket" class="col-form-label">Estado del Ticket:</label>
+            <select id="estadoTicket" class="form-select" formControlName="estadoTicket">
+                <option value="">Todos</option>
+                <option value="Pendiente">Pendiente</option>
+                <option value="Creado">Creado</option>
+                <option value="Disponible">Disponible</option>
+                <option value="Entregado">Entregado</option>
+                <option value="Impreso">Impreso</option>
+                <option value="Nulo">Nulo</option>
+            </select>
+            </div>
+        </div>
+        </form>
+    </div>
     <div class="d-flex justify-content-between align-items-center">
         <h2>Listado de Tickets</h2>
         <button class="btn btn-primary" routerLink="/crear-ticket">Registrar Ticket</button>
@@ -9,22 +58,35 @@
             <th>#</th>
             <th>Fecha</th>
             <th>Empresa</th>
+            <th>Estado de la Empresa</th>                
             <th>Orden de Compra</th>
             <th>Talonarios</th>
             <th>Unidades</th>
             <th>Total</th>
+            <th>Estado del Ticket</th>
             <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let ticket of tickets; let i = index">
-            <td>{{ i + 1 }}</td>
-            <td>{{ dateFormatService.formatDate(ticket.fecha) }}</td>
-            <td>{{ getEmpresaNombre(ticket) }}</td>
-            <td>{{ ticket.ordenCompra }}</td>
-            <td>{{ ticket.talonarios }}</td>
-            <td>{{ ticket.unidades }}</td>
-            <td>{{ ticket.total }}</td>
+            <tr *ngFor="let ticket of ticketsFiltrados; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ dateFormatService.formatDate(ticket.fecha) }}</td>
+                <td>{{ getEmpresaNombre(ticket) }}</td>
+                <td>{{ getEstadoEmpresa(ticket) }}</td>
+                <td>{{ ticket.ordenCompra }}</td>
+                <td>{{ ticket.talonarios }}</td>
+                <td>{{ ticket.unidades }}</td>
+                <td>{{ ticket.total }}</td>
+                <td>
+                    <select class="form-select" (change)="onSelectEstadoChange(ticket._id, $event)">
+                        <option [selected]="ticket.estado === 'Pendiente'" value="Pendiente">Pendiente</option>
+                        <option [selected]="ticket.estado === 'Creado'" value="Creado">Creado</option>
+                        <option [selected]="ticket.estado === 'Disponible'" value="Disponible">Disponible</option>
+                        <option [selected]="ticket.estado === 'Entregado'" value="Entregado">Entregado</option>
+                        <option [selected]="ticket.estado === 'Impreso'" value="Impreso">Impreso</option>
+                        <option [selected]="ticket.estado === 'Nulo'" value="Nulo">Nulo</option>
+                    </select>
+                </td>
             <td>
             </td>
             </tr>

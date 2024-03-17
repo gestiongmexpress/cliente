@@ -1,4 +1,37 @@
 <div class="container mt-5">
+    <!-- Sección de Filtros -->
+    <div class="mb-3">
+        <form [formGroup]="filtroForm">
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+            <label for="vigente" class="col-form-label">Vigente:</label>
+            <select id="vigente" class="form-select" formControlName="vigente">
+                <option value="">Todos</option>
+                <option value="Si">Sí</option>
+                <option value="No">No</option>
+            </select>
+            </div>
+            <div class="col-auto">
+            <label for="ordenCompra" class="col-form-label">Orden de Compra:</label>
+            <select id="ordenCompra" class="form-select" formControlName="ordenCompra">
+                <option value="">Todos</option>
+                <option value="Si">Sí</option>
+                <option value="No">No</option>
+            </select>
+            </div>
+            <div class="col-auto">
+            <label for="sucursal" class="col-form-label">Sucursal:</label>
+            <select id="sucursal" class="form-select" formControlName="sucursal">
+                <option value="">Todos</option>
+                <option value="Central">Central</option>
+                <option value="Megacentro">Megacentro</option>
+                <option value="Faremin">Faremin</option>
+                <option value="Ovalle">Ovalle</option>
+            </select>
+            </div>
+        </div>
+        </form>
+    </div>
     <h2>Listado de Empresas</h2>
     <div class="text-end mb-3">
       <button class="btn btn-primary" routerLink="/crear-empresa">Agregar Empresa</button>
@@ -18,7 +51,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let empresa of empresas; let i = index">
+            <tr *ngFor="let empresa of empresasFiltradas; let i = index">
                 <td>{{ i + 1 }}</td>
                 <td>{{ empresa.nombre }}</td>
                 <td>{{ empresa.rut }}</td>
