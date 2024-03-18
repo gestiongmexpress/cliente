@@ -64,6 +64,7 @@
             <th>Unidades</th>
             <th>Total</th>
             <th>Estado del Ticket</th>
+            <th>Vigencia</th>
             <th>Acciones</th>
             </tr>
         </thead>
@@ -87,6 +88,7 @@
                         <option [selected]="ticket.estado === 'Nulo'" value="Nulo">Nulo</option>
                     </select>
                 </td>
+                <td>{{ ticket.vigencia }}</td>
             <td>
             </td>
             </tr>

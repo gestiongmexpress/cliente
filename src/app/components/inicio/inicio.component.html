@@ -52,10 +52,12 @@
       </thead>
       <tbody>
         <tr *ngFor="let trabajador of trabajadoresContratoVencido">
-          <td>{{ trabajador.nombre }}</td>
+          <td>
+            <a [routerLink]="['/editar-trabajador', trabajador._id]">{{ trabajador.nombre }}</a>
+          </td>
           <td>{{ formatDate(trabajador.fechaTerminoContrato!) }}</td>
         </tr>
-      </tbody>
+      </tbody>      
     </table>
   </div>
 

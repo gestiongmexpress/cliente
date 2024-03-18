@@ -38,10 +38,16 @@ export class ListarTicketsComponent implements OnInit {
   cargarTickets(): void {
     this.registroTicketService.obtenerTodosLosRegistrosTickets().subscribe({
       next: (tickets) => {
-        this.tickets = tickets;
+        this.tickets = tickets.map(ticket => {
+          ticket.vigencia = this.esVigente(new Date(ticket.fechaCaducidad));
+          return ticket;
+        });
         this.ticketsFiltrados = [...this.tickets];
       },
-      error: (e) => console.error(e)
+      error: (e) => {
+        console.error(e);
+        this.toastr.error('Error al cargar los tickets');
+      }
     });
   }
 
@@ -113,5 +119,10 @@ export class ListarTicketsComponent implements OnInit {
     if (ticketId) {
       this.cambiarEstado(ticketId, nuevoEstado);
     }
+  }
+
+  esVigente(fechaCaducidad: Date): string {
+    const hoy = new Date();
+    return hoy < fechaCaducidad ? 'Vigente' : 'No Vigente';
   }  
 }
