@@ -14,13 +14,17 @@ export class CrearMantencionComponent implements OnInit {
   mantencionForm: FormGroup;
   titulo = 'Crear Mantención';
   id: string | null;
+  filtroSucursal: string;
+  filtroAno: string;
+  filtroArea: string;
 
   constructor(
     private fb: FormBuilder, 
     private router: Router, 
     private toastr: ToastrService, 
     private _mantencionService: MantencionService,
-    private aRouter: ActivatedRoute
+    private aRouter: ActivatedRoute,
+    private route: ActivatedRoute
   ) {
     this.mantencionForm = this.fb.group({
       nombre: ['', Validators.required],
@@ -35,6 +39,9 @@ export class CrearMantencionComponent implements OnInit {
       fechaRealizacion: [''] 
     });
     this.id = this.aRouter.snapshot.paramMap.get('id');
+    this.filtroSucursal = '';
+    this.filtroAno = '';
+    this.filtroArea = '';
   }
 
   esModoEdicion = false;
@@ -42,39 +49,47 @@ export class CrearMantencionComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.aRouter.snapshot.paramMap.get('id');
     this.esModoEdicion = !!this.id;
+    this.route.queryParams.subscribe(params => {
+      this.filtroSucursal = params['sucursal'] || '';
+      this.filtroAno = params['ano'] || '';
+      this.filtroArea = params['area'] || '';
+    });
     this.esEditar();
   }
 
   agregarMantencion() {
     if (this.mantencionForm.valid) {
-      const mantencion: Mantencion = this.mantencionForm.value;
-  
-      if (mantencion.proveedor && mantencion.fechaRealizacion) {
-        mantencion.estado = 'Realizado';
-      } else {
-        mantencion.estado = 'Pendiente';
-      }
-  
-      if (this.id) {
-        // Modo edición: actualiza la mantención existente
-        this._mantencionService.editarMantencion(this.id, mantencion).subscribe(data => {
-          this.toastr.info('Mantención actualizada', 'La mantención fue actualizada con éxito');
-          this.router.navigate(['/listar-mantencion']);
-        }, error => {
-          this.toastr.error('Error al actualizar la mantención');
+        const mantencion: Mantencion = this.mantencionForm.value;
+        if (mantencion.proveedor && mantencion.fechaRealizacion) {
+            mantencion.estado = 'Realizado';
+        } else {
+            mantencion.estado = 'Pendiente';
+        }
+        const request = this.id
+            ? this._mantencionService.editarMantencion(this.id, mantencion)
+            : this._mantencionService.guardarMantencion(mantencion);
+        request.subscribe({
+            next: (data) => {
+                const message = this.id
+                    ? 'Mantención actualizada con éxito'
+                    : 'Mantención registrada con éxito';
+                this.toastr.success(message);
+                this.router.navigate(['/listar-mantencion'], {
+                    queryParams: {
+                        sucursal: this.filtroSucursal,
+                        ano: this.filtroAno,
+                        area: this.filtroArea,
+                    },
+                });
+            },
+            error: (error) => {
+                this.toastr.error('Error al procesar la mantención');
+                console.error(error);
+            },
         });
-      } else {
-        // Modo creación: guarda la nueva mantención
-        this._mantencionService.guardarMantencion(mantencion).subscribe(data => {
-          this.toastr.success('Mantención registrada', 'La mantención fue registrada con éxito');
-          this.router.navigate(['/listar-mantencion']);
-        }, error => {
-          this.toastr.error('Error al registrar la mantención');
-        });
-      }
     }
   }
-  
+
 
   esEditar() {
     if (this.id) {

@@ -116,7 +116,7 @@
             <!-- Botones de acción -->
             <div class="form-group mb-3">
               <button type="submit" class="btn btn-success btn-lg float-end" [disabled]="!mantencionForm.valid">GUARDAR</button>
-              <button routerLink="/listar-mantencion" class="btn btn-secondary btn-lg float-start">VOLVER</button>
+              <a class="btn btn-secondary btn-lg float-start" [routerLink]="['/listar-mantencion']" [queryParams]="{ sucursal: filtroSucursal, ano: filtroAno, area: filtroArea }">VOLVER</a>
             </div>
           </form>
         </div>

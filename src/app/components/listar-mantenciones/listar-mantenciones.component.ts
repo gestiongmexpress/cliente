@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Mantencion } from '../../models/mantencion';
 import { MantencionService } from '../../services/mantencion.service';
 import { ChangeDetectorRef } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 interface MantencionAgrupada {
   [mes: string]: { estado: string, id: string | undefined };
@@ -49,13 +50,27 @@ export class ListarMantencionesComponent implements OnInit {
   };
 
   constructor(private mantencionService: MantencionService,
-              private cdRef: ChangeDetectorRef) { }
+              private cdRef: ChangeDetectorRef,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.obtenerMantenciones();
-    this.aplicarFiltro();
-    this.obtenerRolUsuario();
+    this.route.queryParams.subscribe(params => {
+      if (params['sucursal']) {
+        this.filtroSucursal = params['sucursal'];
+      }
+      if (params['ano']) {
+        this.filtroAno = params['ano'];
+      }
+      if (params['area']) {
+        this.filtroArea = params['area'];
+      }
+      this.obtenerMantenciones();
+      this.aplicarFiltro();
+      });
+      this.obtenerRolUsuario();
   }
+
   obtenerRolUsuario() {
     const token = localStorage.getItem('token');
     if (token) {
@@ -158,7 +173,6 @@ export class ListarMantencionesComponent implements OnInit {
     return mantenciones[mes]?.estado === 'bg-success';
   }
 
-  // Función para obtener el estado de la mantencion para visualización
   obtenerEstadoMantencion(mantenciones: MantencionAgrupada, mes: string): string {
     const estado = mantenciones[mes]?.estado;
     if (estado === 'bg-success') {

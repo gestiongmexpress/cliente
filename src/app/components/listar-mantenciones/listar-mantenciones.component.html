@@ -72,8 +72,9 @@
               <div *ngIf="existeMantencionMes(agrupaciones[clave].porMes, mesesMap[mes])">
                 <!-- Mostrar botón de edición si la capacitación está pendiente o si está realizada pero el usuario es Administrador o Gerente -->
                 <a *ngIf="!esMantencionRealizada(agrupaciones[clave].porMes, mesesMap[mes]) || rolUsuario === 'Administrador' || rolUsuario === 'Gerente'" 
-                   [routerLink]="['/editar-mantencion', obtenerIdMantencionMes(agrupaciones[clave].porMes, mesesMap[mes])]" 
-                   class="icono-accion">
+                  [routerLink]="['/editar-mantencion', obtenerIdMantencionMes(agrupaciones[clave].porMes, mesesMap[mes])]"
+                  [queryParams]="{ sucursal: filtroSucursal, ano: filtroAno, area: filtroArea }" 
+                  class="icono-accion">
                   <i class="fas fa-edit"></i>
                 </a>
                 
