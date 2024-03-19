@@ -67,6 +67,14 @@
     padding: 10px;
     border-radius: 5px;
   }
+
+  .notificacion-azul-suave {
+    background-color: #ccfffd; 
+    color: black;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+  }
   
   table {
     width: 100%;

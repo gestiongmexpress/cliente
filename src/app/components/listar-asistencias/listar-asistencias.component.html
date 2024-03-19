@@ -1,30 +1,31 @@
-<div class="container mt-5">
-  <h2>Listado de Asistencias</h2>
-  <!-- Sección de Filtros -->
-  <div class="mb-3">
-    <form [formGroup]="filtroForm">
-      <div class="row align-items-center">
-        <!-- Filtro por Fecha -->
-        <div class="col-md-3">
-          <label for="fecha" class="col-form-label">Fecha:</label>
-          <input type="month" id="fecha" class="form-control" formControlName="fecha">
+<app-layout>
+  <div class="container mt-5">
+    <h2>Listado de Asistencias</h2>
+    <!-- Sección de Filtros -->
+    <div class="mb-3">
+      <form [formGroup]="filtroForm">
+        <div class="row align-items-center">
+          <!-- Filtro por Fecha -->
+          <div class="col-md-3">
+            <label for="fecha" class="col-form-label">Fecha:</label>
+            <input type="month" id="fecha" class="form-control" formControlName="fecha">
+          </div>
+          <!-- Filtro por Trabajador -->
+          <div class="col-md-3">
+            <label for="trabajador" class="col-form-label">Trabajador:</label>
+            <select id="trabajador" class="form-select" formControlName="trabajador">
+              <option value="" disabled>Seleccionar trabajador</option>
+              <option *ngFor="let trabajador of trabajadores" [ngValue]="trabajador.nombre">{{ trabajador.nombre }}</option>
+            </select>
+          </div>        
+          <!-- Botón de Añadir Asistencia Mensual -->
+          <div class="col text-end">
+            <button class="btn btn-primary" routerLink="/crear-asistencia">Añadir asistencia mensual</button>
+            <button class="btn btn-primary" (click)="exportarTablaAExcel()" [disabled]="!filtroForm.valid">Exportar a Excel</button>
+          </div>
         </div>
-        <!-- Filtro por Trabajador -->
-        <div class="col-md-3">
-          <label for="trabajador" class="col-form-label">Trabajador:</label>
-          <select id="trabajador" class="form-select" formControlName="trabajador">
-            <option value="" disabled>Seleccionar trabajador</option>
-            <option *ngFor="let trabajador of trabajadores" [ngValue]="trabajador.nombre">{{ trabajador.nombre }}</option>
-          </select>
-        </div>        
-        <!-- Botón de Añadir Asistencia Mensual -->
-        <div class="col text-end">
-          <button class="btn btn-primary" routerLink="/crear-asistencia">Añadir asistencia mensual</button>
-          <button class="btn btn-primary" (click)="exportarTablaAExcel()" [disabled]="!filtroForm.valid">Exportar a Excel</button>
-        </div>
-      </div>
-    </form>
-  </div>
+      </form>
+    </div>
   
     <!-- Tabla de Asistencias -->
     <div class="table-responsive">
@@ -109,8 +110,6 @@
         <tfoot>
           <tr>
             <th>Días con horas extras de entrada:</th>
-          </tr>
-          <tr>
             <td colspan="2">
               <ul>
                 <li *ngFor="let diaExtra of diasConHorasExtrasDiurnas; let i = index" class="list-item">
@@ -124,8 +123,6 @@
           </tr>
           <tr>
             <th>Días con horas extras de salida:</th>
-          </tr>
-          <tr>
             <td colspan="2">
               <ul>
                 <li *ngFor="let diaExtra of diasConHorasExtrasTardias; let i = index" class="list-item">
@@ -139,8 +136,6 @@
           </tr>
           <tr>
             <th>Días con permisos de entrada:</th>
-          </tr>
-          <tr>
             <td colspan="2">
               <ul>
                 <li *ngFor="let diaPermiso of diasConPermisoDiurno; let i = index" class="list-item">
@@ -154,8 +149,6 @@
           </tr>
           <tr>
             <th>Días con permisos de salida:</th>
-          </tr>
-          <tr>
             <td colspan="2">
               <ul>
                 <li *ngFor="let diaPermiso of diasConPermisoTardio; let i = index" class="list-item">
@@ -169,8 +162,9 @@
           </tr>
         </tfoot>
       </table>
-    </div>    
-
-  <div class="col-md-4 text-end">
-    <button class="btn btn-primary btn-volver" routerLink="/recursos-humanos">Volver</button>
+    </div>
+    <div class="col-md-4 text-end">
+      <button class="btn btn-primary btn-volver" routerLink="/recursos-humanos">Volver</button>
+    </div>
   </div>
+</app-layout>

@@ -14,15 +14,18 @@
       </thead>
       <tbody>
         <tr *ngFor="let trabajador of trabajadoresConContratoPr">
-          <td>{{ trabajador.nombre }}</td>
+          <td>
+            <a [routerLink]="['/editar-trabajador', trabajador._id]">{{ trabajador.nombre }}</a>
+          </td>
           <td>{{ dateFormatService.formatDate(trabajador.fechaTerminoContrato!) }}</td>
         </tr>
       </tbody>
     </table>
   </div>
 
+
   <!-- Notificaciones de Cumpleaños Próximos -->
-  <div *ngIf="trabajadoresConCumplePr.length > 0" class="notificacion-roja-suave">
+  <div *ngIf="trabajadoresConCumplePr.length > 0" class="notificacion-azul-suave">
     <h3>Cumpleaños próximos</h3>
     <table>
       <thead>

@@ -1,69 +1,72 @@
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card shadow">
-        <div class="card-header">
-          <h4 class="text-center">Detalles de la Capacitación</h4>
-        </div>
-        <div class="card-body">
-          <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Nombre:</label>
-            <div class="col-sm-8">
-              <input type="text" readonly class="form-control-plaintext" id="staticNombre" value="{{ capacitacion.nombreCapacitacion }}">
+<app-layout>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow">
+          <div class="card-header">
+            <h4 class="text-center">Detalles de la Capacitación</h4>
+          </div>
+          <div class="card-body">
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Nombre:</label>
+              <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticNombre" value="{{ capacitacion.nombreCapacitacion }}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Sucursal:</label>
+              <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticSucursal" value="{{ capacitacion.sucursal }}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Encargado:</label>
+              <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticEncargado" value="{{ capacitacion.encargado }}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Planificado:</label>
+              <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticPlanificado" [value]="capacitacion.mes + ' ' + capacitacion.ano">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Fecha de Realización:</label>
+              <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticFechaRealizacion" [value]="diaRealizacionFormatted">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Fecha de actualización:</label>
+              <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticFechaActualizacion" [value]="fechaRealizacionFormatted">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Registro de asistencia:</label>
+              <div class="col-sm-8">
+                <a [href]="capacitacion.asistentes" target="_blank" class="btn btn-link">Ver archivo</a>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Documento de capacitación:</label>
+              <div class="col-sm-8">
+                <a [href]="capacitacion.nota" target="_blank" class="btn btn-link">Ver archivo</a>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Modificado por última vez por:</label>
+              <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="staticUltimoEditor" [value]="capacitacion.ultimoEditor + ' (' + capacitacion.rolEditor + ')'">
+              </div>
             </div>
           </div>
-          <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Sucursal:</label>
-            <div class="col-sm-8">
-              <input type="text" readonly class="form-control-plaintext" id="staticSucursal" value="{{ capacitacion.sucursal }}">
-            </div>
+          <div class="card-footer text-center">
+            <a routerLink="/listar-capacitacion" class="btn btn-secondary">Volver</a>
           </div>
-          <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Encargado:</label>
-            <div class="col-sm-8">
-              <input type="text" readonly class="form-control-plaintext" id="staticSucursal" value="{{ capacitacion.encargado }}">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Planificado:</label>
-            <div class="col-sm-8">
-              <input type="text" readonly class="form-control-plaintext" id="staticPlanificado" [value]="capacitacion.mes + ' ' + capacitacion.ano">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Fecha de Realización:</label>
-            <div class="col-sm-8">
-              <input type="text" readonly class="form-control-plaintext" id="staticFechaRealizacion" [value]="diaRealizacionFormatted">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Fecha de actualización:</label>
-            <div class="col-sm-8">
-              <input type="text" readonly class="form-control-plaintext" id="staticFechaRealizacion" [value]="fechaRealizacionFormatted">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Registro de asistencia:</label>
-            <div class="col-sm-8">
-              <a [href]="capacitacion.asistentes" target="_blank" class="btn btn-link">Ver archivo</a>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Documento de capacitacion:</label>
-            <div class="col-sm-8">
-              <a [href]="capacitacion.nota" target="_blank" class="btn btn-link">Ver archivo</a>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Modificado por última vez por:</label>
-            <div class="col-sm-8">
-              <input type="text" readonly class="form-control-plaintext" id="staticUltimoEditor" [value]="capacitacion.ultimoEditor + ' (' + capacitacion.rolEditor + ')'">
-            </div>
-        </div>
-        <div class="card-footer text-center">
-          <a routerLink="/listar-capacitacion" class="btn btn-secondary">Volver</a>
         </div>
       </div>
     </div>
   </div>
-</div>
+</app-layout>
