@@ -1,0 +1,45 @@
+<app-layout>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <div class="card-header" style="background-color: #009688; color: #dfffff;">
+                        <h4>Abonar a Préstamo</h4>
+                    </div>
+                    <div class="card-body" style="background-color: #e0f7fa;">
+                        <!-- Mostrando monto del préstamo y saldo actual -->
+                        <div *ngIf="prestamo">
+                            <p><strong>Monto del préstamo:</strong> {{ prestamo.monto | currency:'CLP':'symbol-narrow':'1.0-0' }}</p>
+                            <p><strong>Saldo actual:</strong> {{ prestamo.saldo | currency:'CLP':'symbol-narrow':'1.0-0' }}</p>
+                            <p><strong>Saldo post abono:</strong> {{ (prestamo.saldo - abonoForm.get('abono')?.value) | currency:'CLP':'symbol-narrow':'1.0-0' }}</p>
+                            <p><strong>Total de cuotas:</strong> {{ prestamo.cuotas }}</p>
+                            <p><strong>Monto de cada cuota restante:</strong> {{ (prestamo.saldo - abonoForm.get('abono')?.value) / prestamo.cuotas | currency:'CLP':'symbol-narrow':'1.0-0' }}</p>
+                        </div>
+                        <form [formGroup]="abonoForm" (ngSubmit)="abonar()">
+                            <!-- Campo para el monto a abonar -->
+                            <div class="form-group mb-3">
+                                <label for="abono" class="form-label">Monto a Abonar</label>
+                                <input type="number" class="form-control" id="abono" formControlName="abono" placeholder="Ingrese el monto a abonar">
+                                <!-- Mensajes de validación -->
+                                <ng-container *ngIf="abonoForm.get('abono') as abonoControl">
+                                    <div *ngIf="abonoControl.touched && abonoControl.errors" class="text-danger">
+                                        <div *ngIf="abonoControl.errors['required']">El monto a abonar es obligatorio.</div>
+                                        <div *ngIf="abonoControl.errors['min']">El monto a abonar debe ser mayor a 0.</div>
+                                        <div *ngIf="abonoControl.errors['montoMaximo']" class="text-danger">
+                                          El monto a abonar no puede ser mayor al saldo actual.
+                                        </div>
+                                      </div>                                      
+                                </ng-container>
+                            </div>
+                            <!-- Botones para abonar y volver -->
+                            <div class="form-group mb-3 form-buttons-container">
+                                <button type="submit" class="btn btn-primary" [disabled]="!abonoForm.valid">Abonar</button>
+                                <a class="btn btn-secondary" routerLink="/listar-prestamos">Cancelar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-layout>

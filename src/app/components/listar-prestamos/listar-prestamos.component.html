@@ -63,6 +63,7 @@
             <th>Cuotas Totales</th>
             <th>Monto Cuota</th>
             <th>Saldo Restante</th>
+            <th>Descripción</th>
             <th>Estado</th>
             <th>Fecha de Solicitud</th>
             <th>Acciones</th>
@@ -84,24 +85,28 @@
             <td>{{ prestamo.cuotas }}</td>
             <td>{{ prestamo.cuotaMensual | currency:'CLP':'symbol':'1.0-0' }}</td>
             <td>{{ prestamo.saldo | currency:'CLP':'symbol':'1.0-0' }}</td>
+            <td>{{ prestamo.descripcion }}</td>
             <td>{{ prestamo.estado }}</td>
             <td>{{ dateFormatService.formatDate(prestamo.fechaInicio) }}</td>
             <td class="text-nowrap">
               <div class="btn-group" role="group">
                 <!-- Botón Editar -->
-                  <button class="btn btn-outline-primary btn-sm" *ngIf="prestamo._id" (click)="editarPrestamo(prestamo._id)">
-                    <i class="fa fa-edit"></i> 
-                  </button>
+                <button class="btn btn-outline-primary btn-sm" *ngIf="prestamo._id" (click)="editarPrestamo(prestamo._id)">
+                  <i class="fa fa-edit"></i> 
+                </button>
 
-                  <!-- Botón de Eliminar -->
-                  <button class="btn btn-outline-danger btn-sm" (click)="eliminarPrestamo(prestamo._id!)">
-                    <i class="fa fa-trash"></i> 
-                  </button>
+                <!-- Botón de Eliminar -->
+                <button class="btn btn-outline-danger btn-sm" (click)="eliminarPrestamo(prestamo._id!)">
+                  <i class="fa fa-trash"></i> 
+                </button>
 
-                  <!-- Botón Pagar Cuota -->
-                  <button class="btn btn-outline-success btn-sm" (click)="pagarCuota(prestamo)">
-                    Pagar cuota
-                  </button>
+                <!-- Botón Abonar Préstamo -->
+                <button class="btn btn-outline-success btn-sm" (click)="router.navigate(['/abonar-prestamo', prestamo._id])" [disabled]="prestamo.estado === 'Finalizado'">
+                  Abonar
+                </button>
+
+                <!-- Botón Pagar Cuota -->
+                  <button class="btn btn-outline-success btn-sm" *ngIf="prestamo._id" (click)="pagarCuota(prestamo)"[disabled]="prestamo.estado === 'Finalizado'">Pagar cuota</button>
               </div>
             </td>
           </tr>

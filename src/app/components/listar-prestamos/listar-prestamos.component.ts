@@ -26,7 +26,7 @@ export class ListarPrestamosComponent implements OnInit {
     private prestamoService: PrestamoService,
     private trabajadorService: TrabajadorService, 
     private fb: FormBuilder, 
-    private router: Router, 
+    public router: Router, 
     public dateFormatService: DateFormatService,
     private toastr: ToastrService
   ) {

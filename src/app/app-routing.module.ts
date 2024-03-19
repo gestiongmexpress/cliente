@@ -34,6 +34,7 @@ import { ListarEmpresasComponent } from './components/listar-empresas/listar-emp
 import { AdministracionTicketsComponent } from './components/administracion-tickets/administracion-tickets.component';
 import { CrearTicketComponent } from './components/crear-ticket/crear-ticket.component';
 import { ListarTicketsComponent } from './components/listar-tickets/listar-tickets.component';
+import { AbonarPrestamoComponent } from './components/abonar-prestamo/abonar-prestamo.component';
 
 
 const routes: Routes = [
@@ -68,6 +69,7 @@ const routes: Routes = [
   { path: 'detalle-mantencion/:id', component: DetalleMantencionComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Enc. Logistica'] }},
   { path: 'detalle-trabajador/:id', component: DetalleTrabajadorComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'detalle-plaga/:id', component: DetallePlagaComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista'] }},
+  { path: 'abonar-prestamo/:id', component: AbonarPrestamoComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'registrar', component: RegistroComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'auditoria', component: AuditoriaComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'termino-contrato', component: TerminosContratoComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},

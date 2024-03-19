@@ -47,6 +47,7 @@ import { ListarTicketsComponent } from './components/listar-tickets/listar-ticke
 import { GenerarTicketsComponent } from './components/generar-tickets/generar-tickets.component';
 import { CrearTicketComponent } from './components/crear-ticket/crear-ticket.component';
 import { LayoutComponent } from './components/layout/layout.component';
+import { AbonarPrestamoComponent } from './components/abonar-prestamo/abonar-prestamo.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { LayoutComponent } from './components/layout/layout.component';
     ListarTicketsComponent,
     GenerarTicketsComponent,
     CrearTicketComponent,
-    LayoutComponent
+    LayoutComponent,
+    AbonarPrestamoComponent
   ],
   imports: [
     BrowserModule,
