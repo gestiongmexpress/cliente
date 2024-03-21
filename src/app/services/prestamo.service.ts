@@ -19,7 +19,6 @@ export class PrestamoService {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
 
-
   guardarPrestamo(prestamo: Prestamo): Observable<any> {
     return this.http.post(this.apiUrl, prestamo);
   }

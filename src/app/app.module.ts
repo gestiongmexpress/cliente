@@ -48,6 +48,8 @@ import { GenerarTicketsComponent } from './components/generar-tickets/generar-ti
 import { CrearTicketComponent } from './components/crear-ticket/crear-ticket.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { AbonarPrestamoComponent } from './components/abonar-prestamo/abonar-prestamo.component';
+import { UsoTicketComponent } from './components/uso-ticket/uso-ticket.component';
+import { RegistroTicketsComponent } from './components/registro-tickets/registro-tickets.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +92,9 @@ import { AbonarPrestamoComponent } from './components/abonar-prestamo/abonar-pre
     GenerarTicketsComponent,
     CrearTicketComponent,
     LayoutComponent,
-    AbonarPrestamoComponent
+    AbonarPrestamoComponent,
+    UsoTicketComponent,
+    RegistroTicketsComponent
   ],
   imports: [
     BrowserModule,
