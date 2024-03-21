@@ -37,6 +37,7 @@ import { ListarTicketsComponent } from './components/listar-tickets/listar-ticke
 import { AbonarPrestamoComponent } from './components/abonar-prestamo/abonar-prestamo.component';
 import { UsoTicketComponent } from './components/uso-ticket/uso-ticket.component';
 import { RegistroTicketsComponent } from './components/registro-tickets/registro-tickets.component';
+import { ListarUsosComponent } from './components/listar-usos/listar-usos.component';
 
 
 const routes: Routes = [
@@ -51,6 +52,7 @@ const routes: Routes = [
   { path: 'listar-cumples', component: CumplesComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
   { path: 'listar-tickets', component: ListarTicketsComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Asistente']}},
   { path: 'listar-prestamos', component: ListarPrestamosComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
+  { path: 'listar-usos', component: ListarUsosComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Asistente']}},
   { path: 'listar-asistencias', component: ListarAsistenciasComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
   { path: 'crear-capacitacion', component : CrearCapacitacionComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista', 'APR', 'Enc. Logistica'] }},
   { path: 'crear-asistencia', component: CrearAsistenciaComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},

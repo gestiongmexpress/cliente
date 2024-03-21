@@ -5,8 +5,8 @@ export interface UsoTicket {
   fecha: Date;
   cantidad: number;
   empresa: Empresa | string;
-  ticketPendiente: string;
-  cuantos: number;
+  ticketPendiente?: string;
+  cuantos?: number;
   servicio: string;
   observacion?: string;
   ano: number;
