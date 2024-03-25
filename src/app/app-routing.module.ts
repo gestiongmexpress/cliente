@@ -38,6 +38,8 @@ import { AbonarPrestamoComponent } from './components/abonar-prestamo/abonar-pre
 import { UsoTicketComponent } from './components/uso-ticket/uso-ticket.component';
 import { RegistroTicketsComponent } from './components/registro-tickets/registro-tickets.component';
 import { ListarUsosComponent } from './components/listar-usos/listar-usos.component';
+import { RegistrarPerdidaComponent } from './components/registrar-perdida/registrar-perdida.component';
+import { ListarPerdidasComponent } from './components/listar-perdidas/listar-perdidas.component';
 
 
 const routes: Routes = [
@@ -54,6 +56,7 @@ const routes: Routes = [
   { path: 'listar-prestamos', component: ListarPrestamosComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
   { path: 'listar-usos', component: ListarUsosComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Asistente']}},
   { path: 'listar-asistencias', component: ListarAsistenciasComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
+  { path: 'listar-perdidas', component: ListarPerdidasComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Asistente']}},
   { path: 'crear-capacitacion', component : CrearCapacitacionComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Nutricionista', 'APR', 'Enc. Logistica'] }},
   { path: 'crear-asistencia', component: CrearAsistenciaComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador']}},
   { path: 'crear-empresa', component: CrearEmpresaComponent, canActivate: [AuthGuard], data: { roles: ['Gerente', 'Administrador', 'Asistente']}},
@@ -82,6 +85,7 @@ const routes: Routes = [
   { path: 'registro-ticket', component: RegistroTicketsComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente', 'Asistente']}},
   { path: 'crear-prestamo', component: CrearPrestamoComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'administracion-tickets', component: AdministracionTicketsComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente', 'Asistente']}},
+  { path: 'registrar-perdida', component: RegistrarPerdidaComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente', 'Asistente']}},
   { path: 'recursos-humanos', component: RecursosHumanosComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'horas-extras/:id', component: HorasExtrasComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
   { path: 'permisos/:id', component: PermisoComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},

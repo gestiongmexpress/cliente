@@ -1,0 +1,73 @@
+<app-layout>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Listado de Pérdidas y Encuentros</h2>
+        <div class="mb-4">
+            <form [formGroup]="filtroForm" class="row g-3 align-items-end justify-content-between">
+                <div class="col-auto">
+                    <!-- Filtro por Empresa -->
+                    <label for="empresa" class="form-label">Empresa:</label>
+                    <select id="empresa" class="form-select" formControlName="empresa">
+                        <option value="">Todas</option>
+                        <option *ngFor="let empresa of empresas" [value]="empresa._id">{{ empresa.nombre }}</option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <!-- Filtro por Estado -->
+                    <label for="estado" class="form-label">Estado:</label>
+                    <select id="estado" class="form-select" formControlName="estado">
+                        <option value="">Todos</option>
+                        <option value="Perdidos">Perdidos</option>
+                        <option value="Encontrados">Encontrados</option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <!-- Filtro de Fecha Inicio -->
+                    <label for="fechaInicio" class="form-label">Fecha Inicio:</label>
+                    <input type="date" id="fechaInicio" class="form-control" formControlName="fechaInicio">
+                </div>
+                <div class="col-auto">
+                    <!-- Filtro de Fecha Fin -->
+                    <label for="fechaFin" class="form-label">Fecha Fin:</label>
+                    <input type="date" id="fechaFin" class="form-control" formControlName="fechaFin">
+                </div>
+                <div class="col-auto align-self-end">
+                    <!-- Botón Registrar Nueva Pérdida -->
+                    <button class="btn btn-primary" routerLink="/registrar-perdida">Registrar Nueva Pérdida</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Tabla de Pérdidas con Filtros Aplicados -->
+        <table class="table table-striped table-rounded">
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th>#</th>
+                    <th>Fecha</th>
+                    <th>Empresa</th>
+                    <th>Cantidad</th>
+                    <th>Estado</th>
+                    <th>Año</th>
+                    <th>Observación</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let perdida of perdidasFiltradas; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ perdida.fecha | date:'shortDate' }}</td>
+                    <td>{{ getEmpresaNombre(perdida) }}</td>
+                    <td>{{ perdida.cantidad }}</td>
+                    <td>{{ perdida.estado }}</td>
+                    <td>{{ perdida.ano }}</td>
+                    <td>{{ perdida.observacion || 'N/A' }}</td>
+                    <td>
+                        <button class="btn btn-sm btn-danger" *ngIf="perdida._id" (click)="eliminarPerdida(perdida._id)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="text-center mt-4">
+            <button class="btn btn-primary btn-volver" routerLink="/listar-tickets">Volver</button>
+        </div>
+    </div>
+</app-layout>

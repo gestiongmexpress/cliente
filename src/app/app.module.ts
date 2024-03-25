@@ -51,6 +51,8 @@ import { AbonarPrestamoComponent } from './components/abonar-prestamo/abonar-pre
 import { UsoTicketComponent } from './components/uso-ticket/uso-ticket.component';
 import { RegistroTicketsComponent } from './components/registro-tickets/registro-tickets.component';
 import { ListarUsosComponent } from './components/listar-usos/listar-usos.component';
+import { ListarPerdidasComponent } from './components/listar-perdidas/listar-perdidas.component';
+import { RegistrarPerdidaComponent } from './components/registrar-perdida/registrar-perdida.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +98,9 @@ import { ListarUsosComponent } from './components/listar-usos/listar-usos.compon
     AbonarPrestamoComponent,
     UsoTicketComponent,
     RegistroTicketsComponent,
-    ListarUsosComponent
+    ListarUsosComponent,
+    ListarPerdidasComponent,
+    RegistrarPerdidaComponent
   ],
   imports: [
     BrowserModule,
