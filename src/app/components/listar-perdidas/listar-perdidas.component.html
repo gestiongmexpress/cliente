@@ -54,7 +54,7 @@
             <tbody>
                 <tr *ngFor="let perdida of perdidasFiltradas; let i = index">
                     <td>{{ i + 1 }}</td>
-                    <td>{{ perdida.fecha | date:'shortDate' }}</td>
+                    <td>{{ dateFormatService.formatDate(perdida.fecha) }}</td>
                     <td>{{ getEmpresaNombre(perdida) }}</td>
                     <td>{{ perdida.cantidad }}</td>
                     <td>{{ perdida.estado }}</td>

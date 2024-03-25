@@ -4,6 +4,7 @@ import { RegistroPerdida } from '../../models/registroPerdida';
 import { EmpresaService } from '../../services/empresa.service';
 import { Empresa } from '../../models/empresa';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { DateFormatService } from '../../services/date-format.service';
 
 @Component({
   selector: 'app-listar-perdidas',
@@ -15,10 +16,12 @@ export class ListarPerdidasComponent implements OnInit {
   empresas: Empresa[] = [];
   perdidasFiltradas: RegistroPerdida[] = [];
   filtroForm: FormGroup;
+  formatDate = this.dateFormatService.formatDate.bind(this.dateFormatService);
 
   constructor(private registroPerdidaService: RegistroPerdidaService,
               private empresaService: EmpresaService,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              public dateFormatService: DateFormatService) {
                 this.filtroForm = this.fb.group({
                   empresa: [''],
                   estado: [''],
