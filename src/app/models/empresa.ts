@@ -4,11 +4,14 @@ export interface Empresa {
     rut: string;
     vigente: 'Si' | 'No';
     ordenCompra: 'Si' | 'No';
-    colorFondoAsignado?: string;
-    colorLetraAsignado?: string;
+    colorFondoAsignado?: string | null;
+    colorLetraAsignado?: string | null;
     valorNeto: number;
-    servicioNegociado: string;
+    valorAnterior?: number;
+    servicioNegociado: 'Básico' | 'Estándar A' | 'Estándar B' | 'Clásico' | 'Ejecutivo';
+    tipoServicio: 'Tradicional' | 'Transportado' | 'GM Service';
+    contenedorVidrio?: 'Si' | 'No' | null;
     sucursal: string;
-    coloresTraspasadosA?: string;
+    coloresTraspasadosA?: string | null;
     facturacion: string;
 }

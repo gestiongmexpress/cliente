@@ -42,13 +42,19 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>Nombre</th>
-                <th>RUT</th>
-                <th>Vigente</th>
-                <th>Orden de Compra</th>
-                <th>Facturación</th>
-                <th>Sucursal</th>
-                <th>Acciones</th>
+                    <th>Nombre</th>
+                    <th>RUT</th>
+                    <th>Vigente</th>
+                    <th>Orden de Compra</th>
+                    <th>Color Fondo Asignado</th>
+                    <th>Color Letra Asignado</th>
+                    <th>Valor Neto</th>
+                    <th>Servicio Negociado</th>
+                    <th>Tipo de Servicio</th>
+                    <th>Contenedor de Vidrio</th>
+                    <th>Sucursal</th>
+                    <th>Facturación</th>
+                    <th>Acciones</th>
             </tr>
             </thead>
             <tbody>
@@ -68,8 +74,14 @@
                         <option [selected]="empresa.ordenCompra === 'No'" value="No">No</option>
                     </select>
                 </td>
-                <td>{{ empresa.facturacion }}</td>
+                <td>{{ empresa.colorFondoAsignado || 'N/A' }}</td>
+                <td>{{ empresa.colorLetraAsignado || 'N/A' }}</td>
+                <td title="Valor anterior: {{empresa.valorAnterior || 'No disponible'}}">{{ empresa.valorNeto }}</td> 
+                <td>{{ empresa.servicioNegociado }}</td>
+                <td>{{ empresa.tipoServicio }}</td>
+                <td>{{ empresa.contenedorVidrio || 'N/A' }}</td>
                 <td>{{ empresa.sucursal }}</td>
+                <td>{{ empresa.facturacion }}</td>
                 <td class="actions-cell">
                 <button class="btn btn-third" (click)="editarEmpresa(empresa._id!)"><i class="fas fa-edit"></i></button>
                 <!-- <button class="btn btn-eliminar" (click)="eliminarEmpresa(empresa._id!)"><i class="fas fa-trash"></i></button> -->

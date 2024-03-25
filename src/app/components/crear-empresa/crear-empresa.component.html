@@ -62,7 +62,35 @@
                         <!-- Servicio Negociado -->
                         <div class="form-group mb-3">
                             <label for="servicioNegociado">Servicio Negociado</label>
-                            <input type="text" id="servicioNegociado" class="form-control" formControlName="servicioNegociado" placeholder="Servicio Negociado">
+                            <select id="servicioNegociado" class="form-control" formControlName="servicioNegociado">
+                                <option value="" disabled>Seleccionar</option>
+                                <option value="Básico">Básico</option>
+                                <option value="Estándar A">Estándar A</option>
+                                <option value="Estándar B">Estándar B</option>
+                                <option value="Clásico">Clásico</option>
+                                <option value="Ejecutivo">Ejecutivo</option>
+                            </select>
+                        </div>
+
+                        <!-- Tipo de Servicio -->
+                        <div class="form-group mb-3">
+                            <label for="tipoServicio">Tipo de Servicio</label>
+                            <select id="tipoServicio" class="form-control" formControlName="tipoServicio">
+                                <option value="" disabled>Seleccionar</option>
+                                <option value="Tradicional">Tradicional</option>
+                                <option value="Transportado">Transportado</option>
+                                <option value="GM Service">GM Service</option>
+                            </select>
+                        </div>
+
+                        <!-- Contenedor de Vidrio -->
+                        <div class="form-group mb-3">
+                            <label for="contenedorVidrio">Contenedor de Vidrio</label>
+                            <select id="contenedorVidrio" class="form-control" formControlName="contenedorVidrio">
+                                <option value="" disabled>Seleccionar</option>
+                                <option value="Si">Sí</option>
+                                <option value="No">No</option>
+                            </select>
                         </div>
 
                         <!-- Sucursal -->

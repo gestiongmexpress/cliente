@@ -15,6 +15,7 @@ export class CrearEmpresaComponent implements OnInit {
   titulo = 'Crear Empresa';
   id: string | null;
   esModoEdicion: boolean = false;
+  valorNetoOriginal?: number;
 
   constructor(
     private fb: FormBuilder, 
@@ -32,9 +33,12 @@ export class CrearEmpresaComponent implements OnInit {
       colorLetraAsignado: [''],
       valorNeto: ['', [Validators.required, Validators.min(1)]],
       servicioNegociado: ['', Validators.required],
+      tipoServicio: ['', Validators.required],
+      contenedorVidrio: [''],
       sucursal: ['', Validators.required],
       coloresTraspasadosA: [''],
       facturacion: ['', Validators.required],
+      valorAnterior: [null],
     });
     this.id = this.aRouter.snapshot.paramMap.get('id');
   }
@@ -48,6 +52,9 @@ export class CrearEmpresaComponent implements OnInit {
 
   agregarOEditarEmpresa() {
     if (this.empresaForm.valid) {
+      if (this.esModoEdicion && this.valorNetoOriginal !== this.empresaForm.get('valorNeto')?.value) {
+        this.empresaForm.get('valorAnterior')?.setValue(this.valorNetoOriginal);
+      }
       if (this.esModoEdicion) {
         this._empresaService.actualizarEmpresa(this.id!, this.empresaForm.value).subscribe({
           next: (data) => {
@@ -79,6 +86,7 @@ export class CrearEmpresaComponent implements OnInit {
     this._empresaService.obtenerEmpresa(this.id!).subscribe({
       next: (data) => {
         this.empresaForm.patchValue(data);
+        this.valorNetoOriginal = data.valorNeto;
       },
       error: (error) => {
         this.toastr.error('Error al cargar los datos de la empresa', 'Error');
