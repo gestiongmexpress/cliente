@@ -4,6 +4,7 @@ import { UsoTicket } from '../../models/usoTicket';
 import { EmpresaService } from '../../services/empresa.service';
 import { Empresa } from '../../models/empresa';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { DateFormatService } from '../../services/date-format.service';
 
 @Component({
   selector: 'app-listar-usos',
@@ -16,10 +17,12 @@ export class ListarUsosComponent implements OnInit {
   empresas: Empresa[] = [];
   filtroForm: FormGroup;
   servicios = ['Canje', 'Tradicional', 'Transportado'];
+  formatDate = this.dateFormatService.formatDate.bind(this.dateFormatService);
 
   constructor(private usoTicketService: UsoTicketService,
               private empresaService: EmpresaService,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              public dateFormatService: DateFormatService) {
                 this.filtroForm = this.fb.group({
                   empresa: [''],
                   servicio: [''],

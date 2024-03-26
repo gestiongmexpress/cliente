@@ -53,6 +53,7 @@ import { RegistroTicketsComponent } from './components/registro-tickets/registro
 import { ListarUsosComponent } from './components/listar-usos/listar-usos.component';
 import { ListarPerdidasComponent } from './components/listar-perdidas/listar-perdidas.component';
 import { RegistrarPerdidaComponent } from './components/registrar-perdida/registrar-perdida.component';
+import { FraccionarTalonariosComponent } from './components/fraccionar-talonarios/fraccionar-talonarios.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { RegistrarPerdidaComponent } from './components/registrar-perdida/regist
     RegistroTicketsComponent,
     ListarUsosComponent,
     ListarPerdidasComponent,
-    RegistrarPerdidaComponent
+    RegistrarPerdidaComponent,
+    FraccionarTalonariosComponent
   ],
   imports: [
     BrowserModule,

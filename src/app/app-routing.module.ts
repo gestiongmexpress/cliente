@@ -40,6 +40,7 @@ import { RegistroTicketsComponent } from './components/registro-tickets/registro
 import { ListarUsosComponent } from './components/listar-usos/listar-usos.component';
 import { RegistrarPerdidaComponent } from './components/registrar-perdida/registrar-perdida.component';
 import { ListarPerdidasComponent } from './components/listar-perdidas/listar-perdidas.component';
+import { FraccionarTalonariosComponent } from './components/fraccionar-talonarios/fraccionar-talonarios.component';
 
 
 const routes: Routes = [
@@ -84,6 +85,7 @@ const routes: Routes = [
   { path: 'uso-ticket', component: UsoTicketComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente', 'Asistente']}},
   { path: 'registro-ticket', component: RegistroTicketsComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente', 'Asistente']}},
   { path: 'crear-prestamo', component: CrearPrestamoComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},
+  { path: 'fraccionar-ticket/:id', component: FraccionarTalonariosComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente', 'Asistente']}},
   { path: 'administracion-tickets', component: AdministracionTicketsComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente', 'Asistente']}},
   { path: 'registrar-perdida', component: RegistrarPerdidaComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente', 'Asistente']}},
   { path: 'recursos-humanos', component: RecursosHumanosComponent, canActivate: [AuthGuard], data: { roles: ['Administrador', 'Gerente']}},

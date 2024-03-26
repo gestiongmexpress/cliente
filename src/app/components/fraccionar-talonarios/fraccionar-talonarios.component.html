@@ -1,0 +1,52 @@
+<app-layout>
+  <div class="container mt-4">
+    <h2>Fraccionar Talonarios</h2>
+    <form [formGroup]="fraccionarForm" (ngSubmit)="onSubmit()">
+      <table class="table table-rounded">
+        <tbody>
+          <!-- Total de talonarios del ticket -->
+          <tr>
+            <th scope="row">Total de Talonarios:</th>
+            <td>{{ticketOriginal?.talonarios}}</td>
+          </tr>
+          <!-- Estado actual del ticket -->
+          <tr>
+            <th scope="row">Estado Actual:</th>
+            <td>{{ticketOriginal?.estado}}</td>
+          </tr>
+          <!-- Cantidad de talonarios a fraccionar -->
+          <tr>
+            <th scope="row">
+              <label for="talonariosAFraccionar">Talonarios a Fraccionar:</label>
+            </th>
+            <td>
+              <input type="number" class="form-control" id="talonariosAFraccionar" formControlName="talonariosAFraccionar" min="1">
+              <div *ngIf="fraccionarForm.get('talonariosAFraccionar')?.invalid && fraccionarForm.get('talonariosAFraccionar')?.touched" class="text-danger">
+                Debes introducir un número válido de talonarios a fraccionar.
+              </div>
+            </td>
+          </tr>
+          <!-- Nuevo estado -->
+          <tr>
+            <th scope="row">
+              <label for="nuevoEstado">Nuevo Estado:</label>
+            </th>
+            <td>
+              <select class="form-select" id="nuevoEstado" formControlName="nuevoEstado">
+                <option value="" disabled>Selecciona un estado</option>
+                <option *ngFor="let estado of estados" [value]="estado" [disabled]="estado === ticketOriginal?.estado">{{estado}}</option>
+              </select>
+              <div *ngIf="fraccionarForm.get('nuevoEstado')?.invalid && fraccionarForm.get('nuevoEstado')?.touched" class="text-danger">
+                Debes seleccionar un estado.
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="button-group mt-3">
+        <button type="submit" class="btn btn-primary" [disabled]="!fraccionarForm.valid">Fraccionar</button>
+        <button class="btn btn-primary" routerLink="/listar-tickets">Volver</button>
+      </div>
+    </form>
+  </div>
+</app-layout>

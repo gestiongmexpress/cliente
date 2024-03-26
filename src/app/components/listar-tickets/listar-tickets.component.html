@@ -68,6 +68,10 @@
             <th>Talonarios</th>
             <th>Unidades</th>
             <th>Total</th>
+            <th>Folio Inicial</th>
+            <th>Folio Final</th>
+            <th>Total Factura</th>
+            <th>Observación</th>
             <th>Estado del Ticket</th>
             <th>Vigencia</th>
             <th>Acciones</th>
@@ -83,6 +87,10 @@
                 <td>{{ ticket.talonarios }}</td>
                 <td>{{ ticket.unidades }}</td>
                 <td>{{ ticket.total }}</td>
+                <td>{{ ticket.folioInicial }}</td>
+                <td>{{ ticket.folioFinal }}</td>
+                <td>{{ ticket.totalFactura }}</td>
+                <td>{{ ticket.observacion }}</td>
                 <td>
                     <select class="form-select" (change)="onSelectEstadoChange(ticket._id, $event)">
                         <option [selected]="ticket.estado === 'Pendiente'" value="Pendiente">Pendiente</option>
@@ -94,6 +102,9 @@
                     </select>
                 </td>
                 <td>{{ ticket.vigencia }}</td>
+                <td>
+                    <button class="btn btn-warning btn-sm" [disabled]="ticket.talonarios <= 1" [routerLink]="['/fraccionar-ticket', ticket._id]">Fraccionar</button>
+                </td>
             <td>
             </td>
             </tr>

@@ -62,7 +62,7 @@ color: #dfffff;
 
 /* Estilos para la tabla */
 .table {
-border-collapse: separate;
+border-collapse: collapse;
 border-spacing: 0;
 width: 100%;
 margin-bottom: 1rem;
@@ -76,6 +76,26 @@ font-weight: bold;
 font-size: 1rem; 
 text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5); 
 background-color: #e0f7fa; 
+}
+
+.table th:nth-child(1) { min-width: 20px; }
+.table th:nth-child(2) { min-width: 100px; }
+.table th:nth-child(4) { min-width: 10px; }
+
+.table td {
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.table td[title]:hover:after {
+  content: attr(title);
+  position: absolute;
+  background: #f9f9f9;
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  z-index: 20;
 }
 
 /* Estilos para redondear los bordes de la tabla y las celdas */

@@ -24,7 +24,7 @@
         <tbody>
           <tr *ngFor="let uso of usosTickets; let i = index">
             <td>{{ i + 1 }}</td>
-            <td>{{ uso.fecha | date: 'mediumDate' }}</td>
+            <td>{{ dateFormatService.formatDate(uso.fecha) }}</td>
             <td>{{ uso.cantidad }}</td>
             <td>{{ getEmpresaNombre(uso) }}</td>
             <td>{{ uso.ticketPendiente }}</td>
