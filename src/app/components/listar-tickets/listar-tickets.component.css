@@ -83,19 +83,21 @@ background-color: #e0f7fa;
 .table th:nth-child(4) { min-width: 10px; }
 
 .table td {
-  max-width: 100px;
-  white-space: nowrap;
+  max-width: 120px;
+  white-space: normal;
   overflow: hidden;
   text-overflow: ellipsis;
+  word-wrap: break-word;
 }
 
-.table td[title]:hover:after {
+.table td[title]:hover::after {
   content: attr(title);
-  position: absolute;
-  background: #f9f9f9;
-  padding: 4px 8px;
-  border: 1px solid #ccc;
-  z-index: 20;
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  white-space: pre-wrap;
+  text-align: left;
+  max-width: 300px;
 }
 
 /* Estilos para redondear los bordes de la tabla y las celdas */

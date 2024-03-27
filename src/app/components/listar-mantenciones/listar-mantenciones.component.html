@@ -82,6 +82,7 @@
                 <!-- Mostrar botón de ver detalle si la capacitación está realizada -->
                 <a *ngIf="esMantencionRealizada(agrupaciones[clave].porMes, mesesMap[mes])" 
                    [routerLink]="['/detalle-mantencion', obtenerIdMantencionMes(agrupaciones[clave].porMes, mesesMap[mes])]" 
+                   [queryParams]="{ sucursal: filtroSucursal, ano: filtroAno, area: filtroArea }" 
                    class="icono-accion">
                   <i class="fas fa-eye"></i>
                 </a>

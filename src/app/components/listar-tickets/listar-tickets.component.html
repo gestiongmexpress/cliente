@@ -67,7 +67,6 @@
             <th>Orden de Compra</th>
             <th>Talonarios</th>
             <th>Unidades</th>
-            <th>Total</th>
             <th>Folio Inicial</th>
             <th>Folio Final</th>
             <th>Total Factura</th>
@@ -86,10 +85,11 @@
                 <td>{{ ticket.ordenCompra }}</td>
                 <td>{{ ticket.talonarios }}</td>
                 <td>{{ ticket.unidades }}</td>
-                <td>{{ ticket.total }}</td>
                 <td>{{ ticket.folioInicial }}</td>
                 <td>{{ ticket.folioFinal }}</td>
-                <td>{{ ticket.totalFactura }}</td>
+                <td [title]="'Valor: ' + (ticket.valor | number:'1.0-2')">
+                    {{ ticket.totalFactura | number:'1.0-2' }}
+                  </td>
                 <td>{{ ticket.observacion }}</td>
                 <td>
                     <select class="form-select" (change)="onSelectEstadoChange(ticket._id, $event)">

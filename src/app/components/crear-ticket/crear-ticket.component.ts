@@ -77,6 +77,7 @@ export class CrearTicketComponent implements OnInit {
         vigente: this.empresaSeleccionada.vigente,
         ordenCompra: this.empresaSeleccionada.ordenCompra,
         facturacion: this.empresaSeleccionada.facturacion,
+        valor: this.empresaSeleccionada.valorNeto
       });
       this.calcularTotales();
     }
@@ -84,17 +85,22 @@ export class CrearTicketComponent implements OnInit {
 
   onSubmit(): void {
     if (this.ticketForm.valid) {
-        this.registroTicketService.crearRegistroTicket(this.ticketForm.value).subscribe({
-            next: (registroTicket) => {
-                this.toastr.success('Ticket creado con éxito', 'Registro exitoso');
-                this.router.navigate(['/listar-tickets']);
-            },
-            error: (error) => {
-                console.error('Error al crear ticket', error);
-                this.toastr.error('Error al crear ticket');
-            }
+      const formValue = this.ticketForm.value;
+      const registroData: any = {
+        ...formValue,
+        valor: this.empresaSeleccionada?.valorNeto
+      };
+      this.registroTicketService.crearRegistroTicket(registroData).subscribe({
+          next: (registroTicket) => {
+              this.toastr.success('Ticket creado con éxito', 'Registro exitoso');
+              this.router.navigate(['/listar-tickets']);
+          },
+          error: (error) => {
+              console.error('Error al crear ticket', error);
+              this.toastr.error('Error al crear ticket');
+          }
         });
-    } else {
+      } else {
         let errorMessages: string[] = [];
         Object.keys(this.ticketForm.controls).forEach(key => {
             const control = this.ticketForm.get(key);
