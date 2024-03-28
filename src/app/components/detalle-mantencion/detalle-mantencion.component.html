@@ -57,8 +57,13 @@
             </div>
           </div>
           <div class="card-footer text-center">
-            <a routerLink="/listar-mantencion" class="btn btn-secondary">Volver</a>
-          </div>
+            <a 
+              [routerLink]="['/listar-mantencion']" 
+              [queryParams]="{ sucursal: filtroSucursal, ano: filtroAno, area: filtroArea }"
+              class="btn btn-secondary">
+              Volver
+            </a>
+          </div>          
         </div>
       </div>
     </div>

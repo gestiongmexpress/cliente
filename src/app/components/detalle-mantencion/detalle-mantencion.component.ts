@@ -10,11 +10,25 @@ import { formatDate } from '@angular/common';
   styleUrls: ['./detalle-mantencion.component.css']
 })
 export class DetalleMantencionComponent implements OnInit {
-  mantencion!: Mantencion;
+  mantencion: Mantencion = {
+    nombre: '',
+    sucursal: '',
+    observacion: '',
+    codigo: '',
+    area: '',
+    mes:  '',
+    ano: 0,
+    encargado: '',
+    proveedor: '',
+    estado: ''
+  }
   id: string | null = null;
   fechaRealizacionFormatted: string = '';
   fechaCreacionFormatted: string = '';
   rolUsuario: string = '';
+  filtroSucursal: string = '';
+  filtroAno: string = '';
+  filtroArea: string = '';
 
   constructor(
     private mantencionService: MantencionService,
@@ -24,6 +38,12 @@ export class DetalleMantencionComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerRolUsuario();
     this.id = this.route.snapshot.paramMap.get('id');
+    this.route.queryParams.subscribe(params => {
+      this.filtroSucursal = params['sucursal'] || '';
+      this.filtroAno = params['ano'] || '';
+      this.filtroArea = params['area'] || '';
+    });
+  
     if (this.id) {
       this.mantencionService.obtenerMantencion(this.id).subscribe((mantencion: Mantencion) => {
         this.mantencion = mantencion;
@@ -39,7 +59,7 @@ export class DetalleMantencionComponent implements OnInit {
     } else {
       console.error('No se proporcionó un ID válido para la mantención');
     }
-  }
+  }  
 
   obtenerRolUsuario() {
     const token = localStorage.getItem('token');

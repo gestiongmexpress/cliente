@@ -16,6 +16,7 @@ export interface RegistroTicket {
   facturado: 'Si' | 'No';
   mesFactura?: string;
   factura?: number;
+  valor: number;
   totalNeto: number;
   totalFactura: number;
   observacion?: string;
